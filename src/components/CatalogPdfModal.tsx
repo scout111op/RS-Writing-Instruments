@@ -167,9 +167,14 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                 Precision-manufactured natural hard rubber ebonite feeds engineered for fountain pen artisans, brands, and repair specialists worldwide.
               </p>
             </div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#102E29] bg-white px-3 py-1.5 rounded-lg border border-[#E5DFD5]">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              2026 Direct B2B Wholesale Pricing
+            <div className="flex flex-col items-start md:items-end gap-1.5">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#102E29] bg-white px-3 py-1.5 rounded-lg border border-[#E5DFD5]">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                2026 Direct Retail Price
+              </div>
+              <span className="text-xs font-semibold text-[#B8963E]">
+                For Best Price of Wholesale Contact on Whatsapp
+              </span>
             </div>
           </div>
 
@@ -179,7 +184,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
               <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">250 Pcs</span>
               <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Minimum Order Quantity (Feeds)</span>
             </div>
-            <div className="p-4 rounded-xl text-center bg-[#F5F1EB] p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
+            <div className="p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
               <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">100% Hard Rubber</span>
               <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Natural Ebonite Material</span>
             </div>
