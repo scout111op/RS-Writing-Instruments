@@ -2,11 +2,11 @@
 
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
-import { rawProducts, Product, calculateDisplayPrice } from '@/lib/products';
+import { rawProducts, calculateDisplayPrice } from '@/lib/products';
 import { getWhatsAppLink } from '@/lib/whatsapp';
 import CatalogPdfModal from '@/components/CatalogPdfModal';
 import { HiSearch, HiOutlineDocumentText, HiFilter } from 'react-icons/hi';
-import { FaWhatsapp, FaFeatherAlt } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function FeedCatalogSection() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -120,15 +120,15 @@ export default function FeedCatalogSection() {
               return (
                 <button
                   key={opt}
+                  type="button"
                   onClick={() => setSelectedFilter(opt)}
-                  className="py-1.5 px-3 rounded-lg text-[11px] font-semibold transition-all duration-200"
-                  style={{
-                    background: isActive ? '#102E29' : '#F5F1EB',
-                    color: isActive ? '#FDFBF7' : '#6B6558',
-                    border: isActive ? '1px solid #102E29' : '1px solid #E5DFD5',
-                  }}
+                  className={`py-1.5 px-3 rounded-lg text-[11px] font-semibold transition-all duration-200 ${
+                    isActive
+                      ? 'bg-[#102E29] text-[#FDFBF7] border border-[#102E29]'
+                      : 'bg-[#F5F1EB] text-[#6B6558] border border-[#E5DFD5]'
+                  }`}
                 >
-                  {opt
+                  {opt}
                 </button>
               );
             })}
