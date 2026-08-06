@@ -18,7 +18,7 @@ export const rawProducts: Product[] = [
     shape: "Shaffer", 
     ink: "Single", 
     type: "Friction fit", 
-    basePrice: 28,
+    basePrice: 78,
     image: "/products/no-5-5-single-ink-channel.jpg"
   },
   { 
@@ -28,7 +28,7 @@ export const rawProducts: Product[] = [
     shape: "Shaffer", 
     ink: "Double", 
     type: "Friction fit", 
-    basePrice: 35,
+    basePrice: 85,
     image: "/products/no-5-5-double-ink-channel.jpg"
   },
   { 
@@ -38,7 +38,7 @@ export const rawProducts: Product[] = [
     shape: "Shaffer", 
     ink: "Single", 
     type: "Friction fit", 
-    basePrice: 25,
+    basePrice: 75,
     image: "/products/no-35-single-ink-channel.jpg"
   },
   { 
@@ -48,7 +48,7 @@ export const rawProducts: Product[] = [
     shape: "Shaffer", 
     ink: "Double", 
     type: "Friction fit", 
-    basePrice: 38,
+    basePrice: 88,
     image: "/products/no-35-double-ink-channel-classic.jpg"
   },
   { 
@@ -58,98 +58,98 @@ export const rawProducts: Product[] = [
     shape: "Shaffer", 
     ink: "Double", 
     type: "Friction fit", 
-    basePrice: 42,
+    basePrice: 90,
     image: "/products/no-35-double-ink-channel-premium.jpg"
   },
   { 
     id: 6, 
-    name: "Ebonite Feed #35 - Triple Channel", 
+    name: "Ebonite Feed #35 - Music Flow Triple", 
     model: "Ebonite Feed No. #6 or 35", 
     shape: "Shaffer", 
-    ink: "Triple", 
+    ink: "Triple (Music Flow)", 
     type: "Friction fit", 
-    basePrice: 45,
+    basePrice: 105,
     image: "/products/no-35-triple-ink-channel.jpg"
   },
   { 
     id: 7, 
-    name: "Ebonite Feed #35 (51mm) - Single Channel (Black)", 
-    model: "Ebonite Feed No. #6 or 35 (51mm)", 
-    shape: "Parker", 
-    ink: "Single", 
-    type: "Friction fit", 
-    basePrice: 30,
-    image: "/products/no-35-51mm-single-ink-channel-2.jpg"
+    name: "Ebonite Feed #6 CC - Double Channel", 
+    model: "Ebonite Feed No. #6 or 35", 
+    shape: "Shaffer", 
+    ink: "Double", 
+    type: "Cartridge Compatible", 
+    basePrice: 300,
+    image: "/products/no-6-cbyc-double-ink-channel.jpg"
   },
   { 
     id: 8, 
-    name: "Ebonite Feed #35 (51mm) - Single Channel (Red Ebonite)", 
-    model: "Ebonite Feed No. #6 or 35 (51mm)", 
+    name: "Ebonite Feed #6 CC - Parker Triple", 
+    model: "Ebonite Feed No. #6 or 35", 
     shape: "Parker", 
-    ink: "Single", 
-    type: "Friction fit", 
-    basePrice: 45,
-    image: "/products/no-35-51mm-single-ink-channel-red.jpg"
+    ink: "Triple", 
+    type: "Cartridge Compatible", 
+    basePrice: 325,
+    image: "/products/parker-shape-triple-ink-channel-ebonite-cc-feed-6.jpg"
   },
   { 
     id: 9, 
-    name: "Ebonite Feed #35 (51mm) - Double Channel (Black)", 
-    model: "Ebonite Feed No. #6 or 35 (51mm)", 
+    name: "Ebonite Feed #35 (51mm) - Parker Double", 
+    model: "Ebonite Feed No. #35 51mm Length", 
     shape: "Parker", 
     ink: "Double", 
     type: "Friction fit", 
-    basePrice: 38,
+    basePrice: 80,
     image: "/products/parker-shape-no-35-51mm-double-ink-channel.jpg"
   },
   { 
     id: 10, 
-    name: "Ebonite Feed #35 (51mm) - Double Channel (Red Ebonite)", 
-    model: "Ebonite Feed No. #6 or 35 (51mm)", 
-    shape: "Parker", 
-    ink: "Double", 
+    name: "Ebonite Feed #35 (51mm) - Single Channel", 
+    model: "Ebonite Feed No. #35 51mm Length", 
+    shape: "Shaffer", 
+    ink: "Single", 
     type: "Friction fit", 
-    basePrice: 50,
-    image: "/products/no-35-51mm-double-ink-channel-red.jpg"
+    basePrice: 85,
+    image: "/products/no-35-51mm-single-ink-channel-2.jpg"
   },
   { 
     id: 11, 
-    name: "Ebonite Feed #35 (51mm) - Triple Channel (Black)", 
-    model: "Ebonite Feed No. #6 or 35 (51mm)", 
-    shape: "Parker", 
-    ink: "Triple", 
+    name: "Ebonite Feed #35 (51mm) - Single Channel (Red Ebonite)", 
+    model: "Ebonite Feed No. #35 51mm Length", 
+    shape: "Shaffer", 
+    ink: "Single", 
     type: "Friction fit", 
-    basePrice: 48,
-    image: "/products/no-35-51mm-triple-ink-channel.jpg"
+    basePrice: 95,
+    image: "/products/no-35-51mm-single-ink-channel-red.jpg"
   },
   { 
     id: 12, 
-    name: "Ebonite Feed #35 (51mm) - Triple Channel (Red Ebonite)", 
-    model: "Ebonite Feed No. #6 or 35 (51mm)", 
-    shape: "Parker", 
-    ink: "Triple", 
+    name: "Ebonite Feed #35 (51mm) - Double Channel (Red Ebonite)", 
+    model: "Ebonite Feed No. #35 51mm Length", 
+    shape: "Shaffer", 
+    ink: "Double", 
     type: "Friction fit", 
-    basePrice: 60,
-    image: "/products/no-35-51mm-triple-ink-channel-red.jpg"
+    basePrice: 105,
+    image: "/products/no-35-51mm-double-ink-channel-red.jpg"
   },
   { 
     id: 13, 
-    name: "Ebonite CC Feed #6 - CBYC Double Channel", 
-    model: "Ebonite Feed No. #6", 
-    shape: "Parker", 
-    ink: "Double", 
-    type: "Cartridge fit", 
-    basePrice: 55,
-    image: "/products/no-6-cbyc-double-ink-channel.jpg"
+    name: "Ebonite Feed #35 (51mm) - Music Flow Triple", 
+    model: "Ebonite Feed No. #35 51mm Length", 
+    shape: "Shaffer", 
+    ink: "Triple (Music Flow)", 
+    type: "Friction fit", 
+    basePrice: 115,
+    image: "/products/no-35-51mm-triple-ink-channel.jpg"
   },
   { 
     id: 14, 
-    name: "Ebonite CC Feed #6 - Triple Channel (High Ink Flow)", 
-    model: "Ebonite Feed No. #6", 
-    shape: "Parker", 
-    ink: "Triple", 
-    type: "Cartridge fit", 
-    basePrice: 65,
-    image: "/products/parker-shape-triple-ink-channel-ebonite-cc-feed-6.jpg"
+    name: "Ebonite Feed #35 (51mm) - Music Flow (Red Ebonite)", 
+    model: "Ebonite Feed No. #35 51mm Length", 
+    shape: "Shaffer", 
+    ink: "Triple (Music Flow)", 
+    type: "Friction fit", 
+    basePrice: 125,
+    image: "/products/no-35-51mm-triple-ink-channel-red.jpg"
   }
 ];
 
