@@ -21,7 +21,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
       window.addEventListener('keydown', handleKeyDown);
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
@@ -36,11 +36,11 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
 
   return (
     <div 
-      className="fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 bg-black/60 backdrop-blur-md animate-fade-in flex items-center justify-center min-h-full"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md animate-fade-in"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl my-auto"
+        className="relative w-full max-w-4xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto overscroll-contain rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl"
         style={{
           background: '#FDFBF7',
           border: '1px solid #E5DFD5',
