@@ -12,13 +12,16 @@ interface PenDetailModalProps {
 }
 
 export default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {
-  const [selectedNib, setSelectedNib] = useState<string>('');
+  const [selectedNibState, setSelectedNibState] = useState<string | null>(null);
+  const [prevPenId, setPrevPenId] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (pen && pen.nibOptions.length > 0) {
-      setSelectedNib(pen.nibOptions[0]);
-    }
-  }, [pen]);
+  if (pen && pen.id !== prevPenId) {
+    setPrevPenId(pen.id);
+    setSelectedNibState(pen.nibOptions[0] || '');
+  }
+
+  const selectedNib = selectedNibState ?? (pen?.nibOptions[0] || '');
+  const setSelectedNib = (nib: string) => setSelectedNibState(nib);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -131,11 +134,11 @@ export default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {
 
               {/* Highlights */}
               <div className="grid grid-cols-2 gap-2 mb-6">
-                {pen.highlights.map((h, i) => (\
+                {pen.highlights.map((h, i) => (
                   <div key={i} className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: '#102E29' }}>
                     <HiCheck style={{ color: '#B8963E' }} size={14} />
                     <span>{h}</span>
-                  </div>\
+                  </div>
                 ))}
               </div>
 
@@ -150,7 +153,7 @@ export default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {
               <div className="mb-6">
                 <label className="block text-[10px] uppercase tracking-[0.2em] font-bold mb-2" style={{ color: '#B8963E' }}>
                   Select Preferred Nib Grade:
-                </label>\
+                </label>
                 <div className="flex flex-wrap gap-2">
                   {pen.nibOptions.map((nib) => {
                     const isSelected = selectedNib === nib;

@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { FaWhatsapp, FaCheckCircle, FaFeatherAlt } from 'react-icons/fa';
 import { HiOutlineMenuAlt3, HiX, HiArrowDown } from 'react-icons/hi';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 
 import WhatsAppBanner from '@/components/WhatsAppBanner';
 import FeedCatalogSection from '@/components/FeedCatalogSection';
@@ -15,24 +14,24 @@ import ProductCatalogGrid from '@/components/ProductCatalogGrid';
 import ProductCard from '@/components/ProductCard';
 import PatrioticSaleBanner from '@/components/PatrioticSaleBanner';
 import AtelierPoliciesSection from '@/components/AtelierPoliciesSection';
-import { catalogProducts, featuredHeroProduct } from '@/lib/catalogProducts';
+import { featuredHeroProduct } from '@/lib/catalogProducts';
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const emptySubscribe = () => () => {};
+function useMounted() {
+  return useSyncExternalStore(emptySubscribe, () => true, () => false);
+}
+
 export default function Home() {
-  const [hasMounted, setHasMounted] = useState(false);
+  const hasMounted = useMounted();
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero-section');
-  const [activeHeroIndex, setActiveHeroIndex] = useState(0);
 
   const craftsmanshipRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   // Scroll observer for navbar shadow & active link highlight
   useEffect(() => {
