@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { rawProducts, calculateDisplayPrice } from '@/lib/products';
 import { fountainPenCollection } from '@/lib/fountainPens';
-import { HiX, HiDownload, HiPrinter } from 'react-icons/hi';
+import { HiX, HiPrinter } from 'react-icons/hi';
 import { FaWhatsapp, FaFilePdf, FaCheckCircle } from 'react-icons/fa';
 
 interface CatalogPdfModalProps {
@@ -53,7 +53,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
           className="absolute top-5 right-5 z-20 p-2 rounded-full transition-colors hover:bg-[#E5DFD5]/50"
           style={{ color: '#102E29' }}
           aria-label="Close catalog modal"
-        >\
+        >
           <HiX size={24} />
         </button>
 
@@ -103,7 +103,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E5DFD5] bg-white">
-                {rawProducts.map((p) => (\
+                {rawProducts.map((p) => (
                   <tr key={p.id} className="hover:bg-[#FAF8F5]">
                     <td className="p-3 font-semibold" style={{ color: '#102E29' }}>{p.name}</td>
                     <td className="p-3" style={{ color: '#6B6558' }}>{p.shape}</td>
