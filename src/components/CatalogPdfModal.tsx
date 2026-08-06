@@ -3,7 +3,6 @@
 
 import { useEffect } from 'react';
 import { rawProducts, calculateDisplayPrice } from '@/lib/products';
-import { fountainPenCollection } from '@/lib/fountainPens';
 import { HiX, HiPrinter } from 'react-icons/hi';
 import { FaWhatsapp, FaFilePdf, FaCheckCircle } from 'react-icons/fa';
 
@@ -37,11 +36,11 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
 
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md overflow-y-auto animate-fade-in"
+      className="fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 bg-black/60 backdrop-blur-md animate-fade-in flex items-center justify-center min-h-full"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl my-auto max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-4xl rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl my-auto"
         style={{
           background: '#FDFBF7',
           border: '1px solid #E5DFD5',
@@ -67,7 +66,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
             RS Writing Instruments Specification Catalog
           </h2>
           <p className="text-xs sm:text-sm mt-2 max-w-xl mx-auto" style={{ color: '#6B6558' }}>
-            Precision-manufactured ebonite feeds and bespoke fountain pens for pen artisans, brands, and repair specialists worldwide.
+            Precision-manufactured ebonite feeds for pen artisans, brands, and repair specialists worldwide.
           </p>
         </div>
 
@@ -111,37 +110,6 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                     <td className="p-3" style={{ color: '#6B6558' }}>{p.ink}</td>
                     <td className="p-3" style={{ color: '#6B6558' }}>{p.type}</td>
                     <td className="p-3 text-right font-bold" style={{ color: '#102E29' }}>{calculateDisplayPrice(p)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Table 2: Fountain Pen Collection */}
-        <div className="mb-8">
-          <h3 className="font-serif text-xl font-bold mb-4 flex items-center gap-2" style={{ color: '#102E29' }}>
-            <FaCheckCircle className="text-[#B8963E]" size={16} /> Bespoke Fountain Pen Collection
-          </h3>
-          <div className="overflow-x-auto rounded-xl border border-[#E5DFD5]">
-            <table className="w-full text-left text-xs">
-              <thead className="bg-[#102E29] text-[#FDFBF7] uppercase text-[10px] tracking-wider">
-                <tr>
-                  <th className="p-3">Fountain Pen Model</th>
-                  <th className="p-3">Category</th>
-                  <th className="p-3">Body Material</th>
-                  <th className="p-3">Feed System</th>
-                  <th className="p-3 text-right">Price</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E5DFD5] bg-white">
-                {fountainPenCollection.map((pen) => (
-                  <tr key={pen.id} className="hover:bg-[#FAF8F5]">
-                    <td className="p-3 font-semibold" style={{ color: '#102E29' }}>{pen.name}</td>
-                    <td className="p-3" style={{ color: '#B8963E' }}>{pen.category}</td>
-                    <td className="p-3" style={{ color: '#6B6558' }}>{pen.material}</td>
-                    <td className="p-3" style={{ color: '#6B6558' }}>{pen.feedType}</td>
-                    <td className="p-3 text-right font-bold" style={{ color: '#102E29' }}>₹{pen.price.toLocaleString('en-IN')}</td>
                   </tr>
                 ))}
               </tbody>

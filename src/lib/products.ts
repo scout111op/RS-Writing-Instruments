@@ -88,7 +88,7 @@ export const rawProducts: Product[] = [
     shape: "Parker", 
     ink: "Triple", 
     type: "Cartridge Compatible", 
-    basePrice: 325,
+    basePrice: 450,
     image: "/products/parker-shape-triple-ink-channel-ebonite-cc-feed-6.jpg"
   },
   { 
