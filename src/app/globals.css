@@ -109,6 +109,30 @@ body {
   background: var(--gold-dim);
 }
 
+/* ── PDF/Catalog Viewer Custom Scrollbar ── */
+.custom-catalog-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--surface);
+}
+.custom-catalog-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.custom-catalog-scrollbar::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-radius: 4px;
+}
+.custom-catalog-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 20px;
+  border: 2px solid var(--surface);
+}
+.custom-catalog-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dim);
+}
+
 /* ── Selection ── */
 ::selection {
   background: var(--gold);
