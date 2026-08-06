@@ -88,7 +88,7 @@ export default function RootLayout({
         'description': 'Manufacturer of hand-cut ebonite fountain pen feeds and bespoke hard rubber writing instruments in Lucknow, India.',
         'address': {
           '@type': 'PostalAddress',
-          'streetAddress': 'Latif Nagar, Benti, Harauni',
+          'streetAddress': 'Lucknow',
           'addressLocality': 'Lucknow',
           'addressRegion': 'Uttar Pradesh',
           'postalCode': '226401',
@@ -110,7 +110,7 @@ export default function RootLayout({
         'email': 'fountainpenmechanic@gmail.com',
         'address': {
           '@type': 'PostalAddress',
-          'streetAddress': 'Latif Nagar, Benti, Harauni',
+          'streetAddress': 'Lucknow',
           'addressLocality': 'Lucknow',
           'addressRegion': 'Uttar Pradesh',
           'postalCode': '226401',

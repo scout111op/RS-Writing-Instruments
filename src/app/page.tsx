@@ -380,8 +380,6 @@ export default function Home() {
             {/* Contact Info */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left text-xs text-[#6B6558] space-y-2">
               <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-4 text-[#B8963E]">RS Writing Contact</h4>
-              <p>Latif Nagar, Benti, Harauni</p>
-              <p>Uttar Pradesh — 226 401, India</p>
               <p className="pt-2"><span className="text-[#9C9588]">Phone/WhatsApp:</span> <a href="tel:+919455664795" className="font-bold text-[#102E29] hover:underline">+91 94556 64795</a></p>
               <p><span className="text-[#9C9588]">Email:</span> <a href="mailto:fountainpenmechanic@gmail.com" className="font-bold text-[#102E29] hover:underline">fountainpenmechanic@gmail.com</a></p>
             </div>
