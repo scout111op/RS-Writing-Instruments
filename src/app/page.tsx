@@ -93,7 +93,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3.5 md:gap-4 group py-1">
+          <a 
+            href="/" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = '/';
+            }}
+            className="flex items-center gap-3.5 md:gap-4 group py-1 cursor-pointer"
+            aria-label="Refresh home page"
+          >
             <div className="relative w-12 h-12 md:w-16 md:h-16 shrink-0 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-6 drop-shadow-md">
               <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="(max-width: 768px) 48px, 64px" priority />
             </div>
@@ -356,11 +364,21 @@ export default function Home() {
             
             {/* Brand */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 drop-shadow-md">
-                <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="80px" />
-              </div>
-              <h3 className="font-serif text-2xl md:text-3xl font-extrabold mb-1 text-[#102E29]">RS WRITING</h3>
-              <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold text-[#B8963E]">Instruments</p>
+              <a 
+                href="/" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href = '/';
+                }}
+                className="group flex flex-col items-center md:items-start cursor-pointer"
+                aria-label="Refresh home page"
+              >
+                <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 drop-shadow-md transition-transform duration-500 group-hover:scale-105">
+                  <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="80px" />
+                </div>
+                <h3 className="font-serif text-2xl md:text-3xl font-extrabold mb-1 text-[#102E29] transition-colors group-hover:text-[#B8963E]">RS WRITING</h3>
+                <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold text-[#B8963E] transition-colors group-hover:text-[#102E29]">Instruments</p>
+              </a>
               <p className="text-xs leading-relaxed text-[#9C9588]">
                 Handcrafted ebonite feeds and custom fountain pen mechanisms for discerning writers and pen artisans.
               </p>
