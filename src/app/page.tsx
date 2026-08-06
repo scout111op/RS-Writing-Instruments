@@ -93,13 +93,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 transition-transform duration-500 group-hover:rotate-12">
-              <Image src="/logo.png" alt="RS Logo" fill className="object-contain" sizes="40px" priority />
+          <a href="#" className="flex items-center gap-3.5 md:gap-4 group py-1">
+            <div className="relative w-12 h-12 md:w-16 md:h-16 shrink-0 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-6 drop-shadow-md">
+              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="(max-width: 768px) 48px, 64px" priority />
             </div>
-            <div>
-              <span className="font-serif text-xl font-bold tracking-tight text-[#102E29]">RS WRITING</span>
-              <span className="block text-[8px] uppercase tracking-[0.25em] font-semibold text-[#B8963E]">Instruments</span>
+            <div className="flex flex-col justify-center">
+              <span className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-none text-[#102E29] transition-colors group-hover:text-[#B8963E]">
+                RS WRITING
+              </span>
+              <span className="block text-[9px] sm:text-[11px] md:text-xs uppercase tracking-[0.32em] font-bold text-[#B8963E] mt-1 group-hover:text-[#102E29] transition-colors">
+                Instruments
+              </span>
             </div>
           </a>
 
@@ -229,15 +233,15 @@ export default function Home() {
           {/* Left Column: Hero Text */}
           <div className="md:col-span-6 z-10 text-left">
             <span className="fable-mono-caps text-[#B8963E] block mb-3 font-medium">
-              ◆ Handcrafted Ebonite Feeds / Custom Pens
+              ◆ Hand-Cut Ebonite Feeds & Custom Hard Rubber Pens
             </span>
             
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal mb-5 leading-[1.08] text-[#102E29] tracking-tight">
-              Where precision engineering meets <span className="font-serif italic text-[#B8963E]">heritage</span>
+              Handcrafted ebonite feeds & <span className="font-serif italic text-[#B8963E]">bespoke fountain pens</span>
             </h1>
             
             <p className="font-sans text-xs md:text-sm leading-relaxed mb-7 max-w-lg text-[#6B6558] font-normal">
-              Custom manufactured ebonite feeds and hand-turned fountain pens for discerning pen makers and collectors worldwide. Select any model below to enquire on WhatsApp.
+              Precision-cut ebonite capillary feeds, Parker & Sheaffer fitment channels, and hand-turned hard rubber fountain pens. Designed for master nibsmiths, custom pen artisans, and discerning collectors.
             </p>
 
             {/* Dual Pill CTAs */}
@@ -352,11 +356,11 @@ export default function Home() {
             
             {/* Brand */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="relative w-16 h-16 mb-4">
-                <Image src="/logo.png" alt="RS Logo" fill className="object-contain" sizes="64px" />
+              <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 drop-shadow-md">
+                <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="80px" />
               </div>
-              <h3 className="font-serif text-2xl font-bold mb-2 text-[#102E29]">RS Writing Instruments</h3>
-              <p className="text-xs uppercase tracking-[0.2em] mb-3 font-bold text-[#B8963E]">Precision Ebonite Feeds</p>
+              <h3 className="font-serif text-2xl md:text-3xl font-extrabold mb-1 text-[#102E29]">RS WRITING</h3>
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold text-[#B8963E]">Instruments</p>
               <p className="text-xs leading-relaxed text-[#9C9588]">
                 Handcrafted ebonite feeds and custom fountain pen mechanisms for discerning writers and pen artisans.
               </p>
