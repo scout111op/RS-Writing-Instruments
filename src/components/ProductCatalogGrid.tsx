@@ -27,10 +27,10 @@ export default function ProductCatalogGrid() {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
           <div>
             <span className="fable-mono-caps text-[#B8963E] block mb-2 font-medium">
-              ◆ Bespoke Pen Collection / Product Discovery
+              BESPOKE PENS / CATALOG DISCOVERY
             </span>
             <h2 className="font-serif text-3xl md:text-5xl font-normal tracking-tight text-[#102E29]">
-              Handcrafted fountain <span className="font-serif italic text-[#B8963E]">catalog</span>
+              Handcrafted fountain <span className="font-serif italic text-[#B8963E]">pens</span>
             </h2>
             <p className="font-sans text-xs md:text-sm mt-2 max-w-xl text-[#6B6558] font-normal">
               Select your preferred pen model and color option to enquire directly with RS Writing Instruments on WhatsApp.

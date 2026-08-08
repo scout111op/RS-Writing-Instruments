@@ -36,14 +36,14 @@ export default function AtelierPoliciesSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="fable-mono-caps text-[#B8963E] block mb-2 font-semibold text-[10px]">
-            ◆ RS Writing Instruments Commitments
+          <span className="fable-mono-caps text-[#B8963E] block mb-2 font-medium">
+            ATELIER GUARANTEES / POLICIES
           </span>
           <h2 className="font-serif text-3xl md:text-5xl font-normal text-[#102E29] tracking-tight mb-4">
-            RS Writing Instruments Guarantees
+            Crafted with <span className="font-serif italic text-[#B8963E]">uncompromising</span> standards
           </h2>
           <p className="font-sans text-xs md:text-sm text-[#6B6558] leading-relaxed">
-            Our transparent policies ensure every pen artisan, collector, and retailer receives uncompromising quality and reliable service.
+            Transparent commitments to ensure every pen artisan, collector, and retailer receives reliable service and quality feeds.
           </p>
         </div>
 

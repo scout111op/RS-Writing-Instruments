@@ -68,13 +68,13 @@ export default function FeedCatalogSection() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
           <div>
             <span className="fable-mono-caps text-[#B8963E] block mb-2 font-medium">
-              ◆ Ebonite Component Wholesale Catalog
+              EBONITE COMPONENTS / WHOLESALE FEEDS
             </span>
             <h2 className="font-serif text-4xl md:text-6xl font-normal tracking-tight text-[#102E29]">
               Hand-cut ebonite <span className="font-serif italic text-[#B8963E]">feeds</span>
             </h2>
             <p className="font-sans text-xs md:text-sm mt-2 max-w-xl text-[#6B6558] font-normal">
-              Precision-shaped ebonite feeds for Parker and Shaffer pen geometries. Engineered with fine capillary channels for consistent ink control.
+              Precision-shaped ebonite feeds for Parker and Sheaffer pen geometries. Engineered with fine capillary channels for consistent ink control.
             </p>
           </div>
 
