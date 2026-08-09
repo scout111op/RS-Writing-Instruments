@@ -165,6 +165,7 @@ export default function FeedCatalogSection() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-contain p-4 transition-transform duration-500 hover:scale-105"
                     loading="lazy"
+                    quality={75}
                   />
                 </div>
 
