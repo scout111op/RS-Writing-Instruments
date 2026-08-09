@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -78,9 +78,12 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [hasMounted]);
 
-  // Lenis smooth scroll configuration
+  // Lenis smooth scroll configuration (desktop only for performance)
   useEffect(() => {
     if (!hasMounted) return;
+    if (typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window)) {
+      return;
+    }
 
     const lenis = new Lenis({
       duration: 1.8,

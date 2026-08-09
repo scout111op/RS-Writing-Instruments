@@ -24,17 +24,23 @@ export default function PullToRefresh() {
       }
     };
 
+    let touchRaf: number | null = null;
+
     const handleTouchMove = (e: TouchEvent) => {
       if (!isPullingRef.current || isRefreshing) return;
 
       const currentY = e.touches[0].clientY;
       const distance = currentY - startYRef.current;
 
-      if (distance > 0 && window.scrollY <= 5) {
-        // Logarithmic resistance curve for smooth touch feel
-        const pull = Math.min(Math.pow(distance, 0.85) * 2.2, 90);
-        setPullDistance(pull);
-      } else {
+      if (distance > 10 && window.scrollY <= 5) {
+        if (!touchRaf) {
+          touchRaf = requestAnimationFrame(() => {
+            const pull = Math.min(Math.pow(distance, 0.85) * 2.2, 90);
+            setPullDistance(pull);
+            touchRaf = null;
+          });
+        }
+      } else if (pullDistance !== 0) {
         setPullDistance(0);
       }
     };
