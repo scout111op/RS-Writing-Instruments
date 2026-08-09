@@ -35,15 +35,25 @@ export default function ProductCard({ product, isFeatured = false }: ProductCard
   const displayColour =
     displayColours[activeColourIndex >= 0 ? activeColourIndex : 0];
 
+  const tickingRef = useRef(false);
+
   // Desktop Hover Scrubbing
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!imageFrameRef.current || displayColours.length <= 1) return;
-    const rect = imageFrameRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const ratio = Math.max(0, Math.min(0.999, x / rect.width));
-    const index = Math.floor(ratio * displayColours.length);
-    if (index !== hoverIndex) {
-      setHoverIndex(index);
+    const clientX = e.clientX;
+    if (!tickingRef.current) {
+      window.requestAnimationFrame(() => {
+        if (!imageFrameRef.current) return;
+        const rect = imageFrameRef.current.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const ratio = Math.max(0, Math.min(0.999, x / rect.width));
+        const index = Math.floor(ratio * displayColours.length);
+        if (index !== hoverIndex) {
+          setHoverIndex(index);
+        }
+        tickingRef.current = false;
+      });
+      tickingRef.current = true;
     }
   };
 
@@ -131,10 +141,11 @@ export default function ProductCard({ product, isFeatured = false }: ProductCard
           src={displayColour.image}
           alt={`${product.name} - ${displayColour.name} handcrafted ebonite fountain pen by RS Writing Instruments`}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 25vw"
           className="object-contain p-2 mix-blend-multiply transition-all duration-300 group-hover/frame:scale-105"
           priority={isFeatured}
           fetchPriority={isFeatured ? "high" : "auto"}
+          quality={75}
         />
 
         {/* Horizontal Swipe Indicator Dots */}

@@ -122,6 +122,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="icon" type="image/svg+xml" href="/assets/rs_logo.svg" />
         <link rel="alternate icon" href="/assets/rs_logo.svg" />
         <script
