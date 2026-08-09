@@ -1,13 +1,16 @@
 "use client";
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import WhatsAppBanner from '@/components/WhatsAppBanner';
 import { FaWhatsapp, FaFeatherAlt } from 'react-icons/fa';
-import { HiArrowRight, HiOutlineShieldCheck, HiOutlineSparkles } from 'react-icons/hi';
+import { HiArrowRight, HiOutlineShieldCheck, HiOutlineSparkles, HiOutlineMenuAlt3, HiX } from 'react-icons/hi';
 
 export default function AboutPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const generalWhatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent(
     'Hello RS Writing Instruments, I am interested in learning more about your atelier and custom crafting capabilities.'
   )}`;
@@ -83,15 +86,79 @@ export default function AboutPage() {
             <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E]">B2B Wholesale</Link>
           </div>
 
-          <a
-            href={generalWhatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fable-pill-btn fable-mono-caps text-xs py-2.5 px-5 font-semibold flex items-center gap-2 bg-[#102E29] text-[#FDFBF7] hover:bg-[#1A4A42]"
-          >
-            <FaWhatsapp size={15} style={{ color: '#25D366' }} /> Enquiry
-          </a>
+          <div className="hidden md:flex items-center space-x-4">
+            <a
+              href={generalWhatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fable-pill-btn fable-mono-caps text-xs py-2.5 px-5 font-semibold flex items-center gap-2 bg-[#102E29] text-[#FDFBF7] hover:bg-[#1A4A42]"
+            >
+              <FaWhatsapp size={15} style={{ color: '#25D366' }} /> Enquiry
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-[#102E29] p-2 focus:outline-none"
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? <HiX size={24} /> : <HiOutlineMenuAlt3 size={24} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-[#FDFBF7] border-b border-[#E5DFD5] px-6 py-6 space-y-2">
+            <Link 
+              href="/" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              Home
+            </Link>
+            <Link 
+              href="/pens" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              Pens Catalogue
+            </Link>
+            <Link 
+              href="/feeds" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              Ebonite Feeds
+            </Link>
+            <Link 
+              href="/about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-bold text-[#B8963E]"
+            >
+              About Us
+            </Link>
+            <Link 
+              href="/wholesale" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              B2B Wholesale
+            </Link>
+            <div className="pt-2 border-t border-[#E5DFD5]">
+              <a
+                href={generalWhatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fable-pill-btn fable-mono-caps w-full min-h-[44px] text-center text-xs py-3 font-semibold flex items-center justify-center gap-2 bg-[#102E29] text-[#FDFBF7]"
+              >
+                <FaWhatsapp size={16} style={{ color: '#25D366' }} /> WhatsApp RS Writing Instruments
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Header Section */}
