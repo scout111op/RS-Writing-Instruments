@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Rich Metallic Gold Gradient -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3E5AB"/>
+      <stop offset="30%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#AA7C11"/>
+      <stop offset="100%" stop-color="#6B4E0A"/>
+    </linearGradient>
+
+    <!-- Deep Luxury Navy/Ebonite Dark Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </radialGradient>
+
+    <!-- Subtle Inner Glow Drop Shadow -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Circular Shield / Badge -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+  
+  <!-- Outer Gold Border Frame -->
+  <circle cx="256" cy="256" r="226" fill="none" stroke="url(#gold)" stroke-width="8" opacity="0.9"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.5"/>
+
+  <!-- Fountain Pen Nib Flourish (Header Accent) -->
+  <g transform="translate(256, 95) scale(0.65)" opacity="0.95">
+    <path d="M 0,-40 L 18,-10 L 12,30 L 0,40 L -12,30 L -18,-10 Z" fill="url(#gold)"/>
+    <line x1="0" y1="-30" x2="0" y2="15" stroke="#0F172A" stroke-width="3"/>
+    <circle cx="0" cy="15" r="3.5" fill="#0F172A"/>
+  </g>
+
+  <!-- Elegant Monogram RS Artwork -->
+  <g filter="url(#goldGlow)" fill="url(#gold)">
+    <!-- Letter R -->
+    <path d="M 125 155 
+             H 215 
+             C 265 155, 290 175, 290 215 
+             C 290 250, 268 270, 225 275 
+             L 285 365 
+             H 235 
+             L 182 282 
+             H 165 
+             V 365 
+             H 125 
+             V 155 Z 
+             M 165 190 
+             V 248 
+             H 210 
+             C 238 248, 250 238, 250 219 
+             C 250 200, 238 190, 210 190 
+             H 165 Z"/>
+
+    <!-- Interlocking Letter S -->
+    <path d="M 375 195 
+             C 365 168, 335 155, 300 155 
+             C 260 155, 235 175, 235 202 
+             C 235 228, 258 238, 298 248 
+             L 318 253 
+             C 355 262, 380 278, 380 312 
+             C 380 352, 345 372, 295 372 
+             C 248 372, 215 348, 205 315 
+             L 242 305 
+             C 250 326, 270 338, 298 338 
+             C 330 338, 342 324, 342 308 
+             C 342 290, 324 280, 288 271 
+             L 268 266 
+             C 225 255, 200 238, 200 203 
+             C 200 166, 238 145, 298 145 
+             C 340 145, 375 165, 385 195 
+             Z" opacity="0.98"/>
+  </g>
+
+  <!-- Bottom Accent Ribbon / Stars -->
+  <g fill="url(#gold)" transform="translate(256, 400)" opacity="0.85">
+    <circle cx="-40" cy="0" r="3"/>
+    <polygon points="0,-7 3,-2 8,-2 4,1 6,6 0,3 -6,6 -4,1 -8,-2 -3,-2"/>
+    <circle cx="40" cy="0" r="3"/>
+  </g>
+</svg>

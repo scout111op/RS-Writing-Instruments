@@ -43,6 +43,14 @@ export const metadata: Metadata = {
     'luxury writing instruments',
     'triple channel ebonite feed',
   ],
+  icons: {
+    icon: [
+      { url: "/assets/rs_logo.svg", type: "image/svg+xml" },
+      { url: "/rs_logo.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/assets/rs_logo.svg",
+    apple: "/assets/rs_logo.svg",
+  },
   alternates: {
     canonical: 'https://rs-writing-instruments.vercel.app',
   },
@@ -128,6 +136,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="icon" type="image/svg+xml" href="/assets/rs_logo.svg" />
+        <link rel="alternate icon" href="/assets/rs_logo.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
