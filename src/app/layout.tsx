@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rswriting.in'),
+  metadataBase: new URL('https://www.rswriting.in'),
   title: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens - Lucknow',
   description:
     'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens crafted in Lucknow. Parker & Sheaffer fitment. B2B wholesale and custom orders welcome.',
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
     apple: "/assets/rs_logo.svg",
   },
   alternates: {
-    canonical: 'https://rswriting.in',
+    canonical: 'https://www.rswriting.in',
   },
   openGraph: {
     title: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens - Lucknow',
     description:
       'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens crafted in Lucknow. Parker & Sheaffer fitment. B2B wholesale and custom orders welcome.',
-    url: 'https://rswriting.in',
+    url: 'https://www.rswriting.in',
     siteName: 'RS Writing Instruments',
     images: [
       {
@@ -84,9 +84,9 @@ export default function RootLayout({
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'https://rswriting.in/#organization',
+    '@id': 'https://www.rswriting.in/#organization',
     'name': 'RS Writing Instruments',
-    'url': 'https://rswriting.in',
+    'url': 'https://www.rswriting.in',
     'telephone': '+919455664795',
     'email': 'fountainpenmechanic@gmail.com',
     'address': {
@@ -102,12 +102,12 @@ export default function RootLayout({
   const websiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': 'https://rswriting.in/#website',
+    '@id': 'https://www.rswriting.in/#website',
     'name': 'RS Writing Instruments',
-    'url': 'https://rswriting.in',
+    'url': 'https://www.rswriting.in',
     'potentialAction': {
       '@type': 'SearchAction',
-      'target': 'https://rswriting.in/?q={search_term_string}',
+      'target': 'https://www.rswriting.in/?q={search_term_string}',
       'query-input': 'required name=search_term_string'
     }
   };

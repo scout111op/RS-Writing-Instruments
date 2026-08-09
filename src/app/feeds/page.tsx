@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FeedCatalogSection from '@/components/FeedCatalogSection';
 import WhatsAppBanner from '@/components/WhatsAppBanner';
-import { rawProducts, calculateDisplayPrice } from '@/lib/products';
+import { rawProducts } from '@/lib/products';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rswriting.in'),
+  metadataBase: new URL('https://www.rswriting.in'),
   title: 'Hand-Cut Ebonite Fountain Pen Feeds Wholesale | RS Writing Instruments',
   description:
     'Precision hand-cut natural hard rubber ebonite feeds for Parker & Sheaffer geometries. Single, double, and triple music ink channels starting at ₹75.',
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     'cartridge ebonite feed',
   ],
   alternates: {
-    canonical: 'https://rswriting.in/feeds',
+    canonical: 'https://www.rswriting.in/feeds',
   },
   openGraph: {
     title: 'Hand-Cut Ebonite Fountain Pen Feeds Wholesale',
     description:
       'Precision hard rubber feeds crafted in Lucknow for Parker and Sheaffer geometries. Single, double, and triple music ink channels.',
-    url: 'https://rswriting.in/feeds',
+    url: 'https://www.rswriting.in/feeds',
     siteName: 'RS Writing Instruments',
     images: [{ url: '/logo.png', width: 800, height: 600, alt: 'RS Hand-Cut Ebonite Feeds' }],
     locale: 'en_IN',
@@ -57,13 +57,13 @@ export default function FeedsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://rswriting.in',
+        item: 'https://www.rswriting.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Ebonite Feeds',
-        item: 'https://rswriting.in/feeds',
+        item: 'https://www.rswriting.in/feeds',
       },
     ],
   };
@@ -73,7 +73,7 @@ export default function FeedsPage() {
     '@type': 'Product',
     name: feed.name,
     description: `${feed.model} - ${feed.shape} shape fitment with ${feed.ink} ink channel. ${feed.type}.`,
-    image: `https://rswriting.in${feed.image}`,
+    image: `https://www.rswriting.in${feed.image}`,
     brand: {
       '@type': 'Brand',
       name: 'RS Writing Instruments',

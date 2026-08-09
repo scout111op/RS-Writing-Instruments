@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { FaWhatsapp, FaCheckCircle, FaFeatherAlt } from 'react-icons/fa';
 import { HiOutlineMenuAlt3, HiX, HiArrowDown } from 'react-icons/hi';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import WhatsAppBanner from '@/components/WhatsAppBanner';
 import FeedCatalogSection from '@/components/FeedCatalogSection';
@@ -75,16 +76,175 @@ export default function Home() {
     rafId = requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy();
       cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
   }, [hasMounted]);
 
   const generalWhatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, I am interested in inquiring about your fountain pen line and custom orders.")}`;
 
+  const productSchemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': 'PRAVAH Signature',
+      'description': 'Handcrafted artisan ebonite fountain pen with precision capillary feed.',
+      'image': 'https://www.rswriting.in/catalog/Caviar%20Black.jpeg',
+      'brand': {
+        '@type': 'Brand',
+        'name': 'RS Writing Instruments',
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': 'on request',
+        'priceCurrency': 'INR',
+        'availability': 'https://schema.org/InStock',
+        'seller': {
+          '@type': 'Organization',
+          'name': 'RS Writing Instruments',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': 'Forest Green',
+      'description': 'Deep forest green ebonite with precision gold & black trims.',
+      'image': 'https://www.rswriting.in/catalog/Forest%20Green%20BT.jpeg',
+      'brand': {
+        '@type': 'Brand',
+        'name': 'RS Writing Instruments',
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': 'on request',
+        'priceCurrency': 'INR',
+        'availability': 'https://schema.org/InStock',
+        'seller': {
+          '@type': 'Organization',
+          'name': 'RS Writing Instruments',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': 'Sparkle White',
+      'description': 'Elegant pearl sparkle white cap with demonstrator barrel options.',
+      'image': 'https://www.rswriting.in/catalog/Sparkle%20White.jpeg',
+      'brand': {
+        '@type': 'Brand',
+        'name': 'RS Writing Instruments',
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': 'on request',
+        'priceCurrency': 'INR',
+        'availability': 'https://schema.org/InStock',
+        'seller': {
+          '@type': 'Organization',
+          'name': 'RS Writing Instruments',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': 'Pure Orange Demonstrator',
+      'description': 'Vibrant orange cap with black section and transparent demonstrator barrel.',
+      'image': 'https://www.rswriting.in/catalog/Pure%20Orange%20Cap,%20Section%20Black,%20Demonstrator%20Barrel.jpeg',
+      'brand': {
+        '@type': 'Brand',
+        'name': 'RS Writing Instruments',
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': 'on request',
+        'priceCurrency': 'INR',
+        'availability': 'https://schema.org/InStock',
+        'seller': {
+          '@type': 'Organization',
+          'name': 'RS Writing Instruments',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': 'Swirl Collection',
+      'description': 'Hand-turned natural ebonite with intricate organic swirl patterns.',
+      'image': 'https://www.rswriting.in/catalog/Swirl%20Brown.jpeg',
+      'brand': {
+        '@type': 'Brand',
+        'name': 'RS Writing Instruments',
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': 'on request',
+        'priceCurrency': 'INR',
+        'availability': 'https://schema.org/InStock',
+        'seller': {
+          '@type': 'Organization',
+          'name': 'RS Writing Instruments',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': 'Red Black Swirl',
+      'description': 'Rich crimson red marbled swirl ebonite fountain pen.',
+      'image': 'https://www.rswriting.in/catalog/Red%20Black%20Swirl.jpeg',
+      'brand': {
+        '@type': 'Brand',
+        'name': 'RS Writing Instruments',
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': 'on request',
+        'priceCurrency': 'INR',
+        'availability': 'https://schema.org/InStock',
+        'seller': {
+          '@type': 'Organization',
+          'name': 'RS Writing Instruments',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': 'Caviar Black',
+      'description': 'Sleek deep black hard rubber ebonite body with high polish finish.',
+      'image': 'https://www.rswriting.in/catalog/Caviar%20Black.jpeg',
+      'brand': {
+        '@type': 'Brand',
+        'name': 'RS Writing Instruments',
+      },
+      'offers': {
+        '@type': 'Offer',
+        'price': 'on request',
+        'priceCurrency': 'INR',
+        'availability': 'https://schema.org/InStock',
+        'seller': {
+          '@type': 'Organization',
+          'name': 'RS Writing Instruments',
+        },
+      },
+    },
+  ];
+
   return (
     <div id="main-wrapper" className="overflow-x-hidden min-h-screen relative" style={{ background: '#FDFBF7', color: '#1B2A2A' }} suppressHydrationWarning>
       
+      {/* Product JSON-LD Schemas */}
+      {productSchemas.map((schema, idx) => (
+        <script
+          key={idx}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
       {/* Top CRO WhatsApp Announcement Banner */}
       <WhatsAppBanner />
 
@@ -93,12 +253,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           
           {/* Logo */}
-          <a 
+          <Link 
             href="/" 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = '/';
-            }}
             className="flex items-center gap-3.5 md:gap-4 group py-1 cursor-pointer"
             aria-label="Refresh home page"
           >
@@ -113,44 +269,39 @@ export default function Home() {
                 Instruments
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center space-x-8 text-xs tracking-wider uppercase font-medium">
-            <a 
-              href="#hero-section" 
-              className={`hover:text-[#B8963E] transition-colors relative py-1 ${activeSection === 'hero-section' ? 'text-[#102E29] font-bold' : 'text-[#6B6558]'}`}
+            <Link 
+              href="/pens" 
+              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
             >
-              Featured
-              {activeSection === 'hero-section' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />}
-            </a>
-            <a 
-              href="#pen-catalog" 
-              className={`hover:text-[#B8963E] transition-colors relative py-1 ${activeSection === 'pen-catalog' ? 'text-[#102E29] font-bold' : 'text-[#6B6558]'}`}
-            >
-              Pens Catalog
-              {activeSection === 'pen-catalog' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />}
-            </a>
-            <a 
-              href="#feed-catalog" 
-              className={`hover:text-[#B8963E] transition-colors relative py-1 ${activeSection === 'feed-catalog' ? 'text-[#102E29] font-bold' : 'text-[#6B6558]'}`}
+              Handcrafted Pens
+            </Link>
+            <Link 
+              href="/feeds" 
+              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
             >
               Ebonite Feeds
-              {activeSection === 'feed-catalog' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />}
-            </a>
-            <a 
-              href="#policies-section" 
-              className={`hover:text-[#B8963E] transition-colors relative py-1 ${activeSection === 'policies-section' ? 'text-[#102E29] font-bold' : 'text-[#6B6558]'}`}
+            </Link>
+            <Link 
+              href="/about" 
+              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
             >
-              Policies
-              {activeSection === 'policies-section' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />}
-            </a>
+              About Atelier
+            </Link>
+            <Link 
+              href="/wholesale" 
+              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
+            >
+              B2B Wholesale
+            </Link>
             <a 
               href="#contact" 
               className={`hover:text-[#B8963E] transition-colors relative py-1 ${activeSection === 'contact' ? 'text-[#102E29] font-bold' : 'text-[#6B6558]'}`}
             >
               Contact Us
-              {activeSection === 'contact' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />}
             </a>
           </div>
 
@@ -231,7 +382,7 @@ export default function Home() {
         )}
       </nav>
 
-      {/* HERO SECTION WITH IMAGE 1 FEATURED LANDING VIEW */}
+      {/* HERO SECTION WITH FEATURED PEN COLLECTION CARD */}
       <section id="hero-section" className="relative w-full py-8 md:py-14 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
           
@@ -241,11 +392,11 @@ export default function Home() {
           {/* Left Column: Hero Text */}
           <div className="md:col-span-6 z-10 text-left">
             <span className="fable-mono-caps text-[#B8963E] block mb-3 font-medium">
-              ◆ Hand-Cut Ebonite Feeds & Custom Hard Rubber Pens
+              HAND-CUT EBONITE FEEDS / CUSTOM HARD RUBBER PENS
             </span>
             
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal mb-5 leading-[1.08] text-[#102E29] tracking-tight">
-              Handcrafted ebonite feeds & <span className="font-serif italic text-[#B8963E]">bespoke fountain pens</span>
+              Handcrafted ebonite feeds and <span className="font-serif italic text-[#B8963E]">bespoke</span> fountain pens
             </h1>
             
             <p className="font-sans text-xs md:text-sm leading-relaxed mb-7 max-w-lg text-[#6B6558] font-normal">
@@ -272,7 +423,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Column: Featured Landing View (Image 1) */}
+          {/* Right Column: Featured Interactive Hero Product Card */}
           <div className="md:col-span-6 z-10">
             <ProductCard product={featuredHeroProduct} isFeatured={true} />
           </div>
@@ -364,12 +515,8 @@ export default function Home() {
             
             {/* Brand */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <a 
+              <Link 
                 href="/" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = '/';
-                }}
                 className="group flex flex-col items-center md:items-start cursor-pointer"
                 aria-label="Refresh home page"
               >
@@ -378,7 +525,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-serif text-2xl md:text-3xl font-extrabold mb-1 text-[#102E29] transition-colors group-hover:text-[#B8963E]">RS WRITING</h3>
                 <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold text-[#B8963E] transition-colors group-hover:text-[#102E29]">Instruments</p>
-              </a>
+              </Link>
               <p className="text-xs leading-relaxed text-[#9C9588]">
                 Handcrafted ebonite feeds and custom fountain pen mechanisms for discerning writers and pen artisans.
               </p>
@@ -388,9 +535,10 @@ export default function Home() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-6 text-[#B8963E]">Quick Navigation</h4>
               <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
-                <a href="#hero-section" className="hover:text-[#B8963E] transition-colors">Pen Anatomy</a>
-                <a href="#feed-catalog" className="hover:text-[#B8963E] transition-colors">Feeds Catalog</a>
-                <a href="#fountain-pen-catalog" className="hover:text-[#B8963E] transition-colors">Fountain Pen Catalog</a>
+                <Link href="/pens" className="hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
+                <Link href="/feeds" className="hover:text-[#B8963E] transition-colors">Ebonite Feeds Catalog</Link>
+                <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Atelier</Link>
+                <Link href="/wholesale" className="hover:text-[#B8963E] transition-colors">B2B Wholesale & OEM</Link>
                 <a href="#contact" className="hover:text-[#B8963E] transition-colors">Contact RS Writing Instruments</a>
               </div>
             </div>
