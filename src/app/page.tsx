@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -9,21 +9,35 @@ import { HiOutlineMenuAlt3, HiX, HiArrowDown } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import dynamic from 'next/dynamic';
+
 import WhatsAppBanner from '@/components/WhatsAppBanner';
-import FeedCatalogSection from '@/components/FeedCatalogSection';
 import ProductCatalogGrid from '@/components/ProductCatalogGrid';
 import ProductCard from '@/components/ProductCard';
-import PatrioticSaleBanner from '@/components/PatrioticSaleBanner';
-import AtelierPoliciesSection from '@/components/AtelierPoliciesSection';
 import { featuredHeroProduct } from '@/lib/catalogProducts';
+
+const FeedCatalogSection = dynamic(() => import('@/components/FeedCatalogSection'), {
+  loading: () => <div className="py-16 text-center text-xs text-[#9C9588]">Loading ebonite feeds...</div>,
+});
+
+const AtelierPoliciesSection = dynamic(() => import('@/components/AtelierPoliciesSection'), {
+  loading: () => <div className="py-16 text-center text-xs text-[#9C9588]">Loading atelier specifications...</div>,
+});
+
+const PatrioticSaleBanner = dynamic(() => import('@/components/PatrioticSaleBanner'), {
+  loading: () => <div className="py-8" />,
+});
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const emptySubscribe = () => () => {};
 function useMounted() {
-  return useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  return mounted;
 }
 
 export default function Home() {
@@ -34,22 +48,30 @@ export default function Home() {
 
   const craftsmanshipRef = useRef<HTMLDivElement>(null);
 
-  // Scroll observer for navbar shadow & active link highlight
+  // Scroll observer for navbar shadow & active link highlight using requestAnimationFrame
   useEffect(() => {
     if (!hasMounted) return;
-    const onScroll = () => {
-      setNavScrolled(window.scrollY > 50);
+    let ticking = false;
 
-      const sections = ['hero-section', 'pen-catalog', 'feed-catalog', 'policies-section', 'contact'];
-      for (const secId of sections) {
-        const el = document.getElementById(secId);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 250 && rect.bottom >= 250) {
-            setActiveSection(secId);
-            break;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setNavScrolled(window.scrollY > 50);
+
+          const sections = ['hero-section', 'pen-catalog', 'feed-catalog', 'policies-section', 'contact'];
+          for (const secId of sections) {
+            const el = document.getElementById(secId);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= 250 && rect.bottom >= 250) {
+                setActiveSection(secId);
+                break;
+              }
+            }
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -96,8 +118,9 @@ export default function Home() {
       },
       'offers': {
         '@type': 'Offer',
-        'price': 'on request',
+        'price': '1490',
         'priceCurrency': 'INR',
+        'priceValidUntil': '2026-12-31',
         'availability': 'https://schema.org/InStock',
         'seller': {
           '@type': 'Organization',
@@ -117,8 +140,9 @@ export default function Home() {
       },
       'offers': {
         '@type': 'Offer',
-        'price': 'on request',
+        'price': '1490',
         'priceCurrency': 'INR',
+        'priceValidUntil': '2026-12-31',
         'availability': 'https://schema.org/InStock',
         'seller': {
           '@type': 'Organization',
@@ -138,8 +162,9 @@ export default function Home() {
       },
       'offers': {
         '@type': 'Offer',
-        'price': 'on request',
+        'price': '1490',
         'priceCurrency': 'INR',
+        'priceValidUntil': '2026-12-31',
         'availability': 'https://schema.org/InStock',
         'seller': {
           '@type': 'Organization',
@@ -159,8 +184,9 @@ export default function Home() {
       },
       'offers': {
         '@type': 'Offer',
-        'price': 'on request',
+        'price': '1490',
         'priceCurrency': 'INR',
+        'priceValidUntil': '2026-12-31',
         'availability': 'https://schema.org/InStock',
         'seller': {
           '@type': 'Organization',
@@ -180,8 +206,9 @@ export default function Home() {
       },
       'offers': {
         '@type': 'Offer',
-        'price': 'on request',
+        'price': '1490',
         'priceCurrency': 'INR',
+        'priceValidUntil': '2026-12-31',
         'availability': 'https://schema.org/InStock',
         'seller': {
           '@type': 'Organization',
@@ -201,8 +228,9 @@ export default function Home() {
       },
       'offers': {
         '@type': 'Offer',
-        'price': 'on request',
+        'price': '1490',
         'priceCurrency': 'INR',
+        'priceValidUntil': '2026-12-31',
         'availability': 'https://schema.org/InStock',
         'seller': {
           '@type': 'Organization',
@@ -222,8 +250,9 @@ export default function Home() {
       },
       'offers': {
         '@type': 'Offer',
-        'price': 'on request',
+        'price': '1490',
         'priceCurrency': 'INR',
+        'priceValidUntil': '2026-12-31',
         'availability': 'https://schema.org/InStock',
         'seller': {
           '@type': 'Organization',
@@ -249,7 +278,7 @@ export default function Home() {
       <WhatsAppBanner />
 
       {/* STICKY NAVIGATION BAR */}
-      <nav className={`sticky top-0 w-full z-50 transition-all duration-500 ${navScrolled ? 'py-3 glass-light shadow-xs' : 'py-5 bg-[#FDFBF7]/90 backdrop-blur-md'}`}>
+      <nav className={`sticky top-0 w-full z-50 transition-all duration-500 ${navScrolled ? 'py-3 glass-light shadow-xs' : 'py-5 bg-[#FDFBF7]/90 backdrop-blur-md'}`} suppressHydrationWarning>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           
           {/* Logo */}
@@ -289,7 +318,7 @@ export default function Home() {
               href="/about" 
               className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
             >
-              About Atelier
+              About Us
             </Link>
             <Link 
               href="/wholesale" 
@@ -345,7 +374,7 @@ export default function Home() {
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
             >
-              Pens Catalog
+              Pens Catalogue
             </a>
             <a 
               href="#feed-catalog" 
@@ -361,6 +390,20 @@ export default function Home() {
             >
               Policies & Guarantees
             </a>
+            <Link 
+              href="/about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              About Us
+            </Link>
+            <Link 
+              href="/wholesale" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              B2B Wholesale
+            </Link>
             <a 
               href="#contact" 
               onClick={() => setMobileMenuOpen(false)}
@@ -409,7 +452,7 @@ export default function Home() {
                 href="#pen-catalog"
                 className="fable-pill-btn min-h-[44px] py-3.5 px-7 fable-mono-caps font-semibold flex items-center justify-center gap-2 bg-[#102E29] text-[#FDFBF7] shadow-sm hover:bg-[#1A4A42] w-full sm:w-auto"
               >
-                Browse Pen Catalog <HiArrowDown size={14} />
+                Browse Pen Catalogue <HiArrowDown size={14} />
               </a>
 
               <a
@@ -418,7 +461,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="fable-pill-btn min-h-[44px] py-3.5 px-7 fable-mono-caps font-semibold border border-[#E5DFD5] flex items-center justify-center gap-2 bg-white text-[#102E29] hover:bg-[#FAF8F5] w-full sm:w-auto"
               >
-                <FaWhatsapp size={16} style={{ color: '#25D366' }} /> WhatsApp Inquiry
+                <FaWhatsapp size={16} style={{ color: '#25D366' }} /> WhatsApp Enquiry
               </a>
             </div>
           </div>
@@ -536,8 +579,8 @@ export default function Home() {
               <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-6 text-[#B8963E]">Quick Navigation</h4>
               <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
                 <Link href="/pens" className="hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
-                <Link href="/feeds" className="hover:text-[#B8963E] transition-colors">Ebonite Feeds Catalog</Link>
-                <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Atelier</Link>
+                <Link href="/feeds" className="hover:text-[#B8963E] transition-colors">Ebonite Feeds Catalogue</Link>
+                <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Us</Link>
                 <Link href="/wholesale" className="hover:text-[#B8963E] transition-colors">B2B Wholesale & OEM</Link>
                 <a href="#contact" className="hover:text-[#B8963E] transition-colors">Contact RS Writing Instruments</a>
               </div>
@@ -555,7 +598,7 @@ export default function Home() {
           <div className="w-full h-[1px] mb-8 bg-gradient-to-r from-transparent via-[#E5DFD5] to-transparent" />
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#9C9588]">
-            <span>© {new Date().getFullYear()} RS Writing Instruments. All rights reserved.</span>
+            <span suppressHydrationWarning>© {new Date().getFullYear()} RS Writing Instruments. All rights reserved.</span>
             <div className="flex gap-5">
               <a href={generalWhatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors" aria-label="WhatsApp"><FaWhatsapp size={18} /></a>
             </div>

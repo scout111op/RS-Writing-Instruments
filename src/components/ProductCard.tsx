@@ -10,11 +10,18 @@ import { HiOutlineHand } from "react-icons/hi";
 interface ProductCardProps {
   product: CatalogProduct;
   isFeatured?: boolean;
+  showMeasurements?: boolean;
 }
 
-export default function ProductCard({ product, isFeatured = false }: ProductCardProps) {
-  // Filter out measurement options ("Measure with Cap", "Measure without Cap") from main cards
-  const availableColours = product.colours.filter((c) => !c.isMeasurement);
+export default function ProductCard({
+  product,
+  isFeatured = false,
+  showMeasurements = false,
+}: ProductCardProps) {
+  // Show measurement options ("Measure with Cap", "Measure without Cap") ONLY when showMeasurements is explicitly true (for Pens Catalogue)
+  const availableColours = showMeasurements
+    ? product.colours
+    : product.colours.filter((c) => !c.isMeasurement);
   const displayColours = availableColours.length > 0 ? availableColours : product.colours;
 
   const [selectedColour, setSelectedColour] = useState<ProductColourOption>(
@@ -144,7 +151,6 @@ export default function ProductCard({ product, isFeatured = false }: ProductCard
           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 25vw"
           className="object-contain p-2 mix-blend-multiply transition-all duration-300 group-hover/frame:scale-105"
           priority={isFeatured}
-          fetchPriority={isFeatured ? "high" : "auto"}
           quality={75}
         />
 
