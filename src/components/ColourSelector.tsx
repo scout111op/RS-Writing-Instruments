@@ -33,7 +33,7 @@ export default function ColourSelector({
               onSelect(col);
             }}
             title={col.name}
-            className={`group relative min-h-[32px] sm:min-h-[36px] py-1.5 px-3 rounded-full text-[10px] font-sans transition-all duration-200 flex items-center gap-1.5 ${
+            className={`group relative min-h-[44px] sm:min-h-[36px] py-1.5 px-3 rounded-full text-[10px] font-sans transition-all duration-200 flex items-center gap-1.5 ${
               isSelected
                 ? isSpec
                   ? "bg-[#B8963E] text-white shadow-xs font-semibold ring-1 ring-[#B8963E]"

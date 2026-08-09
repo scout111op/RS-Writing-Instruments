@@ -20,19 +20,19 @@ export default function ProductCatalogGrid() {
   }, [searchTerm]);
 
   return (
-    <section id="pen-catalog" className="relative py-10 md:py-16 px-6 md:px-12 bg-[#FAF8F5] z-10">
+    <section id="pen-catalog" className="relative py-10 md:py-16 px-4 sm:px-6 md:px-12 bg-[#FAF8F5] z-10">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-8 md:mb-12">
           <div>
             <span className="fable-mono-caps text-[#B8963E] block mb-2 font-medium">
               BESPOKE PENS / CATALOG DISCOVERY
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl font-normal tracking-tight text-[#102E29]">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-[#102E29]">
               Handcrafted fountain <span className="font-serif italic text-[#B8963E]">pens</span>
             </h2>
-            <p className="font-sans text-xs md:text-sm mt-2 max-w-xl text-[#6B6558] font-normal">
+            <p className="font-sans text-xs md:text-sm mt-2 max-w-xl text-[#6B6558] font-normal leading-relaxed">
               Select your preferred pen model and color option to enquire directly with RS Writing Instruments on WhatsApp.
             </p>
           </div>
@@ -45,7 +45,7 @@ export default function ProductCatalogGrid() {
               placeholder="Search pens or colours..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-full text-xs bg-white border border-[#E5DFD5] text-[#102E29] focus:outline-none focus:border-[#B8963E] transition-colors shadow-2xs"
+              className="w-full pl-10 pr-8 py-2.5 rounded-full text-xs bg-white border border-[#E5DFD5] text-[#102E29] focus:outline-none focus:border-[#B8963E] transition-colors shadow-2xs"
             />
             {searchTerm && (
               <button
@@ -58,14 +58,20 @@ export default function ProductCatalogGrid() {
           </div>
         </div>
 
-        {/* 4-Column Desktop / 3-Column Laptop / 2-Column Tablet / 1-Column Mobile Grid */}
+        {/* Responsive Grid with Staggered 60fps Mobile Entrance Animations */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 items-stretch">
           {filteredProducts.map((product, index) => (
-            <ProductCard
+            <div
               key={product.id}
-              product={product}
-              isFeatured={index === 0}
-            />
+              className="animate-mobile-card gpu-accelerated"
+              style={{ animationDelay: `${index * 60}ms` }}
+              suppressHydrationWarning
+            >
+              <ProductCard
+                product={product}
+                isFeatured={index === 0}
+              />
+            </div>
           ))}
         </div>
 
