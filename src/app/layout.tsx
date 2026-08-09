@@ -23,25 +23,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rs-writing-instruments.vercel.app'),
-  title: {
-    default: 'RS Writing Instruments — Handcrafted Ebonite Feeds & Bespoke Pens',
-    template: '%s | RS Writing Instruments',
-  },
+  metadataBase: new URL('https://rswriting.in'),
+  title: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens - Lucknow',
   description:
-    'Hand-cut ebonite fountain pen feeds & handcrafted hard rubber pens made in Lucknow, India. Engineered with precision capillary grooves for wet, consistent ink control. Trusted by master nibsmiths worldwide.',
+    'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens crafted in Lucknow. Parker & Sheaffer fitment. B2B wholesale and custom orders welcome.',
   keywords: [
-    'ebonite feed',
-    'fountain pen feed',
-    'hand cut ebonite feed',
-    'Parker 51 ebonite feed',
-    'Sheaffer feed replacement',
+    'ebonite feed India',
+    'fountain pen feeds wholesale',
+    'custom ebonite pen',
     'PRAVAH fountain pen',
-    'ebonite pens India',
-    'capillary ink feed',
-    'custom fountain pen feed',
-    'luxury writing instruments',
-    'triple channel ebonite feed',
+    'hard rubber pen Lucknow',
+    'ebonite fountain pen India',
   ],
   icons: {
     icon: [
@@ -52,30 +44,35 @@ export const metadata: Metadata = {
     apple: "/assets/rs_logo.svg",
   },
   alternates: {
-    canonical: 'https://rs-writing-instruments.vercel.app',
+    canonical: 'https://rswriting.in',
   },
   openGraph: {
-    title: 'RS Writing Instruments — Handcrafted Ebonite Feeds & Bespoke Pens',
+    title: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens - Lucknow',
     description:
-      'Precision hard rubber capillary feeds & bespoke ebonite fountain pens. Engineered in Lucknow, India with fine capillary grooves for perfect ink control.',
-    url: 'https://rs-writing-instruments.vercel.app',
+      'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens crafted in Lucknow. Parker & Sheaffer fitment. B2B wholesale and custom orders welcome.',
+    url: 'https://rswriting.in',
     siteName: 'RS Writing Instruments',
     images: [
       {
         url: '/logo.png',
         width: 800,
         height: 600,
-        alt: 'RS Writing Instruments Handcrafted Ebonite Feeds Logo',
+        alt: 'RS Writing Instruments Logo',
       },
     ],
-    locale: 'en_US',
+    locale: 'en_IN',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RS Writing Instruments — Precision Ebonite Feeds',
-    description: 'Precision hard rubber ebonite feeds & artisan fountain pens.',
+    title: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens - Lucknow',
+    description:
+      'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens crafted in Lucknow.',
     images: ['/logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -84,49 +81,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
+  const organizationJsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Organization',
-        '@id': 'https://rs-writing-instruments.vercel.app/#organization',
-        'name': 'RS Writing Instruments',
-        'url': 'https://rs-writing-instruments.vercel.app',
-        'logo': 'https://rs-writing-instruments.vercel.app/logo.png',
-        'description': 'Manufacturer of hand-cut ebonite fountain pen feeds and bespoke hard rubber writing instruments in Lucknow, India.',
-        'address': {
-          '@type': 'PostalAddress',
-          'streetAddress': 'Lucknow',
-          'addressLocality': 'Lucknow',
-          'addressRegion': 'Uttar Pradesh',
-          'postalCode': '226401',
-          'addressCountry': 'IN'
-        },
-        'contactPoint': {
-          '@type': 'ContactPoint',
-          'telephone': '+91-9455664795',
-          'contactType': 'sales',
-          'availableLanguage': ['English', 'Hindi']
-        }
-      },
-      {
-        '@type': 'LocalBusiness',
-        '@id': 'https://rs-writing-instruments.vercel.app/#localbusiness',
-        'name': 'RS Writing Instruments Atelier',
-        'image': 'https://rs-writing-instruments.vercel.app/logo.png',
-        'telephone': '+919455664795',
-        'email': 'fountainpenmechanic@gmail.com',
-        'address': {
-          '@type': 'PostalAddress',
-          'streetAddress': 'Lucknow',
-          'addressLocality': 'Lucknow',
-          'addressRegion': 'Uttar Pradesh',
-          'postalCode': '226401',
-          'addressCountry': 'IN'
-        },
-        'priceRange': '₹₹'
-      }
-    ]
+    '@type': 'Organization',
+    '@id': 'https://rswriting.in/#organization',
+    'name': 'RS Writing Instruments',
+    'url': 'https://rswriting.in',
+    'telephone': '+919455664795',
+    'email': 'fountainpenmechanic@gmail.com',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': 'Lucknow',
+      'addressLocality': 'Lucknow',
+      'addressRegion': 'Uttar Pradesh',
+      'addressCountry': 'India'
+    },
+    'sameAs': []
+  };
+
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://rswriting.in/#website',
+    'name': 'RS Writing Instruments',
+    'url': 'https://rswriting.in',
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': 'https://rswriting.in/?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
   };
 
   return (
@@ -140,7 +123,11 @@ export default function RootLayout({
         <link rel="alternate icon" href="/assets/rs_logo.svg" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
       <body

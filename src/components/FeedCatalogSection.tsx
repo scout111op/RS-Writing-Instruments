@@ -160,10 +160,11 @@ export default function FeedCatalogSection() {
                 >
                   <Image
                     src={feed.image}
-                    alt={feed.name}
+                    alt={`${feed.name} hand-cut ebonite fountain pen feed by RS Writing Instruments`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-contain p-5 transition-transform duration-700 hover:scale-105"
+                    loading="lazy"
                   />
                 </div>
 

@@ -5,8 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/'],
     },
-    sitemap: 'https://rs-writing-instruments.vercel.app/sitemap.xml',
+    sitemap: 'https://rswriting.in/sitemap.xml',
   };
 }
