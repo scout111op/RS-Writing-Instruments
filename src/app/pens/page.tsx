@@ -8,7 +8,7 @@ import { catalogProducts } from '@/lib/catalogProducts';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rswriting.in'),
+  metadataBase: new URL('https://www.rswriting.in'),
   title: 'Handcrafted Ebonite Fountain Pens | PRAVAH Collection - RS Writing Instruments',
   description:
     'Discover PRAVAH handcrafted ebonite fountain pens made in Lucknow, India. Featuring Caviar Black, Forest Green, Swirl, and Demonstrator models with precision capillary feeds.',
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     'ebonite demonstrator pen',
   ],
   alternates: {
-    canonical: 'https://rswriting.in/pens',
+    canonical: 'https://www.rswriting.in/pens',
   },
   openGraph: {
     title: 'Handcrafted Ebonite Fountain Pens | PRAVAH Collection',
     description:
       'Artisan hard rubber fountain pens crafted in Lucknow with precision ebonite capillary feeds.',
-    url: 'https://rswriting.in/pens',
+    url: 'https://www.rswriting.in/pens',
     siteName: 'RS Writing Instruments',
     images: [{ url: '/logo.png', width: 800, height: 600, alt: 'PRAVAH Ebonite Fountain Pens' }],
     locale: 'en_IN',
@@ -58,13 +58,13 @@ export default function PensPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://rswriting.in',
+        item: 'https://www.rswriting.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Handcrafted Pens',
-        item: 'https://rswriting.in/pens',
+        item: 'https://www.rswriting.in/pens',
       },
     ],
   };
@@ -74,15 +74,16 @@ export default function PensPage() {
     '@type': 'Product',
     name: p.name,
     description: p.tagline,
-    image: `https://rswriting.in${p.defaultImage}`,
+    image: `https://www.rswriting.in${p.defaultImage}`,
     brand: {
       '@type': 'Brand',
       name: 'RS Writing Instruments',
     },
     offers: {
       '@type': 'Offer',
-      price: 'on request',
+      price: '1490',
       priceCurrency: 'INR',
+      priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',
@@ -116,7 +117,6 @@ export default function PensPage() {
 
   return (
     <div id="main-wrapper" className="overflow-x-hidden min-h-screen relative" style={{ background: '#FDFBF7', color: '#1B2A2A' }}>
-      {/* JSON-LD Schemas */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -151,7 +151,7 @@ export default function PensPage() {
           <div className="hidden md:flex items-center space-x-8 text-xs tracking-wider uppercase font-medium">
             <Link href="/" className="text-[#6B6558] hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="text-[#102E29] font-bold relative py-1">
-              Pens Catalog
+              Handcrafted Pens
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />
             </Link>
             <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E]">Ebonite Feeds</Link>
@@ -170,7 +170,7 @@ export default function PensPage() {
         </div>
       </nav>
 
-      {/* Main Page Content */}
+      {/* Main Content */}
       <main className="py-10">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
           <div className="flex items-center gap-2 text-xs text-[#9C9588] mb-3">
@@ -179,10 +179,10 @@ export default function PensPage() {
             <span className="text-[#102E29] font-semibold">Handcrafted Pens</span>
           </div>
           <h1 className="font-serif text-4xl md:text-6xl font-normal text-[#102E29] tracking-tight">
-            PRAVAH Handcrafted <span className="italic text-[#B8963E]">Ebonite Pens</span>
+            PRAVAH <span className="italic text-[#B8963E]">Handcrafted Pens</span>
           </h1>
           <p className="font-sans text-xs md:text-sm text-[#6B6558] mt-3 max-w-2xl">
-            Each pen in our PRAVAH series is turned from premium ebonite hard rubber in Lucknow, India, equipped with custom hand-cut feeds for consistent ink delivery.
+            Hard rubber ebonite fountain pens crafted in Lucknow. Equipped with custom capillary ebonite feeds for continuous, skip-free writing.
           </p>
         </div>
 

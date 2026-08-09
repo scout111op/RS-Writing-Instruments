@@ -82,6 +82,7 @@ export default function FeedsPage() {
       '@type': 'Offer',
       price: feed.basePrice.toString(),
       priceCurrency: 'INR',
+      priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',
