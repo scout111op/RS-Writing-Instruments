@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://rswriting.in/sitemap.xml',
+    sitemap: 'https://www.rswriting.in/sitemap.xml',
   };
 }
