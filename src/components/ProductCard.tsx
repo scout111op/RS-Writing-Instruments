@@ -86,10 +86,10 @@ export default function ProductCard({ product, isFeatured = false }: ProductCard
           src={displayColour.image}
           alt={`${product.name} - ${displayColour.name} handcrafted ebonite fountain pen by RS Writing Instruments`}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 33vw"
           className="object-contain p-2 mix-blend-multiply transition-all duration-300 group-hover/frame:scale-105"
           priority={isFeatured}
-          loading={isFeatured ? undefined : "lazy"}
+          fetchPriority={isFeatured ? "high" : "auto"}
         />
 
         {/* Horizontal Scrub Indicator Dots/Segments */}
