@@ -210,7 +210,7 @@ export default function FeedsPage() {
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>
           </div>
-          <span>© {new Date().getFullYear()} RS Writing Instruments. All rights reserved.</span>
+          <span suppressHydrationWarning>© {new Date().getFullYear()} RS Writing Instruments. All rights reserved.</span>
         </div>
       </footer>
     </div>
