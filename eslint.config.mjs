@@ -12,8 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    "collect_files.js",
-    "split_payload.js",
+    "*.js",
   ]),
 ]);
 
