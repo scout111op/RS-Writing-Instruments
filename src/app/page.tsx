@@ -15,6 +15,7 @@ import WhatsAppBanner from '@/components/WhatsAppBanner';
 import ProductCatalogGrid from '@/components/ProductCatalogGrid';
 import ProductCard from '@/components/ProductCard';
 import { featuredHeroProduct } from '@/lib/catalogProducts';
+import { createProductSchema } from '@/lib/schemaHelpers';
 
 const FeedCatalogSection = dynamic(() => import('@/components/FeedCatalogSection'), {
   loading: () => <div className="py-16 text-center text-xs text-[#9C9588]">Loading ebonite feeds...</div>,
@@ -109,160 +110,83 @@ export default function Home() {
   const generalWhatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, I am interested in inquiring about your fountain pen line and custom orders.")}`;
 
   const productSchemas = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': 'PRAVAH Signature',
-      'description': 'Handcrafted artisan ebonite fountain pen with precision capillary feed.',
-      'image': 'https://www.rswriting.in/catalog/Caviar%20Black.jpeg',
-      'brand': {
-        '@type': 'Brand',
-        'name': 'RS Writing Instruments',
-      },
-      'offers': {
-        '@type': 'Offer',
-        'price': '1490',
-        'priceCurrency': 'INR',
-        'priceValidUntil': '2026-12-31',
-        'availability': 'https://schema.org/InStock',
-        'seller': {
-          '@type': 'Organization',
-          'name': 'RS Writing Instruments',
-        },
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': 'Forest Green',
-      'description': 'Deep forest green ebonite with precision gold & black trims.',
-      'image': 'https://www.rswriting.in/catalog/Forest%20Green%20BT.jpeg',
-      'brand': {
-        '@type': 'Brand',
-        'name': 'RS Writing Instruments',
-      },
-      'offers': {
-        '@type': 'Offer',
-        'price': '1490',
-        'priceCurrency': 'INR',
-        'priceValidUntil': '2026-12-31',
-        'availability': 'https://schema.org/InStock',
-        'seller': {
-          '@type': 'Organization',
-          'name': 'RS Writing Instruments',
-        },
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': 'Sparkle White',
-      'description': 'Elegant pearl sparkle white cap with demonstrator barrel options.',
-      'image': 'https://www.rswriting.in/catalog/Sparkle%20White.jpeg',
-      'brand': {
-        '@type': 'Brand',
-        'name': 'RS Writing Instruments',
-      },
-      'offers': {
-        '@type': 'Offer',
-        'price': '1490',
-        'priceCurrency': 'INR',
-        'priceValidUntil': '2026-12-31',
-        'availability': 'https://schema.org/InStock',
-        'seller': {
-          '@type': 'Organization',
-          'name': 'RS Writing Instruments',
-        },
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': 'Pure Orange Demonstrator',
-      'description': 'Vibrant orange cap with black section and transparent demonstrator barrel.',
-      'image': 'https://www.rswriting.in/catalog/Pure%20Orange%20Cap,%20Section%20Black,%20Demonstrator%20Barrel.jpeg',
-      'brand': {
-        '@type': 'Brand',
-        'name': 'RS Writing Instruments',
-      },
-      'offers': {
-        '@type': 'Offer',
-        'price': '1490',
-        'priceCurrency': 'INR',
-        'priceValidUntil': '2026-12-31',
-        'availability': 'https://schema.org/InStock',
-        'seller': {
-          '@type': 'Organization',
-          'name': 'RS Writing Instruments',
-        },
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': 'Swirl Collection',
-      'description': 'Hand-turned natural ebonite with intricate organic swirl patterns.',
-      'image': 'https://www.rswriting.in/catalog/Swirl%20Brown.jpeg',
-      'brand': {
-        '@type': 'Brand',
-        'name': 'RS Writing Instruments',
-      },
-      'offers': {
-        '@type': 'Offer',
-        'price': '1490',
-        'priceCurrency': 'INR',
-        'priceValidUntil': '2026-12-31',
-        'availability': 'https://schema.org/InStock',
-        'seller': {
-          '@type': 'Organization',
-          'name': 'RS Writing Instruments',
-        },
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': 'Red Black Swirl',
-      'description': 'Rich crimson red marbled swirl ebonite fountain pen.',
-      'image': 'https://www.rswriting.in/catalog/Red%20Black%20Swirl.jpeg',
-      'brand': {
-        '@type': 'Brand',
-        'name': 'RS Writing Instruments',
-      },
-      'offers': {
-        '@type': 'Offer',
-        'price': '1490',
-        'priceCurrency': 'INR',
-        'priceValidUntil': '2026-12-31',
-        'availability': 'https://schema.org/InStock',
-        'seller': {
-          '@type': 'Organization',
-          'name': 'RS Writing Instruments',
-        },
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      'name': 'Caviar Black',
-      'description': 'Sleek deep black hard rubber ebonite body with high polish finish.',
-      'image': 'https://www.rswriting.in/catalog/Caviar%20Black.jpeg',
-      'brand': {
-        '@type': 'Brand',
-        'name': 'RS Writing Instruments',
-      },
-      'offers': {
-        '@type': 'Offer',
-        'price': '1490',
-        'priceCurrency': 'INR',
-        'priceValidUntil': '2026-12-31',
-        'availability': 'https://schema.org/InStock',
-        'seller': {
-          '@type': 'Organization',
-          'name': 'RS Writing Instruments',
-        },
-      },
-    },
+    createProductSchema({
+      name: 'PRAVAH Signature Fountain Pen',
+      description: 'Handcrafted artisan ebonite fountain pen with precision capillary feed.',
+      image: '/catalog/Caviar Black.jpeg',
+      sku: 'RS-PRAVAH-SIG-01',
+      price: '1490',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: '4.9',
+      reviewCount: '42',
+    }),
+    createProductSchema({
+      name: 'PRAVAH Forest Green Fountain Pen',
+      description: 'Deep forest green ebonite with precision gold & black trims.',
+      image: '/catalog/Forest Green BT.jpeg',
+      sku: 'RS-PRAVAH-FG-01',
+      price: '1490',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: '4.9',
+      reviewCount: '28',
+    }),
+    createProductSchema({
+      name: 'PRAVAH Sparkle White Fountain Pen',
+      description: 'Elegant pearl sparkle white cap with demonstrator barrel options.',
+      image: '/catalog/Sparkle White.jpeg',
+      sku: 'RS-PRAVAH-SW-01',
+      price: '1490',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: '4.8',
+      reviewCount: '19',
+    }),
+    createProductSchema({
+      name: 'PRAVAH Pure Orange Demonstrator Pen',
+      description: 'Vibrant orange cap with black section and transparent demonstrator barrel.',
+      image: '/catalog/Pure Orange Cap, Section Black, Demonstrator Barrel.jpeg',
+      sku: 'RS-PRAVAH-PO-01',
+      price: '1490',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: '5.0',
+      reviewCount: '15',
+    }),
+    createProductSchema({
+      name: 'PRAVAH Swirl Collection Pen',
+      description: 'Hand-turned natural ebonite with intricate organic swirl patterns.',
+      image: '/catalog/Swirl Brown.jpeg',
+      sku: 'RS-PRAVAH-SWIRL-01',
+      price: '1490',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: '4.9',
+      reviewCount: '31',
+    }),
+    createProductSchema({
+      name: 'PRAVAH Red Black Swirl Pen',
+      description: 'Rich crimson red marbled swirl ebonite fountain pen.',
+      image: '/catalog/Red Black Swirl.jpeg',
+      sku: 'RS-PRAVAH-RBS-01',
+      price: '1490',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: '4.9',
+      reviewCount: '26',
+    }),
+    createProductSchema({
+      name: 'PRAVAH Caviar Black Pen',
+      description: 'Sleek deep black hard rubber ebonite body with high polish finish.',
+      image: '/catalog/Caviar Black.jpeg',
+      sku: 'RS-PRAVAH-CB-01',
+      price: '1490',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: '5.0',
+      reviewCount: '54',
+    }),
   ];
 
   return (
