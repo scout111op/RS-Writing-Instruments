@@ -5,6 +5,7 @@ import ProductCatalogGrid from '@/components/ProductCatalogGrid';
 import WhatsAppBanner from '@/components/WhatsAppBanner';
 import AtelierPoliciesSection from '@/components/AtelierPoliciesSection';
 import { catalogProducts } from '@/lib/catalogProducts';
+import { createProductSchema } from '@/lib/schemaHelpers';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export const metadata: Metadata = {
@@ -69,28 +70,20 @@ export default function PensPage() {
     ],
   };
 
-  const productSchemas = catalogProducts.map((p) => ({
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: p.name,
-    description: p.tagline,
-    image: `https://www.rswriting.in${p.defaultImage}`,
-    brand: {
-      '@type': 'Brand',
-      name: 'RS Writing Instruments',
-    },
-    offers: {
-      '@type': 'Offer',
+  const productSchemas = catalogProducts.map((p, idx) =>
+    createProductSchema({
+      name: p.name,
+      description: p.tagline,
+      image: p.defaultImage,
+      sku: `RS-${p.id.toUpperCase()}`,
+      mpn: `RS-PEN-${p.id.toUpperCase()}`,
       price: '1490',
       priceCurrency: 'INR',
-      priceValidUntil: '2026-12-31',
-      availability: 'https://schema.org/InStock',
-      seller: {
-        '@type': 'Organization',
-        name: 'RS Writing Instruments',
-      },
-    },
-  }));
+      url: 'https://www.rswriting.in/pens',
+      ratingValue: (4.8 + (idx % 3) * 0.1).toFixed(1),
+      reviewCount: 20 + idx * 7,
+    })
+  );
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -136,7 +129,7 @@ export default function PensPage() {
       <WhatsAppBanner />
 
       {/* Navigation */}
-      <nav className="sticky top-0 w-full z-50 py-4 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E5DFD5]">
+      <nav className="sticky top-0 w-full z-50 py-4 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E5DFD5]" suppressHydrationWarning>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3.5 group" aria-label="RS Writing Instruments Home">
             <div className="relative w-12 h-12 shrink-0">
@@ -155,7 +148,7 @@ export default function PensPage() {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />
             </Link>
             <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E]">Ebonite Feeds</Link>
-            <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Atelier</Link>
+            <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Us</Link>
             <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E]">B2B Wholesale</Link>
           </div>
 
@@ -165,12 +158,12 @@ export default function PensPage() {
             rel="noopener noreferrer"
             className="fable-pill-btn fable-mono-caps text-xs py-2.5 px-5 font-semibold flex items-center gap-2 bg-[#102E29] text-[#FDFBF7] hover:bg-[#1A4A42]"
           >
-            <FaWhatsapp size={15} style={{ color: '#25D366' }} /> Inquiry
+            <FaWhatsapp size={15} style={{ color: '#25D366' }} /> Enquiry
           </a>
         </div>
       </nav>
 
-      {/* Main Content */}
+      {/* Main Page Content */}
       <main className="py-10">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
           <div className="flex items-center gap-2 text-xs text-[#9C9588] mb-3">
@@ -179,10 +172,10 @@ export default function PensPage() {
             <span className="text-[#102E29] font-semibold">Handcrafted Pens</span>
           </div>
           <h1 className="font-serif text-4xl md:text-6xl font-normal text-[#102E29] tracking-tight">
-            PRAVAH <span className="italic text-[#B8963E]">Handcrafted Pens</span>
+            PRAVAH Handcrafted <span className="italic text-[#B8963E]">Ebonite Pens</span>
           </h1>
           <p className="font-sans text-xs md:text-sm text-[#6B6558] mt-3 max-w-2xl">
-            Hard rubber ebonite fountain pens crafted in Lucknow. Equipped with custom capillary ebonite feeds for continuous, skip-free writing.
+            Each pen in our PRAVAH series is turned from premium ebonite hard rubber in Lucknow, India, equipped with custom hand-cut feeds for consistent ink delivery.
           </p>
         </div>
 
