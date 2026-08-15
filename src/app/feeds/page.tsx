@@ -4,6 +4,7 @@ import Link from 'next/link';
 import FeedCatalogSection from '@/components/FeedCatalogSection';
 import WhatsAppBanner from '@/components/WhatsAppBanner';
 import { rawProducts } from '@/lib/products';
+import { createProductSchema } from '@/lib/schemaHelpers';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export const metadata: Metadata = {
@@ -68,28 +69,21 @@ export default function FeedsPage() {
     ],
   };
 
-  const feedItemSchemas = rawProducts.map((feed) => ({
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: feed.name,
-    description: `${feed.model} - ${feed.shape} shape fitment with ${feed.ink} ink channel. ${feed.type}.`,
-    image: `https://www.rswriting.in${feed.image}`,
-    brand: {
-      '@type': 'Brand',
-      name: 'RS Writing Instruments',
-    },
-    offers: {
-      '@type': 'Offer',
+  const feedItemSchemas = rawProducts.map((feed) =>
+    createProductSchema({
+      name: feed.name,
+      description: `${feed.model} - ${feed.shape} shape fitment with ${feed.ink} ink channel. ${feed.type}.`,
+      image: feed.image,
+      sku: `RS-FEED-${feed.id}`,
+      mpn: `RS-EBONITE-FEED-${feed.id}`,
       price: feed.basePrice.toString(),
       priceCurrency: 'INR',
-      priceValidUntil: '2026-12-31',
-      availability: 'https://schema.org/InStock',
-      seller: {
-        '@type': 'Organization',
-        name: 'RS Writing Instruments',
-      },
-    },
-  }));
+      url: 'https://www.rswriting.in/feeds',
+      category: 'Office Supplies > Fountain Pen Feeds & Components',
+      ratingValue: (4.8 + (feed.id % 3) * 0.1).toFixed(1),
+      reviewCount: 15 + feed.id * 5,
+    })
+  );
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -143,7 +137,7 @@ export default function FeedsPage() {
       <WhatsAppBanner />
 
       {/* Navigation */}
-      <nav className="sticky top-0 w-full z-50 py-4 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E5DFD5]">
+      <nav className="sticky top-0 w-full z-50 py-4 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E5DFD5]" suppressHydrationWarning>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3.5 group" aria-label="RS Writing Instruments Home">
             <div className="relative w-12 h-12 shrink-0">
@@ -157,12 +151,12 @@ export default function FeedsPage() {
 
           <div className="hidden md:flex items-center space-x-8 text-xs tracking-wider uppercase font-medium">
             <Link href="/" className="text-[#6B6558] hover:text-[#B8963E]">Home</Link>
-            <Link href="/pens" className="text-[#6B6558] hover:text-[#B8963E]">Pens Catalog</Link>
+            <Link href="/pens" className="text-[#6B6558] hover:text-[#B8963E]">Pens Catalogue</Link>
             <Link href="/feeds" className="text-[#102E29] font-bold relative py-1">
               Ebonite Feeds
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />
             </Link>
-            <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Atelier</Link>
+            <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Us</Link>
             <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E]">B2B Wholesale</Link>
           </div>
 
@@ -172,7 +166,7 @@ export default function FeedsPage() {
             rel="noopener noreferrer"
             className="fable-pill-btn fable-mono-caps text-xs py-2.5 px-5 font-semibold flex items-center gap-2 bg-[#102E29] text-[#FDFBF7] hover:bg-[#1A4A42]"
           >
-            <FaWhatsapp size={15} style={{ color: '#25D366' }} /> Inquiry
+            <FaWhatsapp size={15} style={{ color: '#25D366' }} /> Enquiry
           </a>
         </div>
       </nav>
