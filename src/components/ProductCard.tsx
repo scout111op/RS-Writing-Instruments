@@ -141,7 +141,7 @@ export default function ProductCard({
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="relative w-full aspect-[4/3] bg-[#FAF8F5] overflow-hidden p-3 sm:p-4 flex items-center justify-center cursor-ew-resize select-none touch-pan-x group/frame"
+        className="relative w-full aspect-[4/3] bg-[#FAF8F5] overflow-hidden p-3 sm:p-4 flex items-center justify-center cursor-ew-resize select-none touch-pan-y group/frame"
         title="Swipe or move mouse horizontally to view pen variants"
       >
         <Image
