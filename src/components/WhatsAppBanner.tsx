@@ -9,11 +9,11 @@ export default function WhatsAppBanner() {
 
   if (!isVisible) return null;
 
-  const whatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, I have an enquiry regarding product catalogs and custom bulk orders.")}`;
+  const whatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, I have an enquiry regarding product catalogues and custom bulk orders.")}`;
 
   return (
     <div 
-      className="relative z-50 py-2.5 px-4 text-xs sm:text-sm font-medium transition-all duration-500 animate-fade-in"
+      className="relative z-50 py-2.5 px-4 text-xs sm:text-sm font-medium transition-all duration-300"
       style={{
         background: 'linear-gradient(90deg, #102E29 0%, #173E38 50%, #102E29 100%)',
         color: '#FDFBF7',

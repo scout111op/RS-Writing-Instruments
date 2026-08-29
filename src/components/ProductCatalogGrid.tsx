@@ -27,13 +27,13 @@ export default function ProductCatalogGrid() {
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-8 md:mb-12">
           <div>
             <span className="fable-mono-caps text-[#B8963E] block mb-2 font-medium">
-              BESPOKE PENS / CATALOG DISCOVERY
+              BESPOKE PENS / CATALOGUE DISCOVERY
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-[#102E29]">
               Handcrafted fountain <span className="font-serif italic text-[#B8963E]">pens</span>
             </h2>
             <p className="font-sans text-xs md:text-sm mt-2 max-w-xl text-[#6B6558] font-normal leading-relaxed">
-              Select your preferred pen model and color option to enquire directly with RS Writing Instruments on WhatsApp.
+              Select your preferred pen model and colour option to enquire directly with RS Writing Instruments on WhatsApp.
             </p>
           </div>
 
@@ -58,18 +58,18 @@ export default function ProductCatalogGrid() {
           </div>
         </div>
 
-        {/* Responsive Grid with Staggered 60fps Mobile Entrance Animations */}
+        {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 items-stretch">
-          {filteredProducts.map((product, index) => (
+          {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="animate-mobile-card gpu-accelerated"
-              style={{ animationDelay: `${index * 60}ms` }}
+              className="gpu-accelerated"
               suppressHydrationWarning
             >
               <ProductCard
                 product={product}
-                isFeatured={index === 0}
+                isFeatured={false}
+                showMeasurements={true}
               />
             </div>
           ))}
@@ -78,7 +78,7 @@ export default function ProductCatalogGrid() {
         {filteredProducts.length === 0 && (
           <div className="text-center py-16 bg-white rounded-2xl border border-[#E5DFD5] mt-6">
             <p className="font-serif text-lg text-[#102E29] mb-1">No pens matched your search</p>
-            <p className="font-sans text-xs text-[#9C9588]">Try searching for a different model or color.</p>
+            <p className="font-sans text-xs text-[#9C9588]">Try searching for a different model or colour.</p>
           </div>
         )}
 
