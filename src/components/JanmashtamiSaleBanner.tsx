@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FaWhatsapp, FaFeatherAlt, FaOm } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
+import { balKrishnaImage } from "@/lib/bannerImage";
 
 export default function JanmashtamiSaleBanner() {
   const greetingWhatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent(
@@ -143,11 +144,12 @@ export default function JanmashtamiSaleBanner() {
               {/* Ornate Gold Fluted Frame */}
               <div className="relative w-full h-full rounded-xl overflow-hidden border-2 border-[#F59E0B]/90 shadow-lg bg-[#020E1C]">
                 <Image
-                  src="/bal_krishna_divine.jpg"
+                  src={balKrishnaImage}
                   alt="Bal Krishna playing flute with peacock feather crown beside handcrafted ebonite fountain pen - RS Writing Instruments Janmashtami Greetings"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 768px) 144px, 176px"
+                  unoptimized
                   priority
                 />
 
