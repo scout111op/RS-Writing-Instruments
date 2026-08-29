@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { rawProducts, calculateDisplayPrice } from '@/lib/products';
 import { HiX, HiPrinter } from 'react-icons/hi';
 import { FaWhatsapp, FaFilePdf, FaCheckCircle } from 'react-icons/fa';
@@ -86,7 +87,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
 
   if (!isOpen) return null;
 
-  const whatsappCatalogUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, please send me the complete PDF Catalog and wholesale price list.")}`;
+  const whatsappCatalogUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, please send me the complete PDF Catalogue and wholesale price list.")}`;
 
   const handlePrint = () => {
     window.print();
@@ -119,7 +120,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                 Official B2B Product Line Sheet
               </span>
               <h2 id="catalog-modal-title" className="font-serif text-base sm:text-2xl font-bold text-[#102E29] leading-tight">
-                RS Writing Instruments Specification Catalog
+                RS Writing Instruments Specification Catalogue
               </h2>
             </div>
           </div>
@@ -139,54 +140,65 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-[#25D366] text-white hover:opacity-90 transition-all shadow-xs"
             >
-              <FaWhatsapp size={16} /> WhatsApp Catalog
+              <FaWhatsapp size={16} /> WhatsApp Catalogue
             </a>
 
             <button
               onClick={onClose}
               className="p-2 rounded-full text-[#102E29] hover:bg-[#E5DFD5]/60 transition-colors focus:ring-2 focus:ring-[#B8963E]"
-              aria-label="Close catalog viewer"
+              aria-label="Close catalogue viewer"
             >
               <HiX size={24} />
             </button>
           </div>
         </div>
 
-        {/* Scrollable PDF Document Body */}
-        <div 
-          id="catalog-modal-desc"
-          className="flex-1 overflow-y-auto overscroll-contain custom-catalog-scrollbar p-4 sm:p-6 md:p-8 space-y-8"
-        >
-          {/* Subtitle & Document Intro */}
-          <div className="bg-[#F5F1EB] p-4 sm:p-6 rounded-xl border border-[#E5DFD5] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div>
-              <h3 className="font-serif text-lg sm:text-xl font-bold text-[#102E29]">
-                Precision Ebonite Feeds Specification Sheet
-              </h3>
-              <p className="text-xs sm:text-sm text-[#6B6558] mt-1 max-w-2xl">
-                Precision-manufactured natural hard rubber ebonite feeds engineered for fountain pen artisans, brands, and repair specialists worldwide.
-              </p>
-            </div>
-            <div className="flex flex-col items-start md:items-end gap-1.5">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#102E29] bg-white px-3 py-1.5 rounded-lg border border-[#E5DFD5]">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                2026 Direct Retail Price
+        {/* Modal Scrollable Body Content */}
+        <div id="catalog-modal-desc" className="flex-1 overflow-y-auto custom-catalog-scrollbar p-4 sm:p-8 space-y-8">
+          
+          {/* Header Summary Banner */}
+          <div className="p-6 rounded-2xl bg-[#FAF8F5] border border-[#E5DFD5] flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="relative w-16 h-16 shrink-0">
+                <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="64px" />
               </div>
-              <span className="text-xs font-semibold text-[#B8963E]">
-                For Best Price of Wholesale Contact on Whatsapp
+              <div>
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#102E29]">
+                  RS Writing Instruments
+                </h3>
+                <p className="text-xs text-[#6B6558] mt-0.5">
+                  Artisan Hand-Cut Ebonite Feeds & Bespoke Fountain Pens — Lucknow, India
+                </p>
+                <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#9C9588] mt-2">
+                  <span>Tel / WA: +91 94556 64795</span>
+                  <span>Email: contact@rswriting.in | fountainpenmechanic@gmail.com</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#102E29]/10 text-[#102E29] border border-[#102E29]/20">
+                B2B Wholesale Line Sheet
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#B8963E]/10 text-[#B8963E] border border-[#B8963E]/20">
+                MOQ: 250 Pcs
               </span>
             </div>
           </div>
 
-          {/* B2B Key Metrics Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {/* Core Highlights Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
-              <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">250 Pcs</span>
-              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Minimum Order Quantity (Feeds)</span>
+              <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">100%</span>
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Natural Hard Rubber Ebonite</span>
             </div>
             <div className="p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
-              <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">100% Hard Rubber</span>
-              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Natural Ebonite Material</span>
+              <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">3 Channels</span>
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Single, Double & Music Flow</span>
+            </div>
+            <div className="p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
+              <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">₹75 – ₹450</span>
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Wholesale Price Range</span>
             </div>
             <div className="p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
               <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">Parker & Shaffer</span>
@@ -198,7 +210,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-serif text-lg sm:text-xl font-bold text-[#102E29] flex items-center gap-2">
-                <FaCheckCircle className="text-[#B8963E]" size={16} /> Handcrafted Ebonite Feeds Catalog
+                <FaCheckCircle className="text-[#B8963E]" size={16} /> Handcrafted Ebonite Feeds Catalogue
               </h3>
               <span className="text-xs font-mono text-[#6B6558]">{rawProducts.length} Models Available</span>
             </div>

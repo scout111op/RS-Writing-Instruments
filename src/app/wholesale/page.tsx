@@ -92,7 +92,7 @@ export default function WholesalePage() {
         name: 'How do I request a wholesale quote or PDF line sheet?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'You can request wholesale pricing directly via WhatsApp (+91 94556 64795) or email us at fountainpenmechanic@gmail.com.',
+          text: 'You can request wholesale pricing directly via WhatsApp (+91 94556 64795) or email us at contact@rswriting.in (or fountainpenmechanic@gmail.com).',
         },
       },
     ],
