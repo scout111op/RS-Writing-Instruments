@@ -1,9 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useState, useEffect, useRef } from 'react';
 import { FaWhatsapp, FaCheckCircle, FaFeatherAlt } from 'react-icons/fa';
 import { HiOutlineMenuAlt3, HiX, HiArrowDown } from 'react-icons/hi';
 import Image from 'next/image';
@@ -17,21 +14,9 @@ import ProductCard from '@/components/ProductCard';
 import { featuredHeroProduct } from '@/lib/catalogProducts';
 import { createProductSchema } from '@/lib/schemaHelpers';
 
-const FeedCatalogSection = dynamic(() => import('@/components/FeedCatalogSection'), {
-  loading: () => <div className="py-16 text-center text-xs text-[#9C9588]">Loading ebonite feeds...</div>,
-});
-
-const AtelierPoliciesSection = dynamic(() => import('@/components/AtelierPoliciesSection'), {
-  loading: () => <div className="py-16 text-center text-xs text-[#9C9588]">Loading atelier specifications...</div>,
-});
-
-const PatrioticSaleBanner = dynamic(() => import('@/components/PatrioticSaleBanner'), {
-  loading: () => <div className="py-8" />,
-});
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+const FeedCatalogSection = dynamic(() => import('@/components/FeedCatalogSection'));
+const AtelierPoliciesSection = dynamic(() => import('@/components/AtelierPoliciesSection'));
+const PatrioticSaleBanner = dynamic(() => import('@/components/PatrioticSaleBanner'));
 
 function useMounted() {
   const [mounted, setMounted] = useState(false);
@@ -79,31 +64,33 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [hasMounted]);
 
-  // Lenis smooth scroll configuration (desktop only for performance)
+  // Lenis smooth scroll configuration (loaded dynamically on desktop only)
   useEffect(() => {
     if (!hasMounted) return;
-    if (typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window)) {
+    if (typeof window === 'undefined' || window.innerWidth < 768 || 'ontouchstart' in window) {
       return;
     }
 
-    const lenis = new Lenis({
-      duration: 1.8,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
+    let rafId: number;
+    let lenisInstance: any = null;
+
+    import('lenis').then(({ default: Lenis }) => {
+      lenisInstance = new Lenis({
+        duration: 1.8,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      function raf(time: number) {
+        lenisInstance?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
+      rafId = requestAnimationFrame(raf);
     });
 
-    lenis.on('scroll', ScrollTrigger.update);
-
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
+      if (rafId) cancelAnimationFrame(rafId);
+      lenisInstance?.destroy();
     };
   }, [hasMounted]);
 
@@ -215,7 +202,7 @@ export default function Home() {
             aria-label="Refresh home page"
           >
             <div className="relative w-12 h-12 md:w-16 md:h-16 shrink-0 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-6 drop-shadow-md">
-              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="(max-width: 768px) 48px, 64px" priority />
+              <Image src="/assets/rs_logo.svg" alt="RS Writing Instruments Logo" width={64} height={64} className="object-contain w-full h-full" priority />
             </div>
             <div className="flex flex-col justify-center">
               <span className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-none text-[#102E29] transition-colors group-hover:text-[#B8963E]">
@@ -491,7 +478,7 @@ export default function Home() {
                 aria-label="Refresh home page"
               >
                 <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 drop-shadow-md transition-transform duration-500 group-hover:scale-105">
-                  <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="80px" />
+                  <Image src="/assets/rs_logo.svg" alt="RS Writing Instruments Logo" width={80} height={80} className="object-contain w-full h-full" />
                 </div>
                 <h3 className="font-serif text-2xl md:text-3xl font-extrabold mb-1 text-[#102E29] transition-colors group-hover:text-[#B8963E]">RS WRITING</h3>
                 <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold text-[#B8963E] transition-colors group-hover:text-[#102E29]">Instruments</p>
