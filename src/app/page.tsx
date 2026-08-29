@@ -202,7 +202,7 @@ export default function Home() {
             aria-label="Refresh home page"
           >
             <div className="relative w-12 h-12 md:w-16 md:h-16 shrink-0 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-6 drop-shadow-md">
-              <Image src="/assets/rs_logo.svg" alt="RS Writing Instruments Logo" width={64} height={64} className="object-contain w-full h-full" priority />
+              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="(max-width: 768px) 48px, 64px" priority />
             </div>
             <div className="flex flex-col justify-center">
               <span className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-none text-[#102E29] transition-colors group-hover:text-[#B8963E]">
@@ -478,7 +478,7 @@ export default function Home() {
                 aria-label="Refresh home page"
               >
                 <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 drop-shadow-md transition-transform duration-500 group-hover:scale-105">
-                  <Image src="/assets/rs_logo.svg" alt="RS Writing Instruments Logo" width={80} height={80} className="object-contain w-full h-full" />
+                  <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="80px" />
                 </div>
                 <h3 className="font-serif text-2xl md:text-3xl font-extrabold mb-1 text-[#102E29] transition-colors group-hover:text-[#B8963E]">RS WRITING</h3>
                 <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold text-[#B8963E] transition-colors group-hover:text-[#102E29]">Instruments</p>

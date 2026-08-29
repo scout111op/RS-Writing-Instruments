@@ -40,11 +40,11 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/assets/rs_logo.svg", type: "image/svg+xml" },
-      { url: "/rs_logo.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+      { url: "/logo.png", type: "image/png" },
     ],
-    shortcut: "/assets/rs_logo.svg",
-    apple: "/assets/rs_logo.svg",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
   },
   alternates: {
     canonical: 'https://www.rswriting.in',
@@ -122,8 +122,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" type="image/svg+xml" href="/assets/rs_logo.svg" />
-        <link rel="alternate icon" href="/assets/rs_logo.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
