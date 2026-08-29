@@ -90,16 +90,37 @@ export default function RootLayout({
     '@id': 'https://www.rswriting.in/#organization',
     'name': 'RS Writing Instruments',
     'url': 'https://www.rswriting.in',
+    'logo': 'https://www.rswriting.in/logo.png',
+    'image': 'https://www.rswriting.in/logo.png',
+    'description':
+      'Manufacturer and artisan atelier specializing in handcrafted natural ebonite fountain pens and precision hand-cut capillary feeds in Lucknow, India.',
     'telephone': '+919455664795',
-    'email': 'fountainpenmechanic@gmail.com',
+    'email': ['contact@rswriting.in', 'fountainpenmechanic@gmail.com'],
+    'foundingDate': '2011',
+    'founder': {
+      '@type': 'Person',
+      'name': 'Sanjay Singh',
+      'jobTitle': 'Master Pen Maker & Nibsmith'
+    },
     'address': {
       '@type': 'PostalAddress',
-      'streetAddress': 'Lucknow',
+      'streetAddress': 'Lucknow Atelier',
       'addressLocality': 'Lucknow',
       'addressRegion': 'Uttar Pradesh',
-      'addressCountry': 'India'
+      'postalCode': '226001',
+      'addressCountry': 'IN'
     },
-    'sameAs': []
+    'knowsAbout': [
+      'Ebonite Fountain Pens',
+      'Hand-Cut Capillary Feeds',
+      'Parker 51 Feed Geometry',
+      'Sheaffer Feed Geometry',
+      'Hard Rubber Lathe Craftsmanship',
+      'PRAVAH Fountain Pens'
+    ],
+    'sameAs': [
+      'https://wa.me/919455664795'
+    ]
   };
 
   const websiteJsonLd = {

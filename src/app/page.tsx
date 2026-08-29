@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { FaWhatsapp, FaCheckCircle, FaFeatherAlt } from 'react-icons/fa';
-import { HiOutlineMenuAlt3, HiX, HiArrowDown } from 'react-icons/hi';
+import { HiOutlineMenuAlt3, HiX } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,7 +16,7 @@ import { createProductSchema } from '@/lib/schemaHelpers';
 
 const FeedCatalogSection = dynamic(() => import('@/components/FeedCatalogSection'));
 const AtelierPoliciesSection = dynamic(() => import('@/components/AtelierPoliciesSection'));
-const PatrioticSaleBanner = dynamic(() => import('@/components/PatrioticSaleBanner'));
+const JanmashtamiSaleBanner = dynamic(() => import('@/components/JanmashtamiSaleBanner'));
 
 function useMounted() {
   const [mounted, setMounted] = useState(false);
@@ -389,9 +389,9 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          PATRIOTIC SALE BANNER (15th August & Republic Day Special Offer)
+          JANMASHTAMI MAHOTSAV SPECIAL FESTIVE GREETING
           ═══════════════════════════════════════════ */}
-      <PatrioticSaleBanner />
+      <JanmashtamiSaleBanner />
 
       {/* ═══════════════════════════════════════════
           NEW RESPONSIVE PRODUCT CATALOG GRID
@@ -504,7 +504,8 @@ export default function Home() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left text-xs text-[#6B6558] space-y-2">
               <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-4 text-[#B8963E]">RS Writing Contact</h4>
               <p className="pt-2"><span className="text-[#9C9588]">Phone/WhatsApp:</span> <a href="tel:+919455664795" className="font-bold text-[#102E29] hover:underline">+91 94556 64795</a></p>
-              <p><span className="text-[#9C9588]">Email:</span> <a href="mailto:fountainpenmechanic@gmail.com" className="font-bold text-[#102E29] hover:underline">fountainpenmechanic@gmail.com</a></p>
+              <p><span className="text-[#9C9588]">Primary Email:</span> <a href="mailto:contact@rswriting.in" className="font-bold text-[#102E29] hover:underline">contact@rswriting.in</a></p>
+              <p><span className="text-[#9C9588]">Direct / Workshop:</span> <a href="mailto:fountainpenmechanic@gmail.com" className="font-bold text-[#102E29] hover:underline">fountainpenmechanic@gmail.com</a></p>
             </div>
 
           </div>
