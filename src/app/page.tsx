@@ -283,20 +283,20 @@ export default function Home() {
             >
               Featured
             </a>
-            <a 
-              href="#pen-catalog" 
+            <Link 
+              href="/pens" 
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
             >
-              Pens Catalogue
-            </a>
-            <a 
-              href="#feed-catalog" 
+              Handcrafted Pens
+            </Link>
+            <Link 
+              href="/feeds" 
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
             >
               Ebonite Feeds
-            </a>
+            </Link>
             <a 
               href="#policies-section" 
               onClick={() => setMobileMenuOpen(false)}
@@ -362,12 +362,12 @@ export default function Home() {
 
             {/* Dual Pill CTAs */}
             <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 mb-4">
-              <a
-                href="#pen-catalog"
+              <Link
+                href="/pens"
                 className="fable-pill-btn min-h-[44px] py-3.5 px-7 fable-mono-caps font-semibold flex items-center justify-center gap-2 bg-[#102E29] text-[#FDFBF7] shadow-sm hover:bg-[#1A4A42] w-full sm:w-auto"
               >
-                Browse Pen Catalogue <HiArrowDown size={14} />
-              </a>
+                Browse Pen Collection
+              </Link>
 
               <a
                 href={generalWhatsappUrl}
