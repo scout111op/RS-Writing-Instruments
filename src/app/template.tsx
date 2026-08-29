@@ -1,6 +1,10 @@
 "use client";
 
-import PullToRefresh from "@/components/PullToRefresh";
+import dynamic from "next/dynamic";
+
+const PullToRefresh = dynamic(() => import("@/components/PullToRefresh"), {
+  ssr: false,
+});
 
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
