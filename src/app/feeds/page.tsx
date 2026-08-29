@@ -141,7 +141,7 @@ export default function FeedsPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3.5 group" aria-label="RS Writing Instruments Home">
             <div className="relative w-12 h-12 shrink-0">
-              <Image src="/assets/rs_logo.svg" alt="RS Writing Instruments Logo" width={48} height={48} className="object-contain w-full h-full" priority />
+              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="48px" priority />
             </div>
             <div className="flex flex-col justify-center">
               <span className="font-serif text-2xl font-extrabold tracking-tight leading-none text-[#102E29]">RS WRITING</span>
@@ -194,7 +194,9 @@ export default function FeedsPage() {
       <footer className="py-12 px-6 md:px-12 border-t border-[#E5DFD5] bg-[#FDFBF7]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-[#6B6558]">
           <div className="flex items-center gap-3">
-            <Image src="/assets/rs_logo.svg" alt="RS Writing Instruments Logo" width={40} height={40} className="object-contain" />
+            <div className="relative w-10 h-10 shrink-0">
+              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="40px" />
+            </div>
             <span className="font-serif text-lg font-bold text-[#102E29]">RS Writing Instruments</span>
           </div>
           <div className="flex gap-6 uppercase tracking-wider text-[11px] font-semibold">
