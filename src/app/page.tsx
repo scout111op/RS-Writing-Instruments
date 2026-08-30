@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { FaWhatsapp, FaCheckCircle, FaFeatherAlt } from 'react-icons/fa';
-import { HiOutlineMenuAlt3, HiX } from 'react-icons/hi';
+import { HiOutlineMenuAlt3, HiX, HiArrowDown } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -389,7 +389,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          JANMASHTAMI MAHOTSAV SPECIAL FESTIVE GREETING
+          JANMASHTAMI MAHOTSAV SPECIAL OFFER (Valid Till 5th September)
           ═══════════════════════════════════════════ */}
       <JanmashtamiSaleBanner />
 
@@ -468,7 +468,7 @@ export default function Home() {
       <footer id="contact" className="relative py-12 md:py-16 px-6 md:px-12 border-t border-[#E5DFD5]" style={{ background: '#FDFBF7' }}>
         <div className="max-w-6xl mx-auto">
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-16">
             
             {/* Brand */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
@@ -484,19 +484,31 @@ export default function Home() {
                 <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold text-[#B8963E] transition-colors group-hover:text-[#102E29]">Instruments</p>
               </Link>
               <p className="text-xs leading-relaxed text-[#9C9588]">
-                Handcrafted ebonite feeds and custom fountain pen mechanisms for discerning writers and pen artisans.
+                Handcrafted ebonite feeds and custom fountain pen mechanisms for discerning writers, pen collectors, and artisans.
               </p>
             </div>
 
             {/* Quick Links */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-6 text-[#B8963E]">Quick Navigation</h4>
+              <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-6 text-[#B8963E]">Handcrafted Collection</h4>
               <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
                 <Link href="/pens" className="hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
                 <Link href="/feeds" className="hover:text-[#B8963E] transition-colors">Ebonite Feeds Catalogue</Link>
-                <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Us</Link>
+                <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Atelier & Founder</Link>
                 <Link href="/wholesale" className="hover:text-[#B8963E] transition-colors">B2B Wholesale & OEM</Link>
-                <a href="#contact" className="hover:text-[#B8963E] transition-colors">Contact RS Writing Instruments</a>
+                <a href="#contact" className="hover:text-[#B8963E] transition-colors">Custom Inquiries</a>
+              </div>
+            </div>
+
+            {/* Legal & Policies */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+              <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-6 text-[#B8963E]">Legal & Policies</h4>
+              <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
+                <Link href="/privacy" className="hover:text-[#B8963E] transition-colors">Privacy Policy</Link>
+                <Link href="/terms" className="hover:text-[#B8963E] transition-colors">Terms of Service</Link>
+                <Link href="/acceptable-use" className="hover:text-[#B8963E] transition-colors">Acceptable Use Policy</Link>
+                <Link href="/#policies-section" className="hover:text-[#B8963E] transition-colors">Atelier Guarantees</Link>
+                <Link href="/terms#shipping" className="hover:text-[#B8963E] transition-colors">Shipping & Warranty</Link>
               </div>
             </div>
 
@@ -506,6 +518,7 @@ export default function Home() {
               <p className="pt-2"><span className="text-[#9C9588]">Phone/WhatsApp:</span> <a href="tel:+919455664795" className="font-bold text-[#102E29] hover:underline">+91 94556 64795</a></p>
               <p><span className="text-[#9C9588]">Primary Email:</span> <a href="mailto:contact@rswriting.in" className="font-bold text-[#102E29] hover:underline">contact@rswriting.in</a></p>
               <p><span className="text-[#9C9588]">Direct / Workshop:</span> <a href="mailto:fountainpenmechanic@gmail.com" className="font-bold text-[#102E29] hover:underline">fountainpenmechanic@gmail.com</a></p>
+              <p className="text-[11px] text-[#9C9588] pt-1">Handcrafted Artisan Atelier</p>
             </div>
 
           </div>
@@ -514,6 +527,13 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#9C9588]">
             <span suppressHydrationWarning>© {new Date().getFullYear()} RS Writing Instruments. All rights reserved.</span>
+            <div className="flex items-center gap-4 text-[11px]">
+              <Link href="/privacy" className="hover:text-[#102E29] transition-colors">Privacy Policy</Link>
+              <span>•</span>
+              <Link href="/terms" className="hover:text-[#102E29] transition-colors">Terms of Service</Link>
+              <span>•</span>
+              <Link href="/acceptable-use" className="hover:text-[#102E29] transition-colors">Acceptable Use</Link>
+            </div>
             <div className="flex gap-5">
               <a href={generalWhatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors" aria-label="WhatsApp"><FaWhatsapp size={18} /></a>
             </div>
