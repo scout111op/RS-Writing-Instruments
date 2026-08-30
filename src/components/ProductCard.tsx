@@ -5,7 +5,8 @@ import Image from "next/image";
 import { CatalogProduct, ProductColourOption } from "@/lib/catalogProducts";
 import ColourSelector from "@/components/ColourSelector";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { HiOutlineHand } from "react-icons/hi";
+import { HiOutlineHand, HiZoomIn } from "react-icons/hi";
+import { useProductZoom } from "@/context/ProductZoomContext";
 
 interface ProductCardProps {
   product: CatalogProduct;
@@ -104,6 +105,18 @@ export default function ProductCard({
     if (idx >= 0) setHoverIndex(idx);
   };
 
+  const { openZoom } = useProductZoom();
+
+  const handleOpenZoom = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    openZoom({
+      src: displayColour.image,
+      alt: `${product.name} - ${displayColour.name}`,
+      title: product.name,
+      subtitle: `${displayColour.name} • ${product.tagline}`,
+    });
+  };
+
   return (
     <div
       className={`group relative bg-white rounded-2xl hairline-card overflow-hidden transition-all duration-300 flex flex-col justify-between gpu-accelerated ${
@@ -126,12 +139,23 @@ export default function ProductCard({
 
       {/* Variant Name Hover Badge */}
       <div
-        className={`absolute top-3 right-3 z-20 fable-mono-caps text-[9px] font-medium bg-[#102E29]/85 text-[#FDFBF7] backdrop-blur-md py-1 px-2.5 rounded-full transition-opacity duration-200 pointer-events-none ${
+        className={`absolute top-3 right-12 z-20 fable-mono-caps text-[9px] font-medium bg-[#102E29]/85 text-[#FDFBF7] backdrop-blur-md py-1 px-2.5 rounded-full transition-opacity duration-200 pointer-events-none ${
           hoverIndex !== null ? "opacity-100" : "opacity-90 md:opacity-0"
         }`}
       >
         {displayColour.name}
       </div>
+
+      {/* Interactive Zoom Trigger Button */}
+      <button
+        type="button"
+        onClick={handleOpenZoom}
+        className="absolute top-3 right-3 z-20 p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white text-[#102E29] hover:text-[#B8963E] shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110 flex items-center justify-center cursor-pointer border border-[#E5DFD5]/70"
+        title="Tap to zoom in and examine product details"
+        aria-label={`Zoom in on ${product.name}`}
+      >
+        <HiZoomIn size={16} />
+      </button>
 
       {/* Product Image Frame with Touch Swipe & Desktop Hover Scrubbing */}
       <div
@@ -141,8 +165,9 @@ export default function ProductCard({
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="relative w-full aspect-[4/3] bg-[#FAF8F5] overflow-hidden p-3 sm:p-4 flex items-center justify-center cursor-ew-resize select-none touch-pan-y group/frame"
-        title="Swipe or move mouse horizontally to view pen variants"
+        onClick={handleOpenZoom}
+        className="relative w-full aspect-[4/3] bg-[#FAF8F5] overflow-hidden p-3 sm:p-4 flex items-center justify-center cursor-pointer select-none touch-pan-y group/frame"
+        title="Tap to zoom picture in full detail • Or swipe horizontally for variants"
       >
         <Image
           src={displayColour.image}
@@ -154,14 +179,27 @@ export default function ProductCard({
           quality={75}
         />
 
+        {/* Quick Tap-To-Zoom Hover Hint Badge */}
+        <div className="absolute inset-0 bg-black/15 opacity-0 group-hover/frame:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <span className="py-1.5 px-3.5 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-[#FDFBF7]/95 text-[#102E29] shadow-lg flex items-center gap-1.5 backdrop-blur-xs">
+            <HiZoomIn size={13} className="text-[#B8963E]" /> Tap to Zoom
+          </span>
+        </div>
+
         {/* Horizontal Swipe Indicator Dots */}
         {displayColours.length > 1 && (
-          <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/35 backdrop-blur-md rounded-full transition-all duration-200">
+          <div 
+            className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/35 backdrop-blur-md rounded-full transition-all duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
             {displayColours.map((col, idx) => (
               <button
                 key={col.name + idx}
                 type="button"
-                onClick={() => handleSelectColour(col)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSelectColour(col);
+                }}
                 className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none ${
                   idx === (activeColourIndex >= 0 ? activeColourIndex : 0)
                     ? "w-4 bg-[#B8963E]"

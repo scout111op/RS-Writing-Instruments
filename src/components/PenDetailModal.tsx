@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FountainPen, getFountainPenWhatsAppLink } from '@/lib/fountainPens';
-import { HiX, HiCheck } from 'react-icons/hi';
+import { HiX, HiCheck, HiZoomIn } from 'react-icons/hi';
 import { FaWhatsapp, FaFeatherAlt } from 'react-icons/fa';
+import { useProductZoom } from '@/context/ProductZoomContext';
 
 interface PenDetailModalProps {
   pen: FountainPen | null;
@@ -12,6 +13,7 @@ interface PenDetailModalProps {
 }
 
 export default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {
+  const { openZoom } = useProductZoom();
   const [selectedNibState, setSelectedNibState] = useState<string | null>(null);
   const [prevPenId, setPrevPenId] = useState<string | null>(null);
 
@@ -70,8 +72,16 @@ export default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {
           {/* Left Column: Image & Quick Badge */}
           <div className="flex flex-col items-center">
             <div 
-              className="relative w-full h-64 sm:h-72 md:h-80 rounded-xl overflow-hidden flex items-center justify-center p-4"
+              className="relative w-full h-64 sm:h-72 md:h-80 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-pointer group/modalimg"
               style={{ background: '#FAF8F5', border: '1px solid #F0ECE4' }}
+              onClick={() => openZoom({
+                src: pen.image,
+                alt: pen.name,
+                title: pen.name,
+                subtitle: `${pen.category} • ${pen.tagline}`,
+                price: priceFormatted,
+              })}
+              title="Tap to zoom picture in full detail"
             >
               {pen.badge && (
                 <span 
@@ -81,14 +91,41 @@ export default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {
                   {pen.badge}
                 </span>
               )}
+
+              {/* Zoom Trigger Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openZoom({
+                    src: pen.image,
+                    alt: pen.name,
+                    title: pen.name,
+                    subtitle: `${pen.category} • ${pen.tagline}`,
+                    price: priceFormatted,
+                  });
+                }}
+                className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 hover:bg-white text-[#102E29] hover:text-[#B8963E] shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110 flex items-center justify-center cursor-pointer border border-[#E5DFD5]/70"
+                title="Tap to zoom in"
+                aria-label={`Zoom in on ${pen.name}`}
+              >
+                <HiZoomIn size={16} />
+              </button>
               
               <Image
                 src={pen.image}
                 alt={pen.name}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain p-4 transition-transform duration-500 hover:scale-105"
+                className="object-contain p-4 transition-transform duration-500 group-hover/modalimg:scale-105"
               />
+
+              {/* Hover Badge */}
+              <div className="absolute inset-0 bg-black/15 opacity-0 group-hover/modalimg:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                <span className="py-1 px-3.5 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-[#FDFBF7]/95 text-[#102E29] shadow-lg flex items-center gap-1.5 backdrop-blur-xs">
+                  <HiZoomIn size={14} className="text-[#B8963E]" /> Tap to Zoom
+                </span>
+              </div>
             </div>
 
             <div className="w-full mt-4 flex items-center justify-between text-xs px-1" style={{ color: '#6B6558' }}>
