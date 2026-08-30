@@ -4,10 +4,12 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { FountainPen, fountainPenCollection, getFountainPenWhatsAppLink } from '@/lib/fountainPens';
 import PenDetailModal from '@/components/PenDetailModal';
-import { HiSearch, HiFilter } from 'react-icons/hi';
+import { HiSearch, HiFilter, HiZoomIn } from 'react-icons/hi';
 import { FaWhatsapp, FaEye, FaFeather } from 'react-icons/fa';
+import { useProductZoom } from '@/context/ProductZoomContext';
 
 export default function FountainPenCollection() {
+  const { openZoom } = useProductZoom();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [selectedPen, setSelectedPen] = useState<FountainPen | null>(null);
@@ -128,21 +130,42 @@ export default function FountainPenCollection() {
                   </span>
                 )}
 
-                {/* Pen Image Frame */}
+                {/* Pen Image Frame with Tap to Zoom & Specs */}
                 <div 
-                  className="relative h-60 md:h-64 mb-6 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-pointer bg-[#FAF8F5] border border-[#F0ECE4]"
+                  className="relative h-60 md:h-64 mb-6 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-pointer bg-[#FAF8F5] border border-[#F0ECE4] group/pencard"
                   onClick={() => setSelectedPen(pen)}
+                  title="Click to view specifications or tap zoom icon to zoom"
                 >
                   <Image
                     src={pen.image}
                     alt={pen.name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                    className="object-contain p-4 transition-transform duration-700 group-hover/pencard:scale-105"
                   />
+
+                  {/* Zoom Trigger Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openZoom({
+                        src: pen.image,
+                        alt: pen.name,
+                        title: pen.name,
+                        subtitle: `${pen.category} • ${pen.tagline}`,
+                        price: priceFormatted,
+                      });
+                    }}
+                    className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/90 hover:bg-white text-[#102E29] hover:text-[#B8963E] shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110 flex items-center justify-center cursor-pointer border border-[#E5DFD5]/70"
+                    title="Tap to zoom in"
+                    aria-label={`Zoom in on ${pen.name}`}
+                  >
+                    <HiZoomIn size={16} />
+                  </button>
                   
                   {/* Quick View Overlay */}
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/pencard:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span 
                       className="py-2 px-4 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center gap-2 shadow-lg bg-[#FDFBF7] text-[#102E29]"
                     >
