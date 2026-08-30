@@ -372,12 +372,16 @@ export default function AboutPage() {
             </div>
             <span className="font-serif text-lg font-bold text-[#102E29]">RS Writing Instruments</span>
           </div>
-          <div className="flex gap-6 uppercase tracking-wider text-[11px] font-semibold">
+          <div className="flex gap-5 uppercase tracking-wider text-[11px] font-semibold flex-wrap justify-center">
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>
+            <span className="text-[#D1C9BE] hidden sm:inline">|</span>
+            <Link href="/privacy" className="hover:text-[#B8963E]">Privacy</Link>
+            <Link href="/terms" className="hover:text-[#B8963E]">Terms</Link>
+            <Link href="/acceptable-use" className="hover:text-[#B8963E]">Acceptable Use</Link>
           </div>
           <span suppressHydrationWarning>© {new Date().getFullYear()} RS Writing Instruments. All rights reserved.</span>
         </div>
