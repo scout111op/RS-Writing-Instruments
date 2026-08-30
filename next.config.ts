@@ -2,12 +2,12 @@ import type { NextConfig } from "next";
 
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://challenges.cloudflare.com https://www.google.com https://www.gstatic.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://challenges.cloudflare.com https://www.google.com https://www.gstatic.com https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagservices.com https://tpc.googlesyndication.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' data: blob: https://images.unsplash.com https://va.vercel-scripts.com https://rs-writing-instruments.vercel.app https://rswriting.in;
+  img-src 'self' data: blob: https://images.unsplash.com https://va.vercel-scripts.com https://rs-writing-instruments.vercel.app https://rswriting.in https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net;
   font-src 'self' https://fonts.gstatic.com data:;
-  connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://wa.me https://api.whatsapp.com https://challenges.cloudflare.com https://www.google.com;
-  frame-src 'self' https://challenges.cloudflare.com https://www.google.com;
+  connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://wa.me https://api.whatsapp.com https://challenges.cloudflare.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com;
+  frame-src 'self' https://challenges.cloudflare.com https://www.google.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://tpc.googlesyndication.com;
   object-src 'none';
   base-uri 'self';
   form-action 'self' https://wa.me https://api.whatsapp.com;

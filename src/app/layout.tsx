@@ -77,7 +77,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    'google-adsense-account': 'ca-pub-3069042669867265',
+  },
 };
+
+import { ProductZoomProvider } from "@/context/ProductZoomContext";
 
 export default function RootLayout({
   children,
@@ -145,6 +150,12 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        <meta name="google-adsense-account" content="ca-pub-3069042669867265" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3069042669867265"
+          crossOrigin="anonymous"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -159,7 +170,9 @@ export default function RootLayout({
         style={{ background: "#FDFBF7", color: "#1B2A2A" }}
         suppressHydrationWarning
       >
-        {children}
+        <ProductZoomProvider>
+          {children}
+        </ProductZoomProvider>
         <Analytics />
       </body>
     </html>
