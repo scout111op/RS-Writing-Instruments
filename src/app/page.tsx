@@ -16,7 +16,7 @@ import { createProductSchema } from '@/lib/schemaHelpers';
 
 const FeedCatalogSection = dynamic(() => import('@/components/FeedCatalogSection'));
 const AtelierPoliciesSection = dynamic(() => import('@/components/AtelierPoliciesSection'));
-const JanmashtamiSaleBanner = dynamic(() => import('@/components/JanmashtamiSaleBanner'));
+const FountainPenBlogSection = dynamic(() => import('@/components/FountainPenBlogSection'));
 
 function useMounted() {
   const [mounted, setMounted] = useState(false);
@@ -229,6 +229,12 @@ export default function Home() {
               Ebonite Feeds
             </Link>
             <Link 
+              href="/blog" 
+              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
+            >
+              Guides &amp; FAQs
+            </Link>
+            <Link 
               href="/about" 
               className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
             >
@@ -297,12 +303,19 @@ export default function Home() {
             >
               Ebonite Feeds
             </Link>
+            <Link 
+              href="/blog" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              Guides &amp; FAQs
+            </Link>
             <a 
               href="#policies-section" 
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
             >
-              Policies & Guarantees
+              Policies &amp; Guarantees
             </a>
             <Link 
               href="/about" 
@@ -388,10 +401,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════
-          JANMASHTAMI MAHOTSAV SPECIAL OFFER (Valid Till 5th September)
-          ═══════════════════════════════════════════ */}
-      <JanmashtamiSaleBanner />
+
 
       {/* ═══════════════════════════════════════════
           NEW RESPONSIVE PRODUCT CATALOG GRID
@@ -458,6 +468,11 @@ export default function Home() {
       <FeedCatalogSection />
 
       {/* ═══════════════════════════════════════════
+          FOUNTAIN PEN GUIDES & TOP SEARCH FAQS
+          ═══════════════════════════════════════════ */}
+      <FountainPenBlogSection />
+
+      {/* ═══════════════════════════════════════════
           ATELIER POLICIES & GUARANTEES
           ═══════════════════════════════════════════ */}
       <AtelierPoliciesSection />
@@ -494,8 +509,9 @@ export default function Home() {
               <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
                 <Link href="/pens" className="hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
                 <Link href="/feeds" className="hover:text-[#B8963E] transition-colors">Ebonite Feeds Catalogue</Link>
-                <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Atelier & Founder</Link>
-                <Link href="/wholesale" className="hover:text-[#B8963E] transition-colors">B2B Wholesale & OEM</Link>
+                <Link href="/blog" className="hover:text-[#B8963E] transition-colors">Guides &amp; FAQs</Link>
+                <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Atelier &amp; Founder</Link>
+                <Link href="/wholesale" className="hover:text-[#B8963E] transition-colors">B2B Wholesale &amp; OEM</Link>
                 <a href="#contact" className="hover:text-[#B8963E] transition-colors">Custom Inquiries</a>
               </div>
             </div>
