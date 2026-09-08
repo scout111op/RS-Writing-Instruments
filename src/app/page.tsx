@@ -34,7 +34,7 @@ export default function Home() {
 
   const craftsmanshipRef = useRef<HTMLDivElement>(null);
 
-  // Scroll observer for navbar shadow & active link highlight using requestAnimationFrame
+  // Scroll observer for navbar shadow & active link highlight
   useEffect(() => {
     if (!hasMounted) return;
     let ticking = false;
@@ -60,38 +60,9 @@ export default function Home() {
         ticking = true;
       }
     };
+
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [hasMounted]);
-
-  // Lenis smooth scroll configuration (loaded dynamically on desktop only)
-  useEffect(() => {
-    if (!hasMounted) return;
-    if (typeof window === 'undefined' || window.innerWidth < 768 || 'ontouchstart' in window) {
-      return;
-    }
-
-    let rafId: number;
-    let lenisInstance: any = null;
-
-    import('lenis').then(({ default: Lenis }) => {
-      lenisInstance = new Lenis({
-        duration: 1.8,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-      });
-
-      function raf(time: number) {
-        lenisInstance?.raf(time);
-        rafId = requestAnimationFrame(raf);
-      }
-      rafId = requestAnimationFrame(raf);
-    });
-
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      lenisInstance?.destroy();
-    };
   }, [hasMounted]);
 
   const generalWhatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, I am interested in inquiring about your fountain pen line and custom orders.")}`;
