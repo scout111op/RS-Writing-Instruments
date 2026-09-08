@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Hand-Cut Ebonite Fountain Pen Feeds Wholesale',
     description:
-      'Precision hard rubber feeds crafted in Lucknow for Parker and Sheaffer geometries. Single, double, and triple music ink channels.',
+      'Precision hard rubber feeds crafted for Parker and Sheaffer geometries. Single, double, and triple music ink channels.',
     url: 'https://www.rswriting.in/feeds',
     siteName: 'RS Writing Instruments',
     images: [{ url: '/logo.png', width: 800, height: 600, alt: 'RS Hand-Cut Ebonite Feeds' }],
@@ -36,12 +36,19 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Hand-Cut Ebonite Fountain Pen Feeds Wholesale',
-    description: 'Precision hard rubber feeds crafted in Lucknow for Parker and Sheaffer geometries.',
+    description: 'Precision hard rubber feeds crafted for Parker and Sheaffer geometries.',
     images: ['/logo.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -141,7 +148,7 @@ export default function FeedsPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3.5 group" aria-label="RS Writing Instruments Home">
             <div className="relative w-12 h-12 shrink-0">
-              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="48px" priority />
+              <Image src="/logo.png" alt="RS Writing Instruments Logo - Hand-Cut Ebonite Feeds" fill className="object-contain" sizes="48px" priority />
             </div>
             <div className="flex flex-col justify-center">
               <span className="font-serif text-2xl font-extrabold tracking-tight leading-none text-[#102E29]">RS WRITING</span>
@@ -156,6 +163,7 @@ export default function FeedsPage() {
               Ebonite Feeds
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />
             </Link>
+            <Link href="/blog" className="text-[#6B6558] hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Us</Link>
             <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E]">B2B Wholesale</Link>
           </div>
@@ -300,6 +308,7 @@ export default function FeedsPage() {
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
+            <Link href="/blog" className="hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>
             <span className="text-[#D1C9BE] hidden sm:inline">|</span>

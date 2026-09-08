@@ -4,20 +4,21 @@ import Link from 'next/link';
 import ProductCatalogGrid from '@/components/ProductCatalogGrid';
 import WhatsAppBanner from '@/components/WhatsAppBanner';
 import AtelierPoliciesSection from '@/components/AtelierPoliciesSection';
+import FountainPenBlogSection from '@/components/FountainPenBlogSection';
 import { catalogProducts } from '@/lib/catalogProducts';
 import { createProductSchema } from '@/lib/schemaHelpers';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rswriting.in'),
-  title: 'Handcrafted Ebonite Fountain Pens | PRAVAH Collection - RS Writing Instruments',
+  title: 'Handcrafted Ebonite Fountain Pens | PRAVAH Collection',
   description:
-    'Discover PRAVAH handcrafted ebonite fountain pens made in Lucknow, India. Featuring Caviar Black, Forest Green, Swirl, and Demonstrator models with precision capillary feeds.',
+    'Discover PRAVAH handcrafted natural ebonite fountain pens. Featuring Caviar Black, Forest Green, Swirl, and Demonstrator models with precision hand-cut capillary feeds.',
   keywords: [
     'PRAVAH fountain pen',
     'handcrafted ebonite pen',
     'ebonite pens India',
-    'custom fountain pen Lucknow',
+    'custom fountain pen',
     'hard rubber fountain pen',
     'ebonite demonstrator pen',
   ],
@@ -27,22 +28,29 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Handcrafted Ebonite Fountain Pens | PRAVAH Collection',
     description:
-      'Artisan hard rubber fountain pens crafted in Lucknow with precision ebonite capillary feeds.',
+      'Artisan hard rubber fountain pens crafted with precision hand-cut ebonite capillary feeds.',
     url: 'https://www.rswriting.in/pens',
     siteName: 'RS Writing Instruments',
-    images: [{ url: '/logo.png', width: 800, height: 600, alt: 'PRAVAH Ebonite Fountain Pens' }],
+    images: [{ url: '/logo.png', width: 800, height: 600, alt: 'PRAVAH Handcrafted Ebonite Fountain Pens - RS Writing Instruments' }],
     locale: 'en_IN',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Handcrafted Ebonite Fountain Pens | PRAVAH Collection',
-    description: 'Artisan hard rubber fountain pens crafted in Lucknow with precision ebonite capillary feeds.',
+    description: 'Artisan hard rubber fountain pens crafted with precision hand-cut ebonite capillary feeds.',
     images: ['/logo.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -94,7 +102,7 @@ export default function PensPage() {
         name: 'What feeds are used in PRAVAH fountain pens?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'PRAVAH fountain pens feature hand-cut ebonite capillary feeds engineered by RS Writing Instruments in Lucknow for wet, consistent ink flow.',
+          text: 'PRAVAH fountain pens feature hand-cut natural ebonite capillary feeds engineered by RS Writing Instruments for wet, consistent ink flow.',
         },
       },
       {
@@ -103,6 +111,14 @@ export default function PensPage() {
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Yes! We offer Black Trim (BT), Gold Trim (GT), demonstrator options, and custom nib fitting upon request via WhatsApp.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I refill a PRAVAH fountain pen?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'PRAVAH fountain pens support a versatile 3-way filling system: standard international cartridges, piston converters for bottled ink, or 3.2ml eyedropper filling with silicone grease.',
         },
       },
     ],
@@ -133,7 +149,14 @@ export default function PensPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3.5 group" aria-label="RS Writing Instruments Home">
             <div className="relative w-12 h-12 shrink-0">
-              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="48px" priority />
+              <Image 
+                src="/logo.png" 
+                alt="RS Writing Instruments Logo - Handcrafted Ebonite Pens" 
+                fill 
+                className="object-contain" 
+                sizes="48px" 
+                priority 
+              />
             </div>
             <div className="flex flex-col justify-center">
               <span className="font-serif text-2xl font-extrabold tracking-tight leading-none text-[#102E29]">RS WRITING</span>
@@ -148,6 +171,7 @@ export default function PensPage() {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />
             </Link>
             <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E]">Ebonite Feeds</Link>
+            <Link href="/blog" className="text-[#6B6558] hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Us</Link>
             <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E]">B2B Wholesale</Link>
           </div>
@@ -175,121 +199,43 @@ export default function PensPage() {
             PRAVAH Handcrafted <span className="italic text-[#B8963E]">Ebonite Pens</span>
           </h1>
           <p className="font-sans text-xs md:text-sm text-[#6B6558] mt-3 max-w-2xl">
-            Each pen in our PRAVAH series is turned from premium ebonite hard rubber in Lucknow, India, equipped with custom hand-cut feeds for consistent ink delivery.
+            Each pen in our PRAVAH series is turned from premium vulcanized ebonite hard rubber, equipped with custom hand-cut capillary feeds for consistent, smooth ink delivery.
           </p>
         </div>
 
         <ProductCatalogGrid />
 
-        {/* DETAILED TECHNICAL SPECIFICATIONS & ARTISAN CRAFT */}
+        {/* ARTISANAL CRAFTSMANSHIP PHILOSOPHY */}
         <section className="py-14 px-6 md:px-12 max-w-7xl mx-auto border-t border-[#E5DFD5]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            
-            {/* Left Column: Craftsmanship Philosophy */}
-            <div className="lg:col-span-6 space-y-5">
-              <span className="fable-mono-caps text-[#B8963E] block font-medium">
-                PRECISION LUCKNOW ATELIER / SOLID EBONITE HARD RUBBER
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl font-normal text-[#102E29] tracking-tight">
-                Engineered for <span className="italic text-[#B8963E]">Lifelong Tactile Writing</span>
-              </h2>
-              <p className="font-sans text-xs md:text-sm text-[#6B6558] leading-relaxed">
-                The PRAVAH series represents a convergence of traditional Indian lathe craftsmanship and precision capillary fluid mechanics. Unlike modern injection-molded acrylic resin pens that feel slick and cold, each PRAVAH fountain pen is meticulously turned from solid vulcanized natural rubber (ebonite).
-              </p>
-              <p className="font-sans text-xs md:text-sm text-[#6B6558] leading-relaxed">
-                Ebonite warms naturally to the touch, absorbing microscopic hand moisture for an ergonomic, fatigue-free grip during hours of writing. Fitted with our signature hand-cut ebonite feeds, ink is delivered through micro-grooves that automatically balance surface tension and atmospheric pressure for instantaneous starts and zero hard-stalls.
-              </p>
+          <div className="max-w-4xl mx-auto space-y-6 text-center">
+            <span className="fable-mono-caps text-[#B8963E] block font-medium">
+              HERITAGE LATHE TURNING / SOLID VULCANIZED HARD RUBBER
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-[#102E29] tracking-tight">
+              Engineered for <span className="italic text-[#B8963E]">Lifelong Tactile Writing</span>
+            </h2>
+            <p className="font-sans text-xs md:text-sm text-[#6B6558] leading-relaxed">
+              The PRAVAH series represents a convergence of traditional lathe craftsmanship and precision capillary fluid mechanics. Unlike modern injection-molded acrylic resin pens that feel slick and cold, each PRAVAH fountain pen is meticulously turned from solid vulcanized natural rubber (ebonite).
+            </p>
+            <p className="font-sans text-xs md:text-sm text-[#6B6558] leading-relaxed">
+              Ebonite warms naturally to the touch, absorbing microscopic hand moisture for an ergonomic, fatigue-free grip during hours of writing. Fitted with our signature hand-cut ebonite feeds, ink is delivered through micro-grooves that automatically balance surface tension and atmospheric pressure for instantaneous starts and zero hard-stalls.
+            </p>
 
-              <div className="pt-2 grid grid-cols-2 gap-4 text-xs">
-                <div className="p-4 rounded-xl bg-white border border-[#E5DFD5]">
-                  <span className="block font-bold text-[#102E29] mb-1">Zero Plastic Feeds</span>
-                  <span className="text-[#9C9588] text-[11px]">100% natural ebonite feed ensures superior ink adhesion and wet flow.</span>
-                </div>
-                <div className="p-4 rounded-xl bg-white border border-[#E5DFD5]">
-                  <span className="block font-bold text-[#102E29] mb-1">3-Way Filling System</span>
-                  <span className="text-[#9C9588] text-[11px]">Supports international standard converter, cartridge, or 3.2ml eyedropper.</span>
-                </div>
+            <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs max-w-2xl mx-auto text-left">
+              <div className="p-4 rounded-xl bg-white border border-[#E5DFD5]">
+                <span className="block font-bold text-[#102E29] mb-1">Zero Plastic Feeds</span>
+                <span className="text-[#9C9588] text-[11px]">100% natural ebonite feed ensures superior ink adhesion and wet, consistent flow.</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white border border-[#E5DFD5]">
+                <span className="block font-bold text-[#102E29] mb-1">3-Way Filling System</span>
+                <span className="text-[#9C9588] text-[11px]">Supports international standard converter, cartridge, or 3.2ml high-capacity eyedropper.</span>
               </div>
             </div>
-
-            {/* Right Column: Technical Specifications Table */}
-            <div className="lg:col-span-6 bg-white p-6 md:p-8 rounded-2xl border border-[#E5DFD5] shadow-xs">
-              <h3 className="font-serif text-2xl font-bold text-[#102E29] mb-4">PRAVAH Technical Specifications</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
-                  <tbody className="divide-y divide-[#E5DFD5]">
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29] w-1/3">Body Material</td>
-                      <td className="py-2.5 text-[#6B6558]">100% Natural Vulcanized Hard Rubber (Grade A Ebonite)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Feed Mechanism</td>
-                      <td className="py-2.5 text-[#6B6558]">RS Hand-Cut Micro-Capillary Ebonite Feed</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Nib Fitment</td>
-                      <td className="py-2.5 text-[#6B6558]">#6 Stainless Steel / Two-Tone Gold Trim (Fine, Medium, Broad)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Capped Length</td>
-                      <td className="py-2.5 text-[#6B6558]">142 mm (5.59 inches)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Uncapped Length</td>
-                      <td className="py-2.5 text-[#6B6558]">128 mm (5.03 inches)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Grip Section Diameter</td>
-                      <td className="py-2.5 text-[#6B6558]">11.2 mm tapered for ergonomic pinch</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Total Weight</td>
-                      <td className="py-2.5 text-[#6B6558]">24 grams (optimally distributed balance center)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Filling Capacity</td>
-                      <td className="py-2.5 text-[#6B6558]">Converter: 0.8 ml | Eyedropper Conversion: 3.2 ml</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-bold text-[#102E29]">Origin & Craft</td>
-                      <td className="py-2.5 text-[#6B6558]">Handcrafted in Lucknow, Uttar Pradesh, India</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
           </div>
         </section>
 
-        {/* FREQUENTLY ASKED QUESTIONS SECTION */}
-        <section className="py-12 px-6 md:px-12 max-w-5xl mx-auto border-t border-[#E5DFD5]">
-          <div className="text-center mb-8">
-            <span className="fable-mono-caps text-[#B8963E] block mb-2 font-medium">COLLECTOR & USER GUIDE</span>
-            <h2 className="font-serif text-3xl font-normal text-[#102E29]">Frequently Asked Questions</h2>
-          </div>
-
-          <div className="space-y-4">
-            <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5]">
-              <h3 className="font-serif text-lg font-bold text-[#102E29] mb-2">What makes handcrafted ebonite fountain pens superior to modern plastics?</h3>
-              <p className="text-xs text-[#6B6558] leading-relaxed">
-                Ebonite (vulcanized hard rubber) is naturally warm to hold, porous, and hydrophilic. Unlike modern plastic pens that cause sweaty grip and ink starvation, ebonite breathes with temperature changes and provides superior friction and tactile feedback.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5]">
-              <h3 className="font-serif text-lg font-bold text-[#102E29] mb-2">Can PRAVAH pens be converted into eyedropper pens?</h3>
-              <p className="text-xs text-[#6B6558] leading-relaxed">
-                Yes! With a touch of pure 100% silicone grease on the section threads, the solid ebonite barrel holds over 3.2ml of ink, making it an extraordinary long-distance writing instrument.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5]">
-              <h3 className="font-serif text-lg font-bold text-[#102E29] mb-2">How do I clean and maintain my ebonite fountain pen?</h3>
-              <p className="text-xs text-[#6B6558] leading-relaxed">
-                Clean using room temperature water or mild pen flush. Never soak ebonite in boiling water or harsh solvents (such as alcohol or acetone), and avoid prolonged exposure to direct sunlight to preserve the deep rich ebonite polish.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* Master Fountain Pen Guides & FAQs Section */}
+        <FountainPenBlogSection />
 
         <AtelierPoliciesSection />
       </main>
@@ -307,6 +253,7 @@ export default function PensPage() {
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
+            <Link href="/blog" className="hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>
             <span className="text-[#D1C9BE] hidden sm:inline">|</span>
