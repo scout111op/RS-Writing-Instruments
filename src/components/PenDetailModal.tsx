@@ -1,1 +1,244 @@
-"use client";\n\nimport { useState, useEffect } from 'react';\nimport Image from 'next/image';\nimport { FountainPen, getFountainPenWhatsAppLink } from '@/lib/fountainPens';\nimport { HiX, HiCheck, HiZoomIn } from 'react-icons/hi';\nimport { FaWhatsapp, FaFeatherAlt } from 'react-icons/fa';\nimport { useProductZoom } from '@/context/ProductZoomContext';\n\ninterface PenDetailModalProps {\n  pen: FountainPen | null;\n  onClose: () => void;\n}\n\nexport default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {\n  const { openZoom } = useProductZoom();\n  const [selectedNibState, setSelectedNibState] = useState<string | null>(null);\n  const [prevPenId, setPrevPenId] = useState<string | null>(null);\n\n  if (pen && pen.id !== prevPenId) {\n    setPrevPenId(pen.id);\n    setSelectedNibState(pen.nibOptions[0] || '');\n  }\n\n  const selectedNib = selectedNibState ?? (pen?.nibOptions[0] || '');\n  const setSelectedNib = (nib: string) => setSelectedNibState(nib);\n\n  useEffect(() => {\n    const handleKeyDown = (e: KeyboardEvent) => {\n      if (e.key === 'Escape') onClose();\n    };\n    if (pen) {\n      document.body.style.overflow = 'hidden';\n      window.addEventListener('keydown', handleKeyDown);\n    }\n    return () => {\n      document.body.style.overflow = 'unset';\n      window.removeEventListener('keydown', handleKeyDown);\n    };\n  }, [pen, onClose]);\n\n  if (!pen) return null;\n\n  const priceFormatted = `₹${pen.price.toLocaleString('en-IN')}`;\n  const whatsappUrl = getFountainPenWhatsAppLink(pen.name, priceFormatted, selectedNib);\n\n  return (\n    <div \n      className=\"fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-md animate-fade-in\"\n      onClick={onClose}\n    >\n      <div \n        className=\"relative w-full max-w-3xl rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl overflow-hidden my-auto\"\n        style={{\n          background: '#FDFBF7',\n          border: '1px solid #E5DFD5',\n        }}\n        onClick={(e) => e.stopPropagation()}\n      >\n        {/* Close Button */}\n        <button\n          onClick={onClose}\n          className=\"absolute top-5 right-5 z-20 p-2 rounded-full transition-colors hover:bg-[#E5DFD5]/50\"\n          style={{ color: '#102E29' }}\n          aria-label=\"Close modal\"\n        >\n          <HiX size={24} />\n        </button>\n\n        <div className=\"grid grid-cols-1 md:grid-cols-2 gap-8 items-center\">\n          \n          {/* Left Column: Image & Quick Badge */}\n          <div className=\"flex flex-col items-center\">\n            <div \n              className=\"relative w-full h-64 sm:h-72 md:h-80 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-pointer group/modalimg\"\n              style={{ background: '#FAF8F5', border: '1px solid #F0ECE4' }}\n              onClick={() => openZoom({\n                src: pen.image,\n                alt: pen.name,\n                title: pen.name,\n                subtitle: `${pen.category} • ${pen.tagline}`,\n                price: priceFormatted,\n              })}\n              title=\"Tap to zoom picture in full detail\"\n            >\n              {pen.badge && (\n                <span \n                  className=\"absolute top-3 left-3 z-10 text-[9px] uppercase tracking-[0.2em] font-bold py-1 px-3 rounded-full\"\n                  style={{ background: '#102E29', color: '#FDFBF7' }}\n                >\n                  {pen.badge}\n                </span>\n              )}\n\n              {/* Zoom Trigger Button */}\n              <button\n                type=\"button\"\n                onClick={(e) => {\n                  e.stopPropagation();\n                  openZoom({\n                    src: pen.image,\n                    alt: pen.name,\n                    title: pen.name,\n                    subtitle: `${pen.category} • ${pen.tagline}`,\n                    price: priceFormatted,\n                  });\n                }}\n                className=\"absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 hover:bg-white text-[#102E29] hover:text-[#B8963E] shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110 flex items-center justify-center cursor-pointer border border-[#E5DFD5]/70\"\n                title=\"Tap to zoom in\"\n                aria-label={`Zoom in on ${pen.name}`}\n              >\n                <HiZoomIn size={16} />\n              </button>\n              \n              <Image\n                src={pen.image}\n                alt={`${pen.name} - Handcrafted Ebonite Fountain Pen by RS Writing Instruments`}\n                fill\n                sizes=\"(max-width: 768px) 100vw, 50vw\"\n                className=\"object-contain p-4 transition-transform duration-500 group-hover/modalimg:scale-105\"\n              />\n\n              {/* Hover Badge */}\n              <div className=\"absolute inset-0 bg-black/15 opacity-0 group-hover/modalimg:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none\">\n                <span className=\"py-1 px-3.5 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-[#FDFBF7]/95 text-[#102E29] shadow-lg flex items-center gap-1.5 backdrop-blur-xs\">\n                  <HiZoomIn size={14} className=\"text-[#B8963E]\" /> Tap to Zoom\n                </span>\n              </div>\n            </div>\n\n            <div className=\"w-full mt-4 flex items-center justify-between text-xs px-1\" style={{ color: '#6B6558' }}>\n              <span className=\"flex items-center gap-1.5 font-semibold\">\n                <FaFeatherAlt style={{ color: '#B8963E' }} /> Hand-Crafted Feed\n              </span>\n              <span>Weight: <strong style={{ color: '#102E29' }}>{pen.weight}</strong></span>\n            </div>\n          </div>\n\n          {/* Right Column: Information & Specs */}\n          <div className=\"flex flex-col justify-between\">\n            <div>\n              {/* Category */}\n              <span className=\"text-[10px] uppercase tracking-[0.25em] font-bold block mb-1\" style={{ color: '#B8963E' }}>\n                ◆&ensp;{pen.category}\n              </span>\n\n              {/* Pen Title */}\n              <h3 className=\"font-serif text-2xl sm:text-3xl font-bold mb-2 leading-tight\" style={{ color: '#102E29' }}>\n                {pen.name}\n              </h3>\n\n              {/* Tagline */}\n              <p className=\"text-xs italic font-serif mb-4\" style={{ color: '#6B6558' }}>\n                &ldquo;{pen.tagline}&rdquo;\n              </p>\n\n              {/* Price */}\n              <div className=\"mb-5 pb-4\" style={{ borderBottom: '1px solid #E5DFD5' }}>\n                <span className=\"text-2xl font-bold\" style={{ color: '#102E29' }}>\n                  {priceFormatted}\n                </span>\n                <span className=\"text-[10px] uppercase tracking-wider block mt-0.5\" style={{ color: '#9C9588' }}>\n                  Includes Custom Ebonite Feed & Gift Box\n                </span>\n              </div>\n\n              {/* Description */}\n              <p className=\"text-xs sm:text-sm leading-relaxed mb-5\" style={{ color: '#4A453A' }}>\n                {pen.description}\n              </p>\n\n              {/* Highlights */}\n              <div className=\"grid grid-cols-2 gap-2 mb-6\">\n                {pen.highlights.map((h, i) => (\n                  <div key={i} className=\"flex items-center gap-1.5 text-[11px] font-medium\" style={{ color: '#102E29' }}>\n                    <HiCheck style={{ color: '#B8963E' }} size={14} />\n                    <span>{h}</span>\n                  </div>\n                ))}\n              </div>\n\n              {/* Specifications List */}\n              <div className=\"rounded-lg p-3.5 mb-6 text-xs space-y-1.5\" style={{ background: '#F5F1EB', border: '1px solid #E5DFD5' }}>\n                <p><span style={{ color: '#9C9588' }}>Body Material:</span> <strong style={{ color: '#102E29' }}>{pen.material}</strong></p>\n                <p><span style={{ color: '#9C9588' }}>Feed System:</span> <strong style={{ color: '#102E29' }}>{pen.feedType}</strong></p>\n                <p><span style={{ color: '#9C9588' }}>Filling Mechanism:</span> <strong style={{ color: '#102E29' }}>{pen.fillingSystem}</strong></p>\n              </div>\n\n              {/* Nib Selector */}\n              <div className=\"mb-6\">\n                <label className=\"block text-[10px] uppercase tracking-[0.2em] font-bold mb-2\" style={{ color: '#B8963E' }}>\n                  Select Preferred Nib Grade:\n                </label>\n                <div className=\"flex flex-wrap gap-2\">\n                  {pen.nibOptions.map((nib) => {\n                    const isSelected = selectedNib === nib;\n                    return (\n                      <button\n                        key={nib}\n                        onClick={() => setSelectedNib(nib)}\n                        className=\"py-1.5 px-3 rounded-md text-xs font-medium transition-all duration-200\"\n                        style={{\n                          background: isSelected ? '#102E29' : '#FFFFFF',\n                          color: isSelected ? '#FDFBF7' : '#102E29',\n                          border: isSelected ? '1px solid #102E29' : '1px solid #E5DFD5',\n                          boxShadow: isSelected ? '0 2px 8px rgba(16, 46, 41, 0.2)' : 'none',\n                        }}\n                      >\n                        {nib}\n                      </button>\n                    );\n                  })}\n                </div>\n              </div>\n            </div>\n\n            {/* Action CTA */}\n            <a\n              href={whatsappUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"w-full py-3.5 px-6 rounded-lg uppercase tracking-[0.15em] text-xs font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02]\"\n              style={{\n                background: '#102E29',\n                color: '#FFFFFF',\n                boxShadow: '0 4px 16px rgba(16, 46, 41, 0.2)',\n              }}\n              onMouseEnter={(e) => {\n                const el = e.currentTarget;\n                el.style.background = '#B8963E';\n              }}\n              onMouseLeave={(e) => {\n                const el = e.currentTarget;\n                el.style.background = '#102E29';\n              }}\n            >\n              <FaWhatsapp size={18} /> Inquire & Order via WhatsApp\n            </a>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n
+"use client";
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { FountainPen, getFountainPenWhatsAppLink } from '@/lib/fountainPens';
+import { HiX, HiCheck, HiZoomIn } from 'react-icons/hi';
+import { FaWhatsapp, FaFeatherAlt } from 'react-icons/fa';
+import { useProductZoom } from '@/context/ProductZoomContext';
+
+interface PenDetailModalProps {
+  pen: FountainPen | null;
+  onClose: () => void;
+}
+
+export default function PenDetailModal({ pen, onClose }: PenDetailModalProps) {
+  const { openZoom } = useProductZoom();
+  const [selectedNibState, setSelectedNibState] = useState<string | null>(null);
+  const [prevPenId, setPrevPenId] = useState<string | null>(null);
+
+  if (pen && pen.id !== prevPenId) {
+    setPrevPenId(pen.id);
+    setSelectedNibState(pen.nibOptions[0] || '');
+  }
+
+  const selectedNib = selectedNibState ?? (pen?.nibOptions[0] || '');
+  const setSelectedNib = (nib: string) => setSelectedNibState(nib);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (pen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [pen, onClose]);
+
+  if (!pen) return null;
+
+  const priceFormatted = `₹${pen.price.toLocaleString('en-IN')}`;
+  const whatsappUrl = getFountainPenWhatsAppLink(pen.name, priceFormatted, selectedNib);
+
+  return (
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-md animate-fade-in"
+      onClick={onClose}
+    >
+      <div 
+        className="relative w-full max-w-3xl rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl overflow-hidden my-auto"
+        style={{
+          background: '#FDFBF7',
+          border: '1px solid #E5DFD5',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 z-20 p-2 rounded-full transition-colors hover:bg-[#E5DFD5]/50"
+          style={{ color: '#102E29' }}
+          aria-label="Close modal"
+        >
+          <HiX size={24} />
+        </button>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          
+          {/* Left Column: Image & Quick Badge */}
+          <div className="flex flex-col items-center">
+            <div 
+              className="relative w-full h-64 sm:h-72 md:h-80 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-pointer group/modalimg"
+              style={{ background: '#FAF8F5', border: '1px solid #F0ECE4' }}
+              onClick={() => openZoom({
+                src: pen.image,
+                alt: pen.name,
+                title: pen.name,
+                subtitle: `${pen.category} • ${pen.tagline}`,
+                price: priceFormatted,
+              })}
+              title="Tap to zoom picture in full detail"
+            >
+              {pen.badge && (
+                <span 
+                  className="absolute top-3 left-3 z-10 text-[9px] uppercase tracking-[0.2em] font-bold py-1 px-3 rounded-full"
+                  style={{ background: '#102E29', color: '#FDFBF7' }}
+                >
+                  {pen.badge}
+                </span>
+              )}
+
+              {/* Zoom Trigger Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openZoom({
+                    src: pen.image,
+                    alt: pen.name,
+                    title: pen.name,
+                    subtitle: `${pen.category} • ${pen.tagline}`,
+                    price: priceFormatted,
+                  });
+                }}
+                className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 hover:bg-white text-[#102E29] hover:text-[#B8963E] shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110 flex items-center justify-center cursor-pointer border border-[#E5DFD5]/70"
+                title="Tap to zoom in"
+                aria-label={`Zoom in on ${pen.name}`}
+              >
+                <HiZoomIn size={16} />
+              </button>
+              
+              <Image
+                src={pen.image}
+                alt={`${pen.name} - Handcrafted Ebonite Fountain Pen by RS Writing Instruments`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain p-4 transition-transform duration-500 group-hover/modalimg:scale-105"
+              />
+
+              {/* Hover Badge */}
+              <div className="absolute inset-0 bg-black/15 opacity-0 group-hover/modalimg:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                <span className="py-1 px-3.5 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-[#FDFBF7]/95 text-[#102E29] shadow-lg flex items-center gap-1.5 backdrop-blur-xs">
+                  <HiZoomIn size={14} className="text-[#B8963E]" /> Tap to Zoom
+                </span>
+              </div>
+            </div>
+
+            <div className="w-full mt-4 flex items-center justify-between text-xs px-1" style={{ color: '#6B6558' }}>
+              <span className="flex items-center gap-1.5 font-semibold">
+                <FaFeatherAlt style={{ color: '#B8963E' }} /> Hand-Crafted Feed
+              </span>
+              <span>Weight: <strong style={{ color: '#102E29' }}>{pen.weight}</strong></span>
+            </div>
+          </div>
+
+          {/* Right Column: Information & Specs */}
+          <div className="flex flex-col justify-between">
+            <div>
+              {/* Category */}
+              <span className="text-[10px] uppercase tracking-[0.25em] font-bold block mb-1" style={{ color: '#B8963E' }}>
+                ◆&ensp;{pen.category}
+              </span>
+
+              {/* Pen Title */}
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold mb-2 leading-tight" style={{ color: '#102E29' }}>
+                {pen.name}
+              </h3>
+
+              {/* Tagline */}
+              <p className="text-xs italic font-serif mb-4" style={{ color: '#6B6558' }}>
+                &ldquo;{pen.tagline}&rdquo;
+              </p>
+
+              {/* Price */}
+              <div className="mb-5 pb-4" style={{ borderBottom: '1px solid #E5DFD5' }}>
+                <span className="text-2xl font-bold" style={{ color: '#102E29' }}>
+                  {priceFormatted}
+                </span>
+                <span className="text-[10px] uppercase tracking-wider block mt-0.5" style={{ color: '#9C9588' }}>
+                  Includes Custom Ebonite Feed & Gift Box
+                </span>
+              </div>
+
+              {/* Description */}
+              <p className="text-xs sm:text-sm leading-relaxed mb-5" style={{ color: '#4A453A' }}>
+                {pen.description}
+              </p>
+
+              {/* Highlights */}
+              <div className="grid grid-cols-2 gap-2 mb-6">
+                {pen.highlights.map((h, i) => (
+                  <div key={i} className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: '#102E29' }}>
+                    <HiCheck style={{ color: '#B8963E' }} size={14} />
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Specifications List */}
+              <div className="rounded-lg p-3.5 mb-6 text-xs space-y-1.5" style={{ background: '#F5F1EB', border: '1px solid #E5DFD5' }}>
+                <p><span style={{ color: '#9C9588' }}>Body Material:</span> <strong style={{ color: '#102E29' }}>{pen.material}</strong></p>
+                <p><span style={{ color: '#9C9588' }}>Feed System:</span> <strong style={{ color: '#102E29' }}>{pen.feedType}</strong></p>
+                <p><span style={{ color: '#9C9588' }}>Filling Mechanism:</span> <strong style={{ color: '#102E29' }}>{pen.fillingSystem}</strong></p>
+              </div>
+
+              {/* Nib Selector */}
+              <div className="mb-6">
+                <label className="block text-[10px] uppercase tracking-[0.2em] font-bold mb-2" style={{ color: '#B8963E' }}>
+                  Select Preferred Nib Grade:
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {pen.nibOptions.map((nib) => {
+                    const isSelected = selectedNib === nib;
+                    return (
+                      <button
+                        key={nib}
+                        onClick={() => setSelectedNib(nib)}
+                        className="py-1.5 px-3 rounded-md text-xs font-medium transition-all duration-200"
+                        style={{
+                          background: isSelected ? '#102E29' : '#FFFFFF',
+                          color: isSelected ? '#FDFBF7' : '#102E29',
+                          border: isSelected ? '1px solid #102E29' : '1px solid #E5DFD5',
+                          boxShadow: isSelected ? '0 2px 8px rgba(16, 46, 41, 0.2)' : 'none',
+                        }}
+                      >
+                        {nib}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Action CTA */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-6 rounded-lg uppercase tracking-[0.15em] text-xs font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02]"
+              style={{
+                background: '#102E29',
+                color: '#FFFFFF',
+                boxShadow: '0 4px 16px rgba(16, 46, 41, 0.2)',
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget;
+                el.style.background = '#B8963E';
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget;
+                el.style.background = '#102E29';
+              }}
+            >
+              <FaWhatsapp size={18} /> Inquire & Order via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

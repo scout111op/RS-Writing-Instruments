@@ -85,7 +85,8 @@ export default function FountainPenCollection() {
             </span>
             {categories.map((cat) => {
               const isActive = activeCategory === cat;
-              return (\n                <button
+              return (
+                <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   className="py-1.5 px-3.5 rounded-lg text-[11px] font-semibold transition-all duration-200"
@@ -112,7 +113,8 @@ export default function FountainPenCollection() {
         {/* Grid of Fountain Pens */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPens.map((pen) => {
-            const priceFormatted = `₹${pen.price.toLocaleString('en-IN')}`;\n            const whatsappUrl = getFountainPenWhatsAppLink(pen.name, priceFormatted);
+            const priceFormatted = `₹${pen.price.toLocaleString('en-IN')}`;
+            const whatsappUrl = getFountainPenWhatsAppLink(pen.name, priceFormatted);
 
             return (
               <div
