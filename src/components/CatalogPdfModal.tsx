@@ -167,7 +167,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                   RS Writing Instruments
                 </h3>
                 <p className="text-xs text-[#6B6558] mt-0.5">
-                  Artisan Hand-Cut Ebonite Feeds & Bespoke Fountain Pens — Lucknow, India
+                  Artisan Hand-Cut Ebonite Feeds &amp; Bespoke Fountain Pens — India
                 </p>
                 <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#9C9588] mt-2">
                   <span>Tel / WA: +91 94556 64795</span>
