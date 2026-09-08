@@ -131,7 +131,8 @@ export default function WholesalePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      {wholesaleProductSchemas.map((s, idx) => (\n        <script
+      {wholesaleProductSchemas.map((s, idx) => (
+        <script
           key={idx}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
