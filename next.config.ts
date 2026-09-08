@@ -51,14 +51,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   compress: true,
   poweredByHeader: false,
   experimental: {
     inlineCss: true,
-    optimizePackageImports: ['react-icons'],
+    optimizePackageImports: ['react-icons', 'framer-motion'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -76,6 +73,42 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ['192.168.31.124', 'localhost:3000'],
   async headers() {
     return [
+      {
+        source: '/catalog/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/products/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*.ico',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
       {
         source: '/(.*)',
         headers: securityHeaders,
