@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.rswriting.in'),
   title: 'B2B Wholesale & Custom OEM Ebonite Feeds | RS Writing Instruments',
   description:
-    'Bulk wholesale ordering for pen manufacturers and custom nibsmiths. Minimum order quantity 250 pcs. Direct factory quotes from Lucknow, India.',
+    'Bulk wholesale ordering for pen manufacturers and custom nibsmiths. Minimum order quantity 250 pcs. Direct factory quotes and custom OEM turning.',
   keywords: [
     'ebonite feeds wholesale',
     'B2B fountain pen components',
@@ -40,6 +40,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -124,8 +131,7 @@ export default function WholesalePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      {wholesaleProductSchemas.map((s, idx) => (
-        <script
+      {wholesaleProductSchemas.map((s, idx) => (\n        <script
           key={idx}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
@@ -151,6 +157,7 @@ export default function WholesalePage() {
             <Link href="/" className="text-[#6B6558] hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="text-[#6B6558] hover:text-[#B8963E]">Pens Catalogue</Link>
             <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E]">Ebonite Feeds</Link>
+            <Link href="/blog" className="text-[#6B6558] hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Us</Link>
             <Link href="/wholesale" className="text-[#102E29] font-bold relative py-1">
               B2B Wholesale
@@ -183,7 +190,7 @@ export default function WholesalePage() {
             FACTORY DIRECT / B2B SUPPLY
           </span>
           <h1 className="font-serif text-4xl md:text-6xl font-normal text-[#102E29] tracking-tight">
-            Wholesale & Custom <span className="italic text-[#B8963E]">OEM Feeds</span>
+            Wholesale &amp; Custom <span className="italic text-[#B8963E]">OEM Feeds</span>
           </h1>
           <p className="font-sans text-xs md:text-sm text-[#6B6558] mt-3 max-w-3xl leading-relaxed">
             We partner with fountain pen brands, repair mechanics, and nibsmiths globally to supply precision natural hard rubber ebonite feeds.
@@ -240,7 +247,7 @@ export default function WholesalePage() {
 
         {/* Call to Action */}
         <div className="bg-[#102E29] text-[#FDFBF7] p-8 md:p-12 rounded-3xl text-center">
-          <h2 className="font-serif text-3xl font-normal mb-3">Request Wholesale Catalogue & Pricing Sheet</h2>
+          <h2 className="font-serif text-3xl font-normal mb-3">Request Wholesale Catalogue &amp; Pricing Sheet</h2>
           <p className="text-xs text-[#D4BC72] mt-2 mb-6 max-w-xl mx-auto">
             Contact our sales team directly on WhatsApp for volume discounts, custom diameter turning, or custom channel depths.
           </p>
@@ -268,6 +275,7 @@ export default function WholesalePage() {
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
+            <Link href="/blog" className="hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>
             <span className="text-[#D1C9BE] hidden sm:inline">|</span>

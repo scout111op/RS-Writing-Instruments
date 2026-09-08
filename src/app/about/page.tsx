@@ -79,6 +79,7 @@ export default function AboutPage() {
             <Link href="/" className="text-[#6B6558] hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="text-[#6B6558] hover:text-[#B8963E]">Pens Catalogue</Link>
             <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E]">Ebonite Feeds</Link>
+            <Link href="/blog" className="text-[#6B6558] hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="text-[#102E29] font-bold relative py-1">
               About Us
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />
@@ -132,6 +133,13 @@ export default function AboutPage() {
               className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
             >
               Ebonite Feeds
+            </Link>
+            <Link 
+              href="/blog" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
+            >
+              Guides &amp; FAQs
             </Link>
             <Link 
               href="/about" 
@@ -200,7 +208,7 @@ export default function AboutPage() {
         >
           <div className="space-y-4">
             <motion.span variants={fadeInUpVariants} className="fable-mono-caps text-[#B8963E] block font-medium">
-              EST. LUCKNOW / ARTISAN TRADITION
+              HERITAGE ATELIER / ARTISAN TRADITION
             </motion.span>
             <motion.h2 variants={fadeInUpVariants} className="font-serif text-3xl md:text-5xl font-normal text-[#102E29] tracking-tight">
               Our Legacy of <span className="italic font-serif text-[#B8963E]">Craftsmanship</span>
@@ -376,6 +384,7 @@ export default function AboutPage() {
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
+            <Link href="/blog" className="hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>
             <span className="text-[#D1C9BE] hidden sm:inline">|</span>
