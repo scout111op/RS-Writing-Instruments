@@ -85,8 +85,7 @@ export default function FountainPenCollection() {
             </span>
             {categories.map((cat) => {
               const isActive = activeCategory === cat;
-              return (
-                <button
+              return (\n                <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   className="py-1.5 px-3.5 rounded-lg text-[11px] font-semibold transition-all duration-200"
@@ -113,8 +112,7 @@ export default function FountainPenCollection() {
         {/* Grid of Fountain Pens */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPens.map((pen) => {
-            const priceFormatted = `₹${pen.price.toLocaleString('en-IN')}`;
-            const whatsappUrl = getFountainPenWhatsAppLink(pen.name, priceFormatted);
+            const priceFormatted = `₹${pen.price.toLocaleString('en-IN')}`;\n            const whatsappUrl = getFountainPenWhatsAppLink(pen.name, priceFormatted);
 
             return (
               <div
@@ -138,7 +136,7 @@ export default function FountainPenCollection() {
                 >
                   <Image
                     src={pen.image}
-                    alt={pen.name}
+                    alt={`${pen.name} - Handcrafted Ebonite Fountain Pen by RS Writing Instruments`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-contain p-4 transition-transform duration-700 group-hover/pencard:scale-105"
