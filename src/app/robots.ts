@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,18 +6,25 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/api/'],
       },
       {
         userAgent: [
+          'Googlebot',
+          'Googlebot-Image',
+          'Bingbot',
+          'DuckDuckBot',
+          'Baiduspider',
+          'YandexBot',
           'GPTBot',
           'ChatGPT-User',
           'PerplexityBot',
           'ClaudeBot',
           'anthropic-ai',
           'Google-Extended',
-          'Bingbot',
         ],
         allow: '/',
+        disallow: ['/api/'],
       },
     ],
     sitemap: 'https://www.rswriting.in/sitemap.xml',

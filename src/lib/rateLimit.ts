@@ -55,7 +55,7 @@ export function checkRateLimit(
   return {
     isAllowed: true,
     limit: maxRequests,
-    remaining: record.resetTime - now,
+    remaining: maxRequests - record.count,
     resetInMs: record.resetTime - now,
   };
 }

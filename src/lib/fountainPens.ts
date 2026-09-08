@@ -58,30 +58,63 @@ export const fountainPenCollection: FountainPen[] = [
     material: 'Matte Sandblasted Hard Ebonite with PVD Gunmetal Trims',
     feedType: 'RS #6 CC Double Channel Ebonite Feed',
     fillingSystem: 'International Standard Cartridge / Converter',
-    weight: '26g',
+    weight: '30g',
     image: '/luxury_fountain_pen.jpg',
-    description: 'Modern tactile elegance. Stealth matte ebonite surface provides unmatched non-slip ergonomics for long writing sessions without fatigue.',
-    highlights: ['Sandblasted Tactile Finish', 'PVD Gunmetal Hardware', 'Resistant to Hand Oils', 'Precision Thread Lock'],
-    badge: 'Limited Run'
+    description: 'Understated elegance for contemporary connoisseurs. The velvet-touch matte ebonite offers incredible grip and tactile warmth, paired with modern stealth styling and handcrafted precision feed.',
+    highlights: ['Velvet Matte Texture', 'PVD Gunmetal Trim', 'Precision Feed Channel', 'Ergonomic Grip'],
+    badge: 'Limited Release'
   },
   {
-    id: 'fp-emerald-artisan',
-    name: 'RS Emerald Ripple Ebonite Pen',
-    tagline: 'Deep Forest Green & Black Swirl Artisan Pen',
+    id: 'fp-symphony-music',
+    name: 'RS Maestro Symphony Music Pen',
+    tagline: 'Triple-Tine Music Nib with Custom Triple-Channel Feed',
     category: 'Artisan',
-    price: 7500,
-    nibOptions: ['Fine (0.5mm)', 'Medium (0.7mm)', 'Broad (0.9mm)'],
-    material: 'Natural Green Swirl Vulcanized Hard Rubber Ebonite',
-    feedType: 'RS #5.5 Single Channel Precision Ebonite Feed',
-    fillingSystem: 'Piston Converter Included',
-    weight: '22g',
+    price: 14200,
+    nibOptions: ['3-Tine Music Stub (1.3mm)', 'Custom Calligraphy Italic (1.5mm)'],
+    material: 'Solid Ebonite Body with Sterling Silver Filigree Clip',
+    feedType: 'RS #35 Music Flow Triple Channel Ebonite Feed',
+    fillingSystem: 'High-Capacity Piston Converter',
+    weight: '26g',
     image: '/luxury_fountain_pen.jpg',
-    description: 'Designed for daily calligraphers and journal enthusiasts. Features rich deep forest green swirls with a hand-tuned stainless steel German nib.',
-    highlights: ['Hand-Swirled Pattern', '#5.5 Ebonite Feed', 'Ergonomic Grip Section', 'Smooth Cap Threading']
+    description: 'Designed specifically for calligraphers and music scorers who demand rich, uninterrupted ink flow on wide stroke variations. Engineered with our famous triple-channel ebonite feed.',
+    highlights: ['Triple Channel Ink Feed', 'Specialty Calligraphy Nib', 'Sterling Silver Trim', 'Smooth Line Variation'],
+    badge: 'Calligraphy Master'
+  },
+  {
+    id: 'fp-artisan-emerald',
+    name: 'RS Artisan Emerald Marbled Pen',
+    tagline: 'Deep Imperial Emerald Green Swirl Ebonite',
+    category: 'Artisan',
+    price: 10500,
+    nibOptions: ['Fine (0.5mm)', 'Medium (0.7mm)', 'Broad (0.9mm)', 'Flex Nib'],
+    material: 'Hand-Turned Emerald Green & Black Vulcanized Ebonite',
+    feedType: 'RS #5.5 Ebonite Feed - Shaffer Shape',
+    fillingSystem: 'Standard International Converter / Cartridge',
+    weight: '25g',
+    image: '/luxury_fountain_pen.jpg',
+    description: 'Deep jewel tones swirl across a sleek ebony body. Each barrel is turned individually on artisan lathes, ensuring no two pens share the exact same aesthetic motif.',
+    highlights: ['Hand-Turned Lathe Work', 'Jewel Tone Finish', 'Shaffer Geometry Feed', 'Balanced Weight'],
+  },
+  {
+    id: 'fp-empress-rosewood',
+    name: 'RS Empress Crimson Rose Ebonite',
+    tagline: 'Warm Terracotta & Crimson Ebonite with Rose Gold Accents',
+    category: 'Gold Nib Series',
+    price: 11800,
+    nibOptions: ['14K Rose Gold Fine', '14K Rose Gold Medium', '14K Rose Gold Flex'],
+    material: 'Crimson Rose Hard Ebonite with 18K Rose Gold Plated Trim',
+    feedType: 'RS #6 Custom Ebonite Feed',
+    fillingSystem: 'High-Capacity Cartridge & Converter',
+    weight: '27g',
+    image: '/luxury_fountain_pen.jpg',
+    description: 'Warm crimson hues paired with delicate rose gold accents. Features a 14K solid rose gold nib tuned by hand to pair seamlessly with our hand-grooved ebonite feed.',
+    highlights: ['14K Solid Rose Gold Nib', 'Rose Gold Plated Trim', 'Hand-Grooved Ebonite Feed', 'Collector Velvet Box'],
+    badge: 'New Arrival'
   }
 ];
 
-export const getFountainPenWhatsAppLink = (penName: string, price: string, selectedNib: string) => {
-  const text = `Hello RS Writing Instruments, I am interested in placing an inquiry/order for the *${penName}* (${price}) with *${selectedNib}* nib. Please provide availability and shipping details.`;
-  return `https://wa.me/919455664795?text=${encodeURIComponent(text)}`;
+export const getFountainPenWhatsAppLink = (penName: string, priceFormatted: string, selectedNib?: string): string => {
+  const nibInfo = selectedNib ? `%0A• Preferred Nib: ${selectedNib}` : '';
+  const message = `Hello RS Writing Instruments, I am interested in ordering the *${penName}* (${priceFormatted}).${nibInfo}%0APlease let me know the availability and custom crafting options.`;
+  return `https://wa.me/919455664795?text=${message}`;
 };
