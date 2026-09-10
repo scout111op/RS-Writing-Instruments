@@ -105,6 +105,7 @@ export default function TermsOfServicePage() {
             <Link href="/" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Home</Link>
             <Link href="/pens" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
             <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Ebonite Feeds</Link>
+            <Link href="/nibs" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Nibs</Link>
             <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">About Us</Link>
             <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">B2B Wholesale</Link>
           </div>
@@ -411,6 +412,7 @@ export default function TermsOfServicePage() {
                 <Link href="/" className="hover:text-[#B8963E]">Home Page</Link>
                 <Link href="/pens" className="hover:text-[#B8963E]">Handcrafted Fountain Pens</Link>
                 <Link href="/feeds" className="hover:text-[#B8963E]">Ebonite Capillary Feeds</Link>
+                <Link href="/nibs" className="hover:text-[#B8963E]">Precision Nibs (Bock &amp; Jowo)</Link>
                 <Link href="/about" className="hover:text-[#B8963E]">About Master Penmaker</Link>
                 <Link href="/wholesale" className="hover:text-[#B8963E]">B2B Wholesale & OEM Supply</Link>
               </div>

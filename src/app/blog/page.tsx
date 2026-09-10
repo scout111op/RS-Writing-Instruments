@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import WhatsAppBanner from '@/components/WhatsAppBanner';
+import Navbar from '@/components/Navbar';
 import FountainPenBlogSection from '@/components/FountainPenBlogSection';
 import { FaWhatsapp, FaFeatherAlt, FaTint, FaShieldAlt, FaTools, FaCheck } from 'react-icons/fa';
 
@@ -110,47 +111,7 @@ export default function BlogPage() {
       <WhatsAppBanner />
 
       {/* Navigation */}
-      <nav className="sticky top-0 w-full z-50 py-4 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E5DFD5]" suppressHydrationWarning>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3.5 group" aria-label="RS Writing Instruments Home">
-            <div className="relative w-12 h-12 shrink-0">
-              <Image 
-                src="/logo.png" 
-                alt="RS Writing Instruments Logo - Handcrafted Ebonite Pens & Feeds" 
-                fill 
-                className="object-contain" 
-                sizes="48px" 
-                priority 
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <span className="font-serif text-2xl font-extrabold tracking-tight leading-none text-[#102E29]">RS WRITING</span>
-              <span className="block text-[9px] uppercase tracking-[0.32em] font-bold text-[#B8963E] mt-0.5">Instruments</span>
-            </div>
-          </Link>
-
-          <div className="hidden md:flex items-center space-x-8 text-xs tracking-wider uppercase font-medium">
-            <Link href="/" className="text-[#6B6558] hover:text-[#B8963E]">Home</Link>
-            <Link href="/pens" className="text-[#6B6558] hover:text-[#B8963E]">Handcrafted Pens</Link>
-            <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E]">Ebonite Feeds</Link>
-            <Link href="/blog" className="text-[#102E29] font-bold relative py-1">
-              Guides &amp; FAQs
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#B8963E] rounded-full" />
-            </Link>
-            <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E]">About Us</Link>
-            <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E]">B2B Wholesale</Link>
-          </div>
-
-          <a
-            href={generalWhatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fable-pill-btn fable-mono-caps text-xs py-2.5 px-5 font-semibold flex items-center gap-2 bg-[#102E29] text-[#FDFBF7] hover:bg-[#1A4A42]"
-          >
-            <FaWhatsapp size={15} style={{ color: '#25D366' }} /> Ask Nibsmith
-          </a>
-        </div>
-      </nav>
+      <Navbar activeTab="guides" />
 
       {/* Main Page Hero */}
       <main className="py-12">
@@ -253,6 +214,7 @@ export default function BlogPage() {
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
+            <Link href="/nibs" className="hover:text-[#B8963E]">Nibs</Link>
             <Link href="/blog" className="hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>

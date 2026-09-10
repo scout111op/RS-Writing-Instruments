@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ProductZoomProvider } from "@/context/ProductZoomContext";
+import CookieConsent from "@/components/CookieConsent";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument",
@@ -33,12 +34,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rswriting.in'),
   title: {
-    default: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens',
+    default: 'RS Writing Instruments | Handcrafted Ebonite Feeds, Pens & Precision Nibs',
     template: '%s | RS Writing Instruments',
   },
   description:
-    'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens. Parker & Sheaffer fitment. B2B wholesale and custom orders welcome.',
+    'Artisan atelier crafting hand-cut natural ebonite feeds (₹75-₹450), PRAVAH bespoke fountain pens, and standalone Bock #6 Type 250 series & Jowo #6 Type 250 series replacement nibs. Pan-India shipping & B2B wholesale enquiries.',
   keywords: [
+    'Bock #6 Type 250 series',
+    'Jowo #6 Type 250 series',
+    'fountain pen nibs India',
+    'Bock compatible nib',
+    'Jowo compatible nib',
+    '#6 replacement nibs',
     'ebonite feed India',
     'fountain pen feeds wholesale',
     'custom ebonite pen',
@@ -68,9 +75,9 @@ export const metadata: Metadata = {
     canonical: 'https://www.rswriting.in',
   },
   openGraph: {
-    title: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens',
+    title: 'RS Writing Instruments | Handcrafted Ebonite Feeds, Pens & Precision Nibs',
     description:
-      'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens. Parker & Sheaffer fitment. B2B wholesale and custom orders welcome.',
+      'Hand-cut ebonite feeds (₹75-₹450), PRAVAH bespoke fountain pens, and Bock & Jowo compatible replacement nibs. Handcrafted in India.',
     url: 'https://www.rswriting.in',
     siteName: 'RS Writing Instruments',
     images: [
@@ -86,9 +93,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RS Writing Instruments | Handcrafted Ebonite Feeds & Fountain Pens',
+    title: 'RS Writing Instruments | Handcrafted Ebonite Feeds, Pens & Precision Nibs',
     description:
-      'Hand-cut ebonite feeds (₹75-₹450) and PRAVAH bespoke fountain pens crafted with precision capillary action.',
+      'Hand-cut ebonite feeds, PRAVAH fountain pens, and precision replacement nibs crafted with artisan care.',
     images: ['/logo.png'],
   },
   robots: {
@@ -101,6 +108,9 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'google-site-verification-rswriting',
   },
   other: {
     'google-adsense-account': 'ca-pub-3069042669867265',
@@ -121,7 +131,7 @@ export default function RootLayout({
     logo: 'https://www.rswriting.in/logo.png',
     image: 'https://www.rswriting.in/logo.png',
     description:
-      'Manufacturer and artisan atelier specializing in handcrafted natural ebonite fountain pens and precision hand-cut capillary feeds.',
+      'Artisan atelier specialising in handcrafted natural ebonite fountain pens, precision hand-cut capillary feeds, and standalone replacement nibs.',
     telephone: '+919455664795',
     email: 'contact@rswriting.in',
     foundingDate: '2011',
@@ -141,6 +151,9 @@ export default function RootLayout({
     knowsAbout: [
       'Ebonite Fountain Pens',
       'Hand-Cut Capillary Feeds',
+      'Precision Fountain Pen Nibs',
+      'Bock #6 Type 250 series Nibs',
+      'Jowo #6 Type 250 series Nibs',
       'Parker 51 Feed Geometry',
       'Sheaffer Feed Geometry',
       'Hard Rubber Lathe Craftsmanship',
@@ -159,6 +172,9 @@ export default function RootLayout({
     url: 'https://www.rswriting.in',
     image: 'https://www.rswriting.in/logo.png',
     priceRange: '₹75 - ₹1490',
+    currenciesAccepted: 'INR',
+    paymentAccepted: 'Cash, UPI, Bank Transfer',
+    openingHours: 'Mo-Sa 09:00-19:00',
     telephone: '+919455664795',
     address: {
       '@type': 'PostalAddress',
@@ -190,6 +206,21 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var orig = Element.prototype.setAttribute;
+                  Element.prototype.setAttribute = function(name, val) {
+                    if (name === 'bis_skin_checked' || name === 'bis_size') return;
+                    return orig.apply(this, arguments);
+                  };
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -216,6 +247,8 @@ export default function RootLayout({
         <ProductZoomProvider>
           {children}
         </ProductZoomProvider>
+
+        <CookieConsent />
         
         {/* Defer AdSense script via lazyOnload to protect Core Web Vitals (TBT & INP) */}
         <Script

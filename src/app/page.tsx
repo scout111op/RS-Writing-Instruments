@@ -1,69 +1,27 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { FaWhatsapp, FaCheckCircle, FaFeatherAlt } from 'react-icons/fa';
-import { HiOutlineMenuAlt3, HiX, HiArrowDown } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import dynamic from 'next/dynamic';
 
 import WhatsAppBanner from '@/components/WhatsAppBanner';
+import Navbar from '@/components/Navbar';
 import ProductCatalogGrid from '@/components/ProductCatalogGrid';
 import ProductCard from '@/components/ProductCard';
+import NibCatalogSection from '@/components/NibCatalogSection';
 import { featuredHeroProduct } from '@/lib/catalogProducts';
+import { nibProducts } from '@/lib/nibs';
 import { createProductSchema } from '@/lib/schemaHelpers';
 
 const FeedCatalogSection = dynamic(() => import('@/components/FeedCatalogSection'));
 const AtelierPoliciesSection = dynamic(() => import('@/components/AtelierPoliciesSection'));
 const FountainPenBlogSection = dynamic(() => import('@/components/FountainPenBlogSection'));
 
-function useMounted() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  return mounted;
-}
-
 export default function Home() {
-  const hasMounted = useMounted();
-  const [navScrolled, setNavScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero-section');
-
   const craftsmanshipRef = useRef<HTMLDivElement>(null);
-
-  // Scroll observer for navbar shadow & active link highlight
-  useEffect(() => {
-    if (!hasMounted) return;
-    let ticking = false;
-
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setNavScrolled(window.scrollY > 50);
-
-          const sections = ['hero-section', 'pen-catalog', 'feed-catalog', 'policies-section', 'contact'];
-          for (const secId of sections) {
-            const el = document.getElementById(secId);
-            if (el) {
-              const rect = el.getBoundingClientRect();
-              if (rect.top <= 250 && rect.bottom >= 250) {
-                setActiveSection(secId);
-                break;
-              }
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [hasMounted]);
 
   const generalWhatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent("Hello RS Writing Instruments, I am interested in inquiring about your fountain pen line and custom orders.")}`;
 
@@ -147,11 +105,33 @@ export default function Home() {
     }),
   ];
 
+  const nibSchemas = nibProducts.map((nib, idx) => {
+    const images = [nib.primaryImage];
+    if (nib.secondaryImage) {
+      images.push(nib.secondaryImage);
+    }
+    return createProductSchema({
+      name: nib.title,
+      description: nib.seoDescription,
+      image: images,
+      sku: nib.sku,
+      mpn: nib.mpn,
+      price: '450',
+      priceCurrency: 'INR',
+      url: 'https://www.rswriting.in/nibs',
+      category: 'Office Supplies > Writing Instruments > Fountain Pen Parts > Nibs',
+      ratingValue: '4.9',
+      reviewCount: 35 + idx * 4,
+    });
+  });
+
+  const allProductSchemas = [...productSchemas, ...nibSchemas];
+
   return (
     <div id="main-wrapper" className="overflow-x-hidden min-h-screen relative" style={{ background: '#FDFBF7', color: '#1B2A2A' }} suppressHydrationWarning>
       
       {/* Product JSON-LD Schemas */}
-      {productSchemas.map((schema, idx) => (
+      {allProductSchemas.map((schema, idx) => (
         <script
           key={idx}
           type="application/ld+json"
@@ -163,165 +143,7 @@ export default function Home() {
       <WhatsAppBanner />
 
       {/* STICKY NAVIGATION BAR */}
-      <nav className={`sticky top-0 w-full z-50 transition-all duration-500 ${navScrolled ? 'py-3 glass-light shadow-xs' : 'py-5 bg-[#FDFBF7]/90 backdrop-blur-md'}`} suppressHydrationWarning>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-          
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className="flex items-center gap-3.5 md:gap-4 group py-1 cursor-pointer"
-            aria-label="Refresh home page"
-          >
-            <div className="relative w-12 h-12 md:w-16 md:h-16 shrink-0 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-6 drop-shadow-md">
-              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="(max-width: 768px) 48px, 64px" priority />
-            </div>
-            <div className="flex flex-col justify-center">
-              <span className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-none text-[#102E29] transition-colors group-hover:text-[#B8963E]">
-                RS WRITING
-              </span>
-              <span className="block text-[9px] sm:text-[11px] md:text-xs uppercase tracking-[0.32em] font-bold text-[#B8963E] mt-1 group-hover:text-[#102E29] transition-colors">
-                Instruments
-              </span>
-            </div>
-          </Link>
-
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center space-x-8 text-xs tracking-wider uppercase font-medium">
-            <Link 
-              href="/pens" 
-              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
-            >
-              Handcrafted Pens
-            </Link>
-            <Link 
-              href="/feeds" 
-              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
-            >
-              Ebonite Feeds
-            </Link>
-            <Link 
-              href="/blog" 
-              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
-            >
-              Guides &amp; FAQs
-            </Link>
-            <Link 
-              href="/about" 
-              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
-            >
-              About Us
-            </Link>
-            <Link 
-              href="/wholesale" 
-              className="hover:text-[#B8963E] transition-colors relative py-1 text-[#6B6558]"
-            >
-              B2B Wholesale
-            </Link>
-            <a 
-              href="#contact" 
-              className={`hover:text-[#B8963E] transition-colors relative py-1 ${activeSection === 'contact' ? 'text-[#102E29] font-bold' : 'text-[#6B6558]'}`}
-            >
-              Contact Us
-            </a>
-          </div>
-
-          {/* Right Action */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a
-              href={generalWhatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="fable-pill-btn fable-mono-caps text-xs py-2.5 px-5 font-semibold flex items-center gap-2 bg-[#102E29] text-[#FDFBF7] hover:bg-[#1A4A42]"
-            >
-              <FaWhatsapp size={15} style={{ color: '#25D366' }} /> WhatsApp RS Writing Instruments
-            </a>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden">
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-[#102E29] p-2 focus:outline-none"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <HiX size={24} /> : <HiOutlineMenuAlt3 size={24} />}
-            </button>
-          </div>
-
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-[#FDFBF7] border-b border-[#E5DFD5] px-6 py-6 space-y-2">
-            <a 
-              href="#hero-section" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              Featured
-            </a>
-            <Link 
-              href="/pens" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              Handcrafted Pens
-            </Link>
-            <Link 
-              href="/feeds" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              Ebonite Feeds
-            </Link>
-            <Link 
-              href="/blog" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              Guides &amp; FAQs
-            </Link>
-            <a 
-              href="#policies-section" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              Policies &amp; Guarantees
-            </a>
-            <Link 
-              href="/about" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              About Us
-            </Link>
-            <Link 
-              href="/wholesale" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              B2B Wholesale
-            </Link>
-            <a 
-              href="#contact" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center min-h-[44px] text-sm uppercase tracking-wider text-[#102E29] font-medium"
-            >
-              Contact Us
-            </a>
-            <div className="pt-2 border-t border-[#E5DFD5]">
-              <a
-                href={generalWhatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fable-pill-btn fable-mono-caps w-full min-h-[44px] text-center text-xs py-3 font-semibold flex items-center justify-center gap-2 bg-[#102E29] text-[#FDFBF7]"
-              >
-                <FaWhatsapp size={16} style={{ color: '#25D366' }} /> WhatsApp RS Writing Instruments
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navbar activeTab="home" />
 
       {/* HERO SECTION WITH FEATURED PEN COLLECTION CARD */}
       <section id="hero-section" className="relative w-full py-8 md:py-14 px-6 md:px-12">
@@ -439,6 +261,26 @@ export default function Home() {
       <FeedCatalogSection />
 
       {/* ═══════════════════════════════════════════
+          PRECISION FOUNTAIN PEN NIBS (STANDALONE)
+          ═══════════════════════════════════════════ */}
+      <section id="nibs-section" className="scroll-mt-20 border-t border-[#E5DFD5] bg-gradient-to-b from-[#FAF8F5] via-[#FDFBF7] to-[#FDFBF7] py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B8963E]/10 border border-[#B8963E]/20 text-[#B8963E] text-xs font-mono mb-3">
+            <span>STANDALONE ATELIER COMPONENT</span>
+            <span>•</span>
+            <span>GERMAN GEOMETRY #6</span>
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#102E29] tracking-tight">
+            Precision Fountain Pen Nibs — <span className="italic text-[#B8963E]">Bock #6 Type 250 series &amp; Jowo #6 Type 250 series</span>
+          </h2>
+          <p className="font-sans text-xs sm:text-sm text-[#6B6558] max-w-2xl mx-auto mt-3">
+            Independent line of replacement fountain pen nibs engineered to exacting German standards. Precision fitment for Bock #6 Type 250 series and Jowo #6 Type 250 series geometries, three curated luxury finishes, and six tip widths.
+          </p>
+        </div>
+        <NibCatalogSection />
+      </section>
+
+      {/* ═══════════════════════════════════════════
           FOUNTAIN PEN GUIDES & TOP SEARCH FAQS
           ═══════════════════════════════════════════ */}
       <FountainPenBlogSection />
@@ -480,6 +322,7 @@ export default function Home() {
               <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
                 <Link href="/pens" className="hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
                 <Link href="/feeds" className="hover:text-[#B8963E] transition-colors">Ebonite Feeds Catalogue</Link>
+                <Link href="/nibs" className="hover:text-[#B8963E] transition-colors">Precision Nibs Collection</Link>
                 <Link href="/blog" className="hover:text-[#B8963E] transition-colors">Guides &amp; FAQs</Link>
                 <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Atelier &amp; Founder</Link>
                 <Link href="/wholesale" className="hover:text-[#B8963E] transition-colors">B2B Wholesale &amp; OEM</Link>

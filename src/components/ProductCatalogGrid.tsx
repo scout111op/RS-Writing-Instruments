@@ -60,7 +60,7 @@ export default function ProductCatalogGrid() {
 
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 items-stretch">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map((product, idx) => (
             <div
               key={product.id}
               className="gpu-accelerated"
@@ -68,7 +68,7 @@ export default function ProductCatalogGrid() {
             >
               <ProductCard
                 product={product}
-                isFeatured={false}
+                isFeatured={idx === 0}
                 showMeasurements={true}
               />
             </div>

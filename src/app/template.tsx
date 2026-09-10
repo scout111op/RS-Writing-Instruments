@@ -10,7 +10,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <>
       <PullToRefresh />
-      <div className="w-full">{children}</div>
+      <div className="w-full" suppressHydrationWarning>
+        {children}
+      </div>
     </>
   );
 }
+

@@ -92,6 +92,15 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: '/nibs/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
         source: '/:path*.png',
         headers: [
           {
