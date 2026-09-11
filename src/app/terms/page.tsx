@@ -1,69 +1,70 @@
-"use client";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import Navbar from '@/components/Navbar';
+import WhatsAppBanner from '@/components/WhatsAppBanner';
+import PolicySubNav from '@/components/PolicySubNav';
+import { FaWhatsapp, FaBalanceScale, FaAward, FaShippingFast, FaCheckCircle } from 'react-icons/fa';
+import { HiArrowRight, HiX, HiOutlineShieldCheck } from 'react-icons/hi';
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion, Variants } from "framer-motion";
-import WhatsAppBanner from "@/components/WhatsAppBanner";
-import PolicySubNav from "@/components/PolicySubNav";
-import { FaWhatsapp, FaBalanceScale, FaAward, FaTools, FaShippingFast, FaCheckCircle } from "react-icons/fa";
-import { HiArrowRight, HiOutlineMenuAlt3, HiX, HiOutlineShieldCheck, HiOutlineSparkles } from "react-icons/hi";
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.rswriting.in'),
+  title: 'Terms of Service | RS Writing Instruments',
+  description:
+    'Terms of Service of RS Writing Instruments. Craftsmanship standards, 7-day warranty, ebonite care, shipping policies, and ordering conditions for the best fountain pens in India.',
+  alternates: {
+    canonical: 'https://www.rswriting.in/terms',
+  },
+  openGraph: {
+    title: 'Terms of Service | RS Writing Instruments',
+    description: 'Official craftsmanship standards, 7-day warranty, and purchasing terms for RS Writing Instruments.',
+    url: 'https://www.rswriting.in/terms',
+    siteName: 'RS Writing Instruments',
+    locale: 'en_IN',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function TermsOfServicePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const generalWhatsappUrl = `https://wa.me/919455664795?text=${encodeURIComponent(
-    "Hello RS Writing Instruments, I have a question regarding your Terms of Service and ordering terms."
+    'Hello RS Writing Instruments, I have a question regarding your Terms of Service and ordering terms.'
   )}`;
 
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
     itemListElement: [
       {
-        "@type": "ListItem",
+        '@type': 'ListItem',
         position: 1,
-        name: "Home",
-        item: "https://www.rswriting.in",
+        name: 'Home',
+        item: 'https://www.rswriting.in',
       },
       {
-        "@type": "ListItem",
+        '@type': 'ListItem',
         position: 2,
-        name: "Terms of Service",
-        item: "https://www.rswriting.in/terms",
+        name: 'Terms of Service',
+        item: 'https://www.rswriting.in/terms',
       },
     ],
   };
 
   const webPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Terms of Service | RS Writing Instruments",
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Terms of Service | RS Writing Instruments',
     description:
-      "Terms of Service of RS Writing Instruments. Craftsmanship standards, 7-day warranty, ebonite care, shipping policies, and ordering conditions for the best fountain pens in India.",
-    url: "https://www.rswriting.in/terms",
+      'Terms of Service of RS Writing Instruments. Craftsmanship standards, 7-day warranty, ebonite care, shipping policies, and ordering conditions for the best fountain pens in India.',
+    url: 'https://www.rswriting.in/terms',
     publisher: {
-      "@type": "Organization",
-      name: "RS Writing Instruments",
-      url: "https://www.rswriting.in",
-      logo: "https://www.rswriting.in/logo.png",
-    },
-  };
-
-  const fadeInUpVariants: Variants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const staggerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
+      '@type': 'Organization',
+      name: 'RS Writing Instruments',
+      url: 'https://www.rswriting.in',
+      logo: 'https://www.rswriting.in/logo.png',
     },
   };
 
@@ -71,8 +72,7 @@ export default function TermsOfServicePage() {
     <div
       id="main-wrapper"
       className="overflow-x-hidden min-h-screen relative flex flex-col"
-      style={{ background: "#FDFBF7", color: "#1B2A2A" }}
-      suppressHydrationWarning
+      style={{ background: '#FDFBF7', color: '#1B2A2A' }}
     >
       <script
         type="application/ld+json"
@@ -85,84 +85,17 @@ export default function TermsOfServicePage() {
 
       <WhatsAppBanner />
 
-      {/* Sticky Navigation Bar */}
-      <nav
-        className="sticky top-0 w-full z-50 py-4 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E5DFD5]"
-        suppressHydrationWarning
-      >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3.5 group" aria-label="RS Writing Instruments Home">
-            <div className="relative w-12 h-12 shrink-0">
-              <Image src="/logo.png" alt="RS Writing Instruments Logo" fill className="object-contain" sizes="48px" priority />
-            </div>
-            <div className="flex flex-col justify-center">
-              <span className="font-serif text-2xl font-extrabold tracking-tight leading-none text-[#102E29]">RS WRITING</span>
-              <span className="block text-[9px] uppercase tracking-[0.32em] font-bold text-[#B8963E] mt-0.5">Instruments</span>
-            </div>
-          </Link>
-
-          <div className="hidden md:flex items-center space-x-8 text-xs tracking-wider uppercase font-medium">
-            <Link href="/" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Home</Link>
-            <Link href="/pens" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
-            <Link href="/feeds" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Ebonite Feeds</Link>
-            <Link href="/nibs" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">Nibs</Link>
-            <Link href="/about" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">About Us</Link>
-            <Link href="/wholesale" className="text-[#6B6558] hover:text-[#B8963E] transition-colors">B2B Wholesale</Link>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-4">
-            <a
-              href={generalWhatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="fable-pill-btn py-2 px-5 text-xs font-bold flex items-center gap-2 bg-[#102E29] text-[#FDFBF7] hover:bg-[#B8963E] transition-all shadow-xs"
-            >
-              <FaWhatsapp size={14} className="text-[#25D366]" />
-              <span>Contact Atelier</span>
-            </a>
-          </div>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-[#102E29] p-2 focus:outline-hidden"
-            aria-label="Toggle Navigation Menu"
-          >
-            {mobileMenuOpen ? <HiX size={24} /> : <HiOutlineMenuAlt3 size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-[#FDFBF7] border-b border-[#E5DFD5] px-6 py-6 space-y-4 shadow-lg animate-in slide-in-from-top-2 duration-200">
-            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-[#102E29]">Home</Link>
-            <Link href="/pens" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-[#102E29]">Handcrafted Pens</Link>
-            <Link href="/feeds" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-[#102E29]">Ebonite Feeds</Link>
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-[#102E29]">About Us</Link>
-            <Link href="/wholesale" onClick={() => setMobileMenuOpen(false)} className="block text-sm font-semibold text-[#102E29]">B2B Wholesale</Link>
-            <div className="pt-2">
-              <a
-                href={generalWhatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fable-pill-btn py-3 px-6 text-xs font-bold flex items-center justify-center gap-2 bg-[#102E29] text-[#FDFBF7] w-full"
-              >
-                <FaWhatsapp size={16} className="text-[#25D366]" />
-                <span>Contact Atelier on WhatsApp</span>
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navbar />
 
       {/* Policy SubNav */}
       <PolicySubNav />
 
       {/* Hero Header */}
-      <header className="py-12 md:py-16 px-6 md:px-12 bg-gradient-to-b from-[#FAF8F5] to-[#FDFBF7] border-b border-[#E5DFD5]/60 text-center relative">
+      <header className="py-12 md:py-16 px-6 md:px-12 bg-linear-to-b from-[#FAF8F5] to-[#FDFBF7] border-b border-[#E5DFD5]/60 text-center relative">
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B8963E]/10 border border-[#B8963E]/30 text-[#B8963E] text-xs font-mono tracking-widest uppercase">
             <FaBalanceScale size={12} />
-            <span>Atelier Standards & Legal Terms</span>
+            <span>Atelier Standards &amp; Legal Terms</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#102E29] tracking-tight">
             Terms of <span className="italic font-serif text-[#B8963E]">Service</span>
@@ -178,17 +111,9 @@ export default function TermsOfServicePage() {
 
       {/* Main Content */}
       <main className="grow py-12 md:py-16 px-6 md:px-12 max-w-4xl mx-auto w-full">
-        <motion.article
-          initial="hidden"
-          animate="visible"
-          variants={staggerVariants}
-          className="space-y-12 text-[#3D3A34] text-sm md:text-base leading-relaxed"
-        >
+        <article className="space-y-12 text-[#3D3A34] text-sm md:text-base leading-relaxed">
           {/* Key Principles Card */}
-          <motion.div
-            variants={fadeInUpVariants}
-            className="p-6 md:p-8 rounded-2xl bg-white border border-[#E5DFD5] shadow-xs space-y-4"
-          >
+          <div className="p-6 md:p-8 rounded-2xl bg-white border border-[#E5DFD5] shadow-xs space-y-4">
             <h2 className="font-serif text-xl font-bold text-[#102E29] flex items-center gap-3">
               <FaAward className="text-[#B8963E]" size={20} />
               <span>The RS Writing Instruments Promise</span>
@@ -196,12 +121,12 @@ export default function TermsOfServicePage() {
             <p className="text-xs md:text-sm text-[#6B6558] leading-relaxed">
               When you purchase from <strong>RS Writing Instruments</strong>, you are not buying an anonymous mass-produced plastic item. You are investing in artisanal heritage: genuine vulcanized natural hard rubber (ebonite), lathe-turned barrels, hand-tuned stainless steel nibs, and hand-slotted capillary feeds adjusted individually in our workshop atelier. These Terms set forth our commitments and mutual expectations.
             </p>
-          </motion.div>
+          </div>
 
           {/* Section 1: Handcrafted Writing Instruments & Catalogue Offerings */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              1. Atelier Craftsmanship & Products
+              1. Atelier Craftsmanship &amp; Products
             </h2>
             <p>
               These Terms of Service govern the purchase, customization, and supply of writing products produced by RS Writing Instruments, including:
@@ -214,25 +139,25 @@ export default function TermsOfServicePage() {
                 <strong>Hand-Cut Ebonite Capillary Feeds:</strong> Precision hand-machined and slotted hard rubber feeds (₹75–₹450) engineered for optimal ink buffer control, offering superior thermal stability compared to injection-molded plastic.
               </li>
               <li>
-                <strong>Vintage & Contemporary Fitments:</strong> Specialist replacement feeds designed specifically for iconic geometries including Parker 51, Sheaffer, standard #6, and custom penmaker barrel sections.
+                <strong>Vintage &amp; Contemporary Fitments:</strong> Specialist replacement feeds designed specifically for iconic geometries including Parker 51, Sheaffer, standard #6, and custom penmaker barrel sections.
               </li>
               <li>
-                <strong>B2B Wholesale & OEM Components:</strong> Bulk consignments of customized feed geometries and semi-finished pen components for penmakers and retailers across India and worldwide.
+                <strong>B2B Wholesale &amp; OEM Components:</strong> Bulk consignments of customized feed geometries and semi-finished pen components for penmakers and retailers across India and worldwide.
               </li>
             </ul>
-          </motion.section>
+          </section>
 
           {/* Section 2: Artisanal Variations & Ebonite Characteristics */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              2. Artisanal Tolerances & Natural Ebonite Variations
+              2. Artisanal Tolerances &amp; Natural Ebonite Variations
             </h2>
             <p>
               Natural hard rubber (ebonite) is a revered historical polymer made from natural rubber vulcanized with sulfur. Because each pen rod is blended, cured, and hand-turned individually on vintage lathes:
             </p>
             <div className="p-5 rounded-xl bg-[#FAF8F5] border border-[#E5DFD5] text-xs md:text-sm space-y-2.5 text-[#524D44]">
               <p>
-                <strong>Marbling & Swirl Uniqueness:</strong> No two marbled pens (such as Swirl Brown or Red Black Swirl) are identical. Swirl patterns, mottling depth, and color contrast differ organically on every single piece.
+                <strong>Marbling &amp; Swirl Uniqueness:</strong> No two marbled pens (such as Swirl Brown or Red Black Swirl) are identical. Swirl patterns, mottling depth, and color contrast differ organically on every single piece.
               </p>
               <p>
                 <strong>Hand-Machined Dimensional Tolerances:</strong> While our thread pitches and section tenons are calibrated with micrometer precision, tiny microscopic nuances attest to human craftsmanship rather than robotic injection molds.
@@ -241,12 +166,12 @@ export default function TermsOfServicePage() {
                 <strong>Natural Characteristic Scent:</strong> Authentic vulcanized ebonite possesses a faint, pleasant characteristic sulfurous warmth when warmed in the palm—the unmistakable hallmark of authentic hard rubber.
               </p>
             </div>
-          </motion.section>
+          </section>
 
           {/* Section 3: Commissioning & Custom Engravings */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              3. Bespoke Orders, Custom Engravings & Nibs
+              3. Bespoke Orders, Custom Engravings &amp; Nibs
             </h2>
             <p>
               We offer bespoke options to create the <strong>best fountain pens</strong> personalized to your exact handwriting preferences:
@@ -256,18 +181,18 @@ export default function TermsOfServicePage() {
                 <strong>Personalized Name Engraving:</strong> We provide micro-laser or diamond drag engraving on the barrel or cap band. Clients are responsible for verifying spelling and character casing before confirming the order.
               </li>
               <li>
-                <strong>Nib Point Selection & Tuning:</strong> Each PRAVAH pen is supplied with your chosen nib width (Fine, Medium, Broad). Every nib is dip-tested with water/washable ink and hand-smoothed on micro-mesh prior to packaging to guarantee wet, skip-free ink delivery.
+                <strong>Nib Point Selection &amp; Tuning:</strong> Each PRAVAH pen is supplied with your chosen nib width (Fine, Medium, Broad). Every nib is dip-tested with water/washable ink and hand-smoothed on micro-mesh prior to packaging to guarantee wet, skip-free ink delivery.
               </li>
               <li>
                 <strong>Non-Cancellable Customizations:</strong> Once custom engraving or specialized non-standard nib grinding commences, personalized orders cannot be cancelled or returned for a cash refund, except under our 7-day manufacturing defect guarantee.
               </li>
             </ul>
-          </motion.section>
+          </section>
 
           {/* Section 4: Pricing, Invoicing & B2B Terms */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              4. Pricing, Taxes & B2B Wholesale Conditions
+              4. Pricing, Taxes &amp; B2B Wholesale Conditions
             </h2>
             <p>
               All retail prices listed on our website are denominated in Indian Rupees (INR ₹).
@@ -283,12 +208,12 @@ export default function TermsOfServicePage() {
                 <strong>Price Adjustments:</strong> We reserve the right to revise catalog prices for future orders based on raw ebonite rod import costs and metal component rates without retrospective liability.
               </li>
             </ul>
-          </motion.section>
+          </section>
 
           {/* Section 5: Shipping, Dispatch & Delivery */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              5. Shipping, Dispatch Timelines & Insurance
+              5. Shipping, Dispatch Timelines &amp; Insurance
             </h2>
             <p>
               We treat the dispatch of our <strong>premium fountain pens</strong> and delicate feeds with utmost caution:
@@ -314,12 +239,12 @@ export default function TermsOfServicePage() {
                 </p>
               </div>
             </div>
-          </motion.section>
+          </section>
 
           {/* Section 6: 7-Day Guarantee & Returns */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              6. Official 7-Day Craftsmanship Warranty & Replacements
+              6. Official 7-Day Craftsmanship Warranty &amp; Replacements
             </h2>
             <p>
               Every RS Writing instrument is backed by our direct <strong>7-Day Atelier Craftsmanship Warranty</strong>:
@@ -338,12 +263,12 @@ export default function TermsOfServicePage() {
                 *Warranty covers manufacturing defects. It does not cover user damage, drops onto nib tines, exposure to boiling water or harsh solvents, or disassembly by uncertified third parties.
               </div>
             </div>
-          </motion.section>
+          </section>
 
           {/* Section 7: Care & Preservation Guide */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              7. Care & Maintenance of Natural Ebonite
+              7. Care &amp; Maintenance of Natural Ebonite
             </h2>
             <p>
               To ensure your pen provides a lifetime of writing pleasure and matures gracefully into an heirloom:
@@ -375,12 +300,12 @@ export default function TermsOfServicePage() {
                 </ul>
               </div>
             </div>
-          </motion.section>
+          </section>
 
           {/* Section 8: Governing Law & Jurisdiction */}
-          <motion.section variants={fadeInUpVariants} className="space-y-4">
+          <section className="space-y-4">
             <h2 className="font-serif text-2xl font-bold text-[#102E29] tracking-tight pb-2 border-b border-[#E5DFD5]">
-              8. Governing Law & Dispute Resolution
+              8. Governing Law &amp; Dispute Resolution
             </h2>
             <p>
               These Terms of Service and any contractual agreements for writing instruments or precision feeds shall be governed by and construed in accordance with the substantive laws of the Republic of India.
@@ -388,8 +313,8 @@ export default function TermsOfServicePage() {
             <p>
               Any legal proceeding, dispute, or claim arising out of or in connection with the purchase of our products shall be subject to the exclusive jurisdiction of the competent courts in India.
             </p>
-          </motion.section>
-        </motion.article>
+          </section>
+        </article>
       </main>
 
       {/* Footer */}
@@ -414,17 +339,17 @@ export default function TermsOfServicePage() {
                 <Link href="/feeds" className="hover:text-[#B8963E]">Ebonite Capillary Feeds</Link>
                 <Link href="/nibs" className="hover:text-[#B8963E]">Precision Nibs (Bock &amp; Jowo)</Link>
                 <Link href="/about" className="hover:text-[#B8963E]">About Master Penmaker</Link>
-                <Link href="/wholesale" className="hover:text-[#B8963E]">B2B Wholesale & OEM Supply</Link>
+                <Link href="/wholesale" className="hover:text-[#B8963E]">B2B Wholesale &amp; OEM Supply</Link>
               </div>
             </div>
 
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-4 text-[#B8963E]">Legal & Policies</h4>
+              <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-4 text-[#B8963E]">Legal &amp; Policies</h4>
               <div className="flex flex-col gap-2 text-xs text-[#6B6558]">
                 <Link href="/privacy" className="hover:text-[#B8963E]">Privacy Policy</Link>
                 <Link href="/terms" className="text-[#102E29] font-bold">Terms of Service</Link>
                 <Link href="/acceptable-use" className="hover:text-[#B8963E]">Acceptable Use Policy</Link>
-                <Link href="/#policies-section" className="hover:text-[#B8963E]">Atelier Guarantees</Link>
+                <Link href="/terms#shipping" className="hover:text-[#B8963E]">Atelier Guarantees</Link>
               </div>
             </div>
           </div>
@@ -449,12 +374,12 @@ export default function TermsOfServicePage() {
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-50 p-4 rounded-full transition-transform duration-300 hover:scale-110 shadow-lg"
         style={{
-          background: "#25D366",
-          boxShadow: "0 8px 32px rgba(37, 211, 102, 0.35)",
+          background: '#25D366',
+          boxShadow: '0 8px 32px rgba(37, 211, 102, 0.35)',
         }}
         aria-label="Chat with RS Writing Instruments on WhatsApp"
       >
-        <FaWhatsapp size={26} style={{ color: "#FFFFFF" }} />
+        <FaWhatsapp size={26} style={{ color: '#FFFFFF' }} />
       </a>
     </div>
   );
