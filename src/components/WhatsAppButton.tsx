@@ -6,6 +6,7 @@ import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
 interface WhatsAppButtonProps {
   productName: string;
   selectedColour: string;
+  selectedComplimentary?: string;
   selectedFeed?: string;
   selectedNib?: string;
   selectedNibColor?: string;
@@ -15,13 +16,15 @@ interface WhatsAppButtonProps {
 export default function WhatsAppButton({
   productName,
   selectedColour,
-  selectedFeed = "Standard Ebonite Feed",
-  selectedNib = "Jowo - F",
+  selectedComplimentary = "Jowo Compatible",
+  selectedFeed = "Ebonite Feed #35 (51mm) - Single Channel",
+  selectedNib = "Friction Fit - F",
   selectedNibColor = "GOLD",
   className = "",
 }: WhatsAppButtonProps) {
   const lines = [
     `Hello, I would like to enquire about the *PRAVAH* fountain pen with the following custom options:`,
+    `- Complimentary Section: ${selectedComplimentary}`,
     `- Ebonite Feed: ${selectedFeed}`,
     `- Nib (Compatibility & Size): ${selectedNib}`,
     `- Nib Color: ${selectedNibColor}`,

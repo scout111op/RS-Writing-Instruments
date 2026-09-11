@@ -9,13 +9,13 @@ export default function CookieConsent() {
   const [consent, setConsent] = useState<string | null>("accepted");
 
   useEffect(() => {
-    setMounted(true);
     try {
       const stored = localStorage.getItem("rswriting_cookie_consent");
       setConsent(stored);
     } catch {
       setConsent(null);
     }
+    setMounted(true);
   }, []);
 
   const handleAccept = () => {
@@ -45,6 +45,7 @@ export default function CookieConsent() {
       className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-50 bg-[#FDFBF7] border border-[#E5DFD5] shadow-xl rounded-2xl p-5 backdrop-blur-md animate-fade-in"
       role="region"
       aria-label="Cookie consent notice"
+      suppressHydrationWarning
     >
       <div className="flex items-start gap-3.5">
         <div className="p-2.5 bg-[#B8963E]/15 rounded-xl text-[#B8963E] shrink-0 mt-0.5">

@@ -26,11 +26,20 @@ export default function ProductCard({
     : product.colours.filter((c) => !c.isMeasurement);
   const displayColours = availableColours.length > 0 ? availableColours : product.colours;
 
+  // Filter feeds to only include #35 51mm options
+  const eboniteFeedOptions = rawProducts.filter(
+    (p) => p.name.includes("#35 (51mm)") || p.model.includes("51mm")
+  );
+
   const [selectedColour, setSelectedColour] = useState<ProductColourOption>(
     displayColours[0]
   );
-  const [selectedFeed, setSelectedFeed] = useState<string>("Standard Ebonite Feed");
-  const [selectedNib, setSelectedNib] = useState<string>("Jowo - F");
+  const [selectedFeed, setSelectedFeed] = useState<string>(
+    eboniteFeedOptions[0]?.name || "Ebonite Feed #35 (51mm) - Single Channel"
+  );
+  const [selectedNib, setSelectedNib] = useState<string>("Friction Fit - F");
+  const [selectedComplimentary, setSelectedComplimentary] =
+    useState<string>("Jowo Compatible");
   const [selectedNibColor, setSelectedNibColor] = useState<string>("GOLD");
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const imageFrameRef = useRef<HTMLDivElement>(null);
@@ -246,7 +255,7 @@ export default function ProductCard({
               </span>
             </div>
 
-            <div className="space-y-2.5">
+            <div className="space-y-2.5" suppressHydrationWarning>
               {/* 1. Ebonite Feed */}
               <div>
                 <label
@@ -260,18 +269,15 @@ export default function ProductCard({
                     id={`feed-select-${product.id}`}
                     value={selectedFeed}
                     onChange={(e) => setSelectedFeed(e.target.value)}
+                    suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
-                    <option value="Standard Ebonite Feed">Standard Ebonite Feed (Default)</option>
-                    <optgroup label="Atelier Hand-Cut Ebonite Feeds">
-                      {rawProducts.map((feed) => (
+                    <optgroup label="Ebonite Feeds #35 (51mm)">
+                      {eboniteFeedOptions.map((feed) => (
                         <option key={feed.id} value={feed.name}>
                           {feed.name}
                         </option>
                       ))}
-                    </optgroup>
-                    <optgroup label="Other Options">
-                      <option value="No">No (Without Feed)</option>
                     </optgroup>
                   </select>
                   <HiChevronDown
@@ -294,23 +300,16 @@ export default function ProductCard({
                     id={`nib-select-${product.id}`}
                     value={selectedNib}
                     onChange={(e) => setSelectedNib(e.target.value)}
+                    suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
-                    <optgroup label="Jowo Housing Compatibility">
-                      <option value="Jowo - EEF">Jowo - EEF</option>
-                      <option value="Jowo - EF">Jowo - EF</option>
-                      <option value="Jowo - F">Jowo - F</option>
-                      <option value="Jowo - M">Jowo - M</option>
-                      <option value="Jowo - B">Jowo - B</option>
-                      <option value="Jowo - DB">Jowo - DB</option>
-                    </optgroup>
-                    <optgroup label="Bock Housing Compatibility">
-                      <option value="Bock - EEF">Bock - EEF</option>
-                      <option value="Bock - EF">Bock - EF</option>
-                      <option value="Bock - F">Bock - F</option>
-                      <option value="Bock - M">Bock - M</option>
-                      <option value="Bock - B">Bock - B</option>
-                      <option value="Bock - DB">Bock - DB</option>
+                    <optgroup label="Friction Fit Compatibility">
+                      <option value="Friction Fit - EEF">Friction Fit - EEF</option>
+                      <option value="Friction Fit - EF">Friction Fit - EF</option>
+                      <option value="Friction Fit - F">Friction Fit - F</option>
+                      <option value="Friction Fit - M">Friction Fit - M</option>
+                      <option value="Friction Fit - B">Friction Fit - B</option>
+                      <option value="Friction Fit - DB">Friction Fit - DB</option>
                     </optgroup>
                   </select>
                   <HiChevronDown
@@ -320,7 +319,33 @@ export default function ProductCard({
                 </div>
               </div>
 
-              {/* 3. Nib Color */}
+              {/* 3. Complimentary Section with PRAVAH */}
+              <div>
+                <label
+                  htmlFor={`complimentary-select-${product.id}`}
+                  className="block fable-mono-caps text-[9px] font-medium text-[#6B6558] mb-1"
+                >
+                  Complimentary Section (With PRAVAH)
+                </label>
+                <div className="relative">
+                  <select
+                    id={`complimentary-select-${product.id}`}
+                    value={selectedComplimentary}
+                    onChange={(e) => setSelectedComplimentary(e.target.value)}
+                    suppressHydrationWarning
+                    className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
+                  >
+                    <option value="Jowo Compatible">Jowo Compatible</option>
+                    <option value="Bock Compatible">Bock Compatible</option>
+                  </select>
+                  <HiChevronDown
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#9C9588] pointer-events-none"
+                    size={14}
+                  />
+                </div>
+              </div>
+
+              {/* 4. Nib Color */}
               <div>
                 <label
                   htmlFor={`nib-color-select-${product.id}`}
@@ -333,6 +358,7 @@ export default function ProductCard({
                     id={`nib-color-select-${product.id}`}
                     value={selectedNibColor}
                     onChange={(e) => setSelectedNibColor(e.target.value)}
+                    suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
                     <option value="GOLD">GOLD</option>
@@ -354,6 +380,7 @@ export default function ProductCard({
           <WhatsAppButton
             productName={product.name}
             selectedColour={displayColour.name}
+            selectedComplimentary={selectedComplimentary}
             selectedFeed={selectedFeed}
             selectedNib={selectedNib}
             selectedNibColor={selectedNibColor}
