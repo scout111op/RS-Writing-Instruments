@@ -68,6 +68,7 @@ export default function LaserEngravingHeroCard({ className = "" }: LaserEngravin
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 200px"
             className="object-contain p-2 transition-transform duration-300 group-hover/img:scale-105"
             quality={90}
+            priority
           />
 
           {/* Hover Tap-To-Zoom Badge */}
