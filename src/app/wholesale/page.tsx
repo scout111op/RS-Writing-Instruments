@@ -115,6 +115,7 @@ export default function WholesalePage() {
       mpn: `RS-OEM-FEED-${feed.id}`,
       price: feed.basePrice.toString(),
       priceCurrency: 'INR',
+      availability: feed.inStock === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
       url: 'https://www.rswriting.in/wholesale',
       category: 'Office Supplies > Fountain Pen Feeds & Components',
       ratingValue: (4.9).toFixed(1),
@@ -168,25 +169,44 @@ export default function WholesalePage() {
 
         {/* Key Metrics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5] text-center">
+          <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5] text-center shadow-xs">
             <FaBoxes size={28} className="text-[#B8963E] mx-auto mb-2" />
             <span className="block text-2xl font-bold font-serif text-[#102E29]">250 Pcs</span>
             <span className="text-[11px] uppercase tracking-wider text-[#9C9588] mt-1 block">Minimum Order Quantity</span>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5] text-center">
+          <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5] text-center shadow-xs">
             <FaCheckCircle size={28} className="text-[#B8963E] mx-auto mb-2" />
             <span className="block text-2xl font-bold font-serif text-[#102E29]">100% Ebonite</span>
-            <span className="text-[11px] uppercase tracking-wider text-[#9C9588] mt-1 block">Natural Vulcanized Rubber</span>
+            <span className="text-[11px] uppercase tracking-wider text-[#9C9588] mt-1 block">Natural Hard Rubber</span>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5] text-center">
+          <div className="bg-white p-6 rounded-2xl border border-[#E5DFD5] text-center shadow-xs">
             <FaFilePdf size={28} className="text-[#B8963E] mx-auto mb-2" />
             <span className="block text-2xl font-bold font-serif text-[#102E29]">Line Sheet</span>
             <span className="text-[11px] uppercase tracking-wider text-[#9C9588] mt-1 block">Specification Sheet Available</span>
           </div>
         </div>
 
-        {/* Wholesale Price Table Preview */}
-        <div className="bg-white p-6 md:p-8 rounded-2xl border border-[#E5DFD5] shadow-xs mb-12">
+        {/* Wholesale Benefits Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="p-6 rounded-2xl bg-white border border-[#E5DFD5] shadow-xs">
+            <FaBoxes className="text-[#B8963E] mb-3" size={24} />
+            <h3 className="font-serif text-lg font-bold text-[#102E29] mb-1">Standard MOQ 250 Pcs</h3>
+            <p className="text-xs text-[#6B6558]">Production-ready batches with consistent channel widths and diameters tested for capillary draw.</p>
+          </div>
+          <div className="p-6 rounded-2xl bg-white border border-[#E5DFD5] shadow-xs">
+            <FaCheckCircle className="text-[#B8963E] mb-3" size={24} />
+            <h3 className="font-serif text-lg font-bold text-[#102E29] mb-1">Custom OEM Turning</h3>
+            <p className="text-xs text-[#6B6558]">Bespoke outer diameters, custom tail lengths, and specialized comb geometries crafted to your specs.</p>
+          </div>
+          <div className="p-6 rounded-2xl bg-white border border-[#E5DFD5] shadow-xs">
+            <FaFilePdf className="text-[#B8963E] mb-3" size={24} />
+            <h3 className="font-serif text-lg font-bold text-[#102E29] mb-1">Direct Factory Pricing</h3>
+            <p className="text-xs text-[#6B6558]">Transparent wholesale price brackets starting from ₹75 per piece for volume manufacture.</p>
+          </div>
+        </div>
+
+        {/* Feeds Line Sheet Table */}
+        <div className="bg-white rounded-3xl p-6 md:p-8 border border-[#E5DFD5] shadow-xs mb-16">
           <h2 className="font-serif text-2xl font-bold text-[#102E29] mb-4">Ebonite Feeds Line Sheet</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs sm:text-sm">
@@ -196,16 +216,30 @@ export default function WholesalePage() {
                   <th className="p-3">Shape Fitment</th>
                   <th className="p-3">Ink Channel</th>
                   <th className="p-3">Fitment Type</th>
+                  <th className="p-3">Status</th>
                   <th className="p-3 text-right">Starting Price</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E5DFD5]">
                 {rawProducts.map((p) => (
                   <tr key={p.id} className="hover:bg-[#FAF8F5]">
-                    <td className="p-3 font-semibold text-[#102E29]">{p.name}</td>
+                    <td className="p-3 font-semibold text-[#102E29]">
+                      {p.name}
+                    </td>
                     <td className="p-3 text-[#6B6558]">{p.shape}</td>
                     <td className="p-3 text-[#6B6558]">{p.ink}</td>
                     <td className="p-3 text-[#6B6558]">{p.type}</td>
+                    <td className="p-3">
+                      {p.inStock === false ? (
+                        <span className="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full bg-red-100 text-red-700 border border-red-300 whitespace-nowrap">
+                          Out of Stock
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 text-[10px] font-medium uppercase rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
+                          In Stock
+                        </span>
+                      )}
+                    </td>
                     <td className="p-3 text-right font-bold text-[#102E29]">{calculateDisplayPrice(p)}</td>
                   </tr>
                 ))}

@@ -26,16 +26,18 @@ export default function ProductCard({
     : product.colours.filter((c) => !c.isMeasurement);
   const displayColours = availableColours.length > 0 ? availableColours : product.colours;
 
-  // Filter feeds to only include #35 51mm options
+  // Filter feeds to only include 51mm options
   const eboniteFeedOptions = rawProducts.filter(
-    (p) => p.name.includes("#35 (51mm)") || p.model.includes("51mm")
+    (p) => p.name.includes("51MM") || p.model.includes("51mm")
   );
 
   const [selectedColour, setSelectedColour] = useState<ProductColourOption>(
     displayColours[0]
   );
   const [selectedFeed, setSelectedFeed] = useState<string>(
-    eboniteFeedOptions[0]?.name || "Ebonite Feed #35 (51mm) - Single Channel"
+    eboniteFeedOptions.find((p) => p.inStock !== false)?.name ||
+    eboniteFeedOptions[0]?.name ||
+    "No. 35 51MM Single Ink Channel"
   );
   const [selectedNib, setSelectedNib] = useState<string>("Friction Fit - F");
   const [selectedComplimentary, setSelectedComplimentary] =
@@ -272,10 +274,10 @@ export default function ProductCard({
                     suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
-                    <optgroup label="Ebonite Feeds #35 (51mm)">
+                    <optgroup label="Ebonite Feeds 51mm">
                       {eboniteFeedOptions.map((feed) => (
                         <option key={feed.id} value={feed.name}>
-                          {feed.name}
+                          {feed.name} {feed.inStock === false ? "(Out of Stock)" : ""}
                         </option>
                       ))}
                     </optgroup>

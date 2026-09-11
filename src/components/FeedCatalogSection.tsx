@@ -26,7 +26,7 @@ export default function FeedCatalogSection() {
     'Cartridge Compatible',
     'Single Channel',
     'Double Channel',
-    'Triple (Music Flow)',
+    'Triple Channel',
   ];
 
   // Filtering Ebonite Feeds Only
@@ -43,8 +43,8 @@ export default function FeedCatalogSection() {
       list = list.filter((item) => item.ink.toLowerCase().includes('single'));
     } else if (selectedFilter === 'Double Channel') {
       list = list.filter((item) => item.ink.toLowerCase().includes('double'));
-    } else if (selectedFilter === 'Triple (Music Flow)') {
-      list = list.filter((item) => item.ink.toLowerCase().includes('triple') || item.ink.toLowerCase().includes('music'));
+    } else if (selectedFilter === 'Triple Channel') {
+      list = list.filter((item) => item.ink.toLowerCase().includes('triple'));
     }
 
     if (searchTerm.trim() !== '') {
@@ -151,33 +151,49 @@ export default function FeedCatalogSection() {
         {/* Ebonite Feeds Grid with Balanced Mobile Proportions & GPU Acceleration */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-stretch">
           {filteredFeeds.map((feed) => {
+            const isOutOfStock = feed.inStock === false;
             const displayPrice = calculateDisplayPrice(feed);
-            const whatsappUrl = getWhatsAppLink(feed.name, displayPrice);
+            const quoteSubject = isOutOfStock
+              ? `${feed.name} (Out of Stock Inquiry)`
+              : feed.name;
+            const whatsappUrl = getWhatsAppLink(quoteSubject, displayPrice);
 
             return (
               <div
                 key={feed.id}
-                className="product-card bg-white rounded-2xl p-4 sm:p-6 flex flex-col justify-between border border-[#E5DFD5] gpu-accelerated"
+                className={`product-card bg-white rounded-2xl p-4 sm:p-6 flex flex-col justify-between border ${
+                  isOutOfStock ? 'border-red-200 bg-[#FFFDFD]' : 'border-[#E5DFD5]'
+                } gpu-accelerated`}
               >
                 {/* Fixed Aspect Ratio Image Frame with Tap to Zoom */}
                 <div 
                   className="product-image-frame w-full aspect-[4/3] mb-4 rounded-xl flex items-center justify-center relative cursor-pointer group/feed overflow-hidden"
-                  style={{ background: '#FAF8F5', border: '1px solid #F0ECE4' }}
+                  style={{ background: isOutOfStock ? '#FAF5F5' : '#FAF8F5', border: '1px solid #F0ECE4' }}
                   onClick={() => openZoom({
                     src: feed.image,
                     alt: `${feed.name} ebonite feed`,
                     title: feed.name,
-                    subtitle: `${feed.model} • Shape Fitment: ${feed.shape} • ${feed.ink}`,
+                    subtitle: `${feed.model} • Shape Fitment: ${feed.shape} • ${feed.ink}${isOutOfStock ? ' • [OUT OF STOCK]' : ''}`,
                     price: displayPrice,
                   })}
                   title="Tap to zoom picture in full detail"
                 >
+                  {isOutOfStock && (
+                    <div className="absolute top-2.5 left-2.5 z-10">
+                      <span className="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-[#C53030] text-white shadow-sm">
+                        Out of Stock
+                      </span>
+                    </div>
+                  )}
+
                   <Image
                     src={feed.image}
                     alt={`${feed.name} hand-cut ebonite fountain pen feed by RS Writing Instruments`}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain p-4 transition-transform duration-500 group-hover/feed:scale-105"
+                    className={`object-contain p-4 transition-transform duration-500 group-hover/feed:scale-105 ${
+                      isOutOfStock ? 'opacity-85' : ''
+                    }`}
                     loading="lazy"
                     quality={75}
                   />
@@ -191,11 +207,11 @@ export default function FeedCatalogSection() {
                         src: feed.image,
                         alt: `${feed.name} ebonite feed`,
                         title: feed.name,
-                        subtitle: `${feed.model} • Shape Fitment: ${feed.shape} • ${feed.ink}`,
+                        subtitle: `${feed.model} • Shape Fitment: ${feed.shape} • ${feed.ink}${isOutOfStock ? ' • [OUT OF STOCK]' : ''}`,
                         price: displayPrice,
                       });
                     }}
-                    className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/90 hover:bg-white text-[#102E29] hover:text-[#B8963E] shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110 flex items-center justify-center cursor-pointer border border-[#E5DFD5]/70"
+                    className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/90 hover:bg-white text-[#102E29] hover:text-[#B8963E] shadow-sm hover:shadow-md transition-all duration-200 hover:scale-110 flex items-center justify-center cursor-pointer border border-[#E5DFD5]/70 z-10"
                     title="Tap to zoom in"
                     aria-label={`Zoom in on ${feed.name}`}
                   >
@@ -217,9 +233,15 @@ export default function FeedCatalogSection() {
                       <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#B8963E]">
                         {feed.type}
                       </span>
-                      <span className="text-[9px] font-medium text-[#9C9588]">
-                        MOQ: 250 Pcs
-                      </span>
+                      {isOutOfStock ? (
+                        <span className="text-[9px] font-bold text-[#C53030] bg-[#FFF5F5] px-2 py-0.5 rounded border border-[#FEB2B2]">
+                          Out of Stock
+                        </span>
+                      ) : (
+                        <span className="text-[9px] font-medium text-[#9C9588]">
+                          MOQ: 250 Pcs
+                        </span>
+                      )}
                     </div>
 
                     <h3 className="font-serif text-lg sm:text-xl font-bold mb-1.5 text-[#102E29] leading-snug">
@@ -233,6 +255,14 @@ export default function FeedCatalogSection() {
                     <div className="text-[11px] space-y-1 mb-4 text-[#9C9588] bg-[#FAF8F5] p-3 rounded-lg border border-[#F0ECE4]">
                       <p><span className="text-[#102E29] font-medium">Shape Fitment:</span> {feed.shape}</p>
                       <p><span className="text-[#102E29] font-medium">Ink Channel:</span> {feed.ink}</p>
+                      <p>
+                        <span className="text-[#102E29] font-medium">Availability:</span>{' '}
+                        {isOutOfStock ? (
+                          <span className="text-[#C53030] font-semibold">Out of Stock</span>
+                        ) : (
+                          <span className="text-[#2F855A] font-medium">In Stock</span>
+                        )}
+                      </p>
                     </div>
                   </div>
 
@@ -247,9 +277,11 @@ export default function FeedCatalogSection() {
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="fable-pill-btn py-2.5 px-4 text-[10px] uppercase font-bold tracking-wider text-white bg-[#102E29] hover:bg-[#B8963E] transition-colors flex items-center gap-1.5 min-h-[44px] shadow-xs"
+                      className={`fable-pill-btn py-2.5 px-4 text-[10px] uppercase font-bold tracking-wider text-white transition-colors flex items-center gap-1.5 min-h-[44px] shadow-xs ${
+                        isOutOfStock ? 'bg-[#718096] hover:bg-[#4A5568]' : 'bg-[#102E29] hover:bg-[#B8963E]'
+                      }`}
                     >
-                      <FaWhatsapp size={14} className="text-[#25D366]" /> Request Quote
+                      <FaWhatsapp size={14} className="text-[#25D366]" /> {isOutOfStock ? 'Inquire Stock' : 'Request Quote'}
                     </a>
                   </div>
 

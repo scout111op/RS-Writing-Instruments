@@ -49,7 +49,7 @@ const faqData: FaqItem[] = [
   {
     category: "Nib Selection",
     question: "Which nib size should I choose for daily writing?",
-    answer: "Fine (F - 0.5mm) is ideal for compact handwriting, notes, and everyday office papers. Medium (M - 0.7mm) delivers the smoothest gliding feel and brings out ink shading and sheen. Broad (B - 1.0mm) or Music Flex feeds are perfect for signatures, headings, and expressive calligraphy."
+    answer: "Fine (F - 0.5mm) is ideal for compact handwriting, notes, and everyday office papers. Medium (M - 0.7mm) delivers the smoothest gliding feel and brings out ink shading and sheen. Broad (B - 1.0mm) or Double Broad feeds are perfect for signatures, headings, and expressive calligraphy."
   }
 ];
 

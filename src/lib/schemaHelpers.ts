@@ -48,6 +48,7 @@ export interface ProductSchemaOptions {
   category?: string;
   ratingValue?: string | number;
   reviewCount?: string | number;
+  availability?: string;
 }
 
 export function createProductSchema(options: ProductSchemaOptions) {
@@ -85,7 +86,7 @@ export function createProductSchema(options: ProductSchemaOptions) {
       price: String(options.price),
       priceCurrency: options.priceCurrency || 'INR',
       priceValidUntil: '2027-12-31',
-      availability: 'https://schema.org/InStock',
+      availability: options.availability || 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       seller: {
         '@type': 'Organization',

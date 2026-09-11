@@ -194,7 +194,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
             </div>
             <div className="p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
               <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">3 Channels</span>
-              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Single, Double & Music Flow</span>
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-[#B8963E] mt-1 block">Single, Double & Triple</span>
             </div>
             <div className="p-4 rounded-xl text-center bg-white border border-[#E5DFD5] shadow-xs">
               <span className="block text-2xl sm:text-3xl font-bold font-serif text-[#102E29]">₹75 – ₹450</span>
@@ -223,16 +223,30 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                     <th className="p-3.5 sm:p-4">Shape</th>
                     <th className="p-3.5 sm:p-4">Ink Channel</th>
                     <th className="p-3.5 sm:p-4">Fitment Type</th>
+                    <th className="p-3.5 sm:p-4">Status</th>
                     <th className="p-3.5 sm:p-4 text-right">Starting Unit Price</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E5DFD5]">
                   {rawProducts.map((p) => (
                     <tr key={p.id} className="hover:bg-[#FAF8F5] transition-colors">
-                      <td className="p-3.5 sm:p-4 font-semibold text-[#102E29]">{p.name}</td>
+                      <td className="p-3.5 sm:p-4 font-semibold text-[#102E29]">
+                        {p.name}
+                      </td>
                       <td className="p-3.5 sm:p-4 text-[#6B6558]">{p.shape}</td>
                       <td className="p-3.5 sm:p-4 text-[#6B6558]">{p.ink}</td>
                       <td className="p-3.5 sm:p-4 text-[#6B6558]">{p.type}</td>
+                      <td className="p-3.5 sm:p-4">
+                        {p.inStock === false ? (
+                          <span className="px-2 py-0.5 text-[10px] font-bold uppercase rounded-full bg-red-100 text-red-700 border border-red-300 whitespace-nowrap">
+                            Out of Stock
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 text-[10px] font-medium uppercase rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
+                            In Stock
+                          </span>
+                        )}
+                      </td>
                       <td className="p-3.5 sm:p-4 text-right font-bold text-[#102E29]">{calculateDisplayPrice(p)}</td>
                     </tr>
                   ))}

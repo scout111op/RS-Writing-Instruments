@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.rswriting.in'),
   title: 'Hand-Cut Ebonite Fountain Pen Feeds Wholesale | RS Writing Instruments',
   description:
-    'Precision hand-cut natural hard rubber ebonite feeds for Parker & Sheaffer geometries. Single, double, and triple music ink channels starting at ₹75.',
+    'Precision hand-cut natural hard rubber ebonite feeds for Parker & Sheaffer geometries. Single, double, and triple ink channels starting at ₹75.',
   keywords: [
     'ebonite feed wholesale',
     'fountain pen feed India',
     'Parker 51 ebonite feed',
     'Sheaffer feed replacement',
-    'music flow triple channel feed',
+    'triple channel ebonite feed',
     'cartridge ebonite feed',
   ],
   alternates: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Hand-Cut Ebonite Fountain Pen Feeds Wholesale',
     description:
-      'Precision hard rubber feeds crafted for Parker and Sheaffer geometries. Single, double, and triple music ink channels.',
+      'Precision hard rubber feeds crafted for Parker and Sheaffer geometries. Single, double, and triple ink channels.',
     url: 'https://www.rswriting.in/feeds',
     siteName: 'RS Writing Instruments',
     images: [{ url: '/logo.png', width: 800, height: 600, alt: 'RS Hand-Cut Ebonite Feeds' }],
@@ -86,6 +86,7 @@ export default function FeedsPage() {
       mpn: `RS-EBONITE-FEED-${feed.id}`,
       price: feed.basePrice.toString(),
       priceCurrency: 'INR',
+      availability: feed.inStock === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
       url: 'https://www.rswriting.in/feeds',
       category: 'Office Supplies > Fountain Pen Feeds & Components',
       ratingValue: (4.8 + (feed.id % 3) * 0.1).toFixed(1),
@@ -194,8 +195,8 @@ export default function FeedsPage() {
                   <span className="text-[10px] text-[#9C9588]">Rich, wet daily flow for medium & broad writers.</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-white border border-[#E5DFD5] text-center">
-                  <span className="block font-bold text-sm text-[#102E29]">Triple Music</span>
-                  <span className="text-[10px] text-[#9C9588]">High-volume supply for vintage flex & music nibs.</span>
+                  <span className="block font-bold text-sm text-[#102E29]">Triple Channel</span>
+                  <span className="text-[10px] text-[#9C9588]">High-volume supply for broad, calligraphic & flex nibs.</span>
                 </div>
               </div>
             </div>
@@ -230,7 +231,7 @@ export default function FeedsPage() {
                       <td className="py-2.5 px-3 font-bold text-[#102E29]">Standard #6</td>
                       <td className="py-2.5 px-3 text-[#6B6558]">6.0 mm - 6.35 mm (1/4&quot;)</td>
                       <td className="py-2.5 px-3 text-[#6B6558]">PRAVAH, Jowo #6, Bock 250, Custom</td>
-                      <td className="py-2.5 px-3 text-[#102E29] font-medium">Wet / Music Triple</td>
+                      <td className="py-2.5 px-3 text-[#102E29] font-medium">Wet / Triple Channel</td>
                     </tr>
                     <tr>
                       <td className="py-2.5 px-3 font-bold text-[#102E29]">Cartridge/Friction</td>

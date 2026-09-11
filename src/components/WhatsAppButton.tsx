@@ -17,7 +17,7 @@ export default function WhatsAppButton({
   productName,
   selectedColour,
   selectedComplimentary = "Jowo Compatible",
-  selectedFeed = "Ebonite Feed #35 (51mm) - Single Channel",
+  selectedFeed = "No. 35 51MM Single Ink Channel",
   selectedNib = "Friction Fit - F",
   selectedNibColor = "GOLD",
   className = "",
