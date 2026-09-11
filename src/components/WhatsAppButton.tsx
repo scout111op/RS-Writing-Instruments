@@ -27,7 +27,7 @@ export default function WhatsAppButton({
     `- Complimentary Section: ${selectedComplimentary}`,
     `- Ebonite Feed: ${selectedFeed}`,
     `- Nib (Compatibility & Size): ${selectedNib}`,
-    `- Nib Color: ${selectedNibColor}`,
+    `- Nib & Trim Finish: ${selectedNibColor}`,
   ];
 
   if (productName && selectedColour) {

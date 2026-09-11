@@ -347,13 +347,13 @@ export default function ProductCard({
                 </div>
               </div>
 
-              {/* 4. Nib Color */}
+              {/* 4. Nib & Trim Finish */}
               <div>
                 <label
                   htmlFor={`nib-color-select-${product.id}`}
                   className="block fable-mono-caps text-[9px] font-medium text-[#6B6558] mb-1"
                 >
-                  Nib Color
+                  Nib &amp; Trim Finish
                 </label>
                 <div className="relative">
                   <select
