@@ -3,9 +3,10 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { CatalogProduct, ProductColourOption } from "@/lib/catalogProducts";
+import { rawProducts } from "@/lib/products";
 import ColourSelector from "@/components/ColourSelector";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { HiOutlineHand, HiZoomIn } from "react-icons/hi";
+import { HiOutlineHand, HiZoomIn, HiChevronDown } from "react-icons/hi";
 import { useProductZoom } from "@/context/ProductZoomContext";
 
 interface ProductCardProps {
@@ -28,6 +29,9 @@ export default function ProductCard({
   const [selectedColour, setSelectedColour] = useState<ProductColourOption>(
     displayColours[0]
   );
+  const [selectedFeed, setSelectedFeed] = useState<string>("Standard Ebonite Feed");
+  const [selectedNib, setSelectedNib] = useState<string>("Jowo - F");
+  const [selectedNibColor, setSelectedNibColor] = useState<string>("GOLD");
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const imageFrameRef = useRef<HTMLDivElement>(null);
 
@@ -122,6 +126,7 @@ export default function ProductCard({
       className={`group relative bg-white rounded-2xl hairline-card overflow-hidden transition-all duration-300 flex flex-col justify-between gpu-accelerated ${
         isFeatured ? "ring-2 ring-[#B8963E]/50 shadow-md" : "shadow-xs hover:shadow-md"
       }`}
+      suppressHydrationWarning
     >
       {/* Featured Badge */}
       {isFeatured && (
@@ -231,13 +236,127 @@ export default function ProductCard({
             selectedColour={displayColour}
             onSelect={handleSelectColour}
           />
+
+          {/* Customization Options Panel */}
+          <div className="mt-4 pt-3 border-t border-[#E5DFD5]/60">
+            <div className="flex items-center justify-between mb-2.5">
+              <span className="fable-mono-caps text-[9px] font-bold text-[#102E29] tracking-wider uppercase flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B8963E]" />
+                Customization Options
+              </span>
+            </div>
+
+            <div className="space-y-2.5">
+              {/* 1. Ebonite Feed */}
+              <div>
+                <label
+                  htmlFor={`feed-select-${product.id}`}
+                  className="block fable-mono-caps text-[9px] font-medium text-[#6B6558] mb-1"
+                >
+                  Ebonite Feed
+                </label>
+                <div className="relative">
+                  <select
+                    id={`feed-select-${product.id}`}
+                    value={selectedFeed}
+                    onChange={(e) => setSelectedFeed(e.target.value)}
+                    className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
+                  >
+                    <option value="Standard Ebonite Feed">Standard Ebonite Feed (Default)</option>
+                    <optgroup label="Atelier Hand-Cut Ebonite Feeds">
+                      {rawProducts.map((feed) => (
+                        <option key={feed.id} value={feed.name}>
+                          {feed.name}
+                        </option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Other Options">
+                      <option value="No">No (Without Feed)</option>
+                    </optgroup>
+                  </select>
+                  <HiChevronDown
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#9C9588] pointer-events-none"
+                    size={14}
+                  />
+                </div>
+              </div>
+
+              {/* 2. Nib Compatibility & Size */}
+              <div>
+                <label
+                  htmlFor={`nib-select-${product.id}`}
+                  className="block fable-mono-caps text-[9px] font-medium text-[#6B6558] mb-1"
+                >
+                  Nib Compatibility &amp; Size
+                </label>
+                <div className="relative">
+                  <select
+                    id={`nib-select-${product.id}`}
+                    value={selectedNib}
+                    onChange={(e) => setSelectedNib(e.target.value)}
+                    className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
+                  >
+                    <optgroup label="Jowo Housing Compatibility">
+                      <option value="Jowo - EEF">Jowo - EEF</option>
+                      <option value="Jowo - EF">Jowo - EF</option>
+                      <option value="Jowo - F">Jowo - F</option>
+                      <option value="Jowo - M">Jowo - M</option>
+                      <option value="Jowo - B">Jowo - B</option>
+                      <option value="Jowo - DB">Jowo - DB</option>
+                    </optgroup>
+                    <optgroup label="Bock Housing Compatibility">
+                      <option value="Bock - EEF">Bock - EEF</option>
+                      <option value="Bock - EF">Bock - EF</option>
+                      <option value="Bock - F">Bock - F</option>
+                      <option value="Bock - M">Bock - M</option>
+                      <option value="Bock - B">Bock - B</option>
+                      <option value="Bock - DB">Bock - DB</option>
+                    </optgroup>
+                  </select>
+                  <HiChevronDown
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#9C9588] pointer-events-none"
+                    size={14}
+                  />
+                </div>
+              </div>
+
+              {/* 3. Nib Color */}
+              <div>
+                <label
+                  htmlFor={`nib-color-select-${product.id}`}
+                  className="block fable-mono-caps text-[9px] font-medium text-[#6B6558] mb-1"
+                >
+                  Nib Color
+                </label>
+                <div className="relative">
+                  <select
+                    id={`nib-color-select-${product.id}`}
+                    value={selectedNibColor}
+                    onChange={(e) => setSelectedNibColor(e.target.value)}
+                    className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
+                  >
+                    <option value="GOLD">GOLD</option>
+                    <option value="ROSE GOLD">ROSE GOLD</option>
+                    <option value="STEALTH BLACK">STEALTH BLACK</option>
+                  </select>
+                  <HiChevronDown
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#9C9588] pointer-events-none"
+                    size={14}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* WhatsApp Single CTA */}
+        {/* WhatsApp Dynamic CTA */}
         <div className="pt-3 border-t border-[#E5DFD5]/50 mt-3">
           <WhatsAppButton
             productName={product.name}
             selectedColour={displayColour.name}
+            selectedFeed={selectedFeed}
+            selectedNib={selectedNib}
+            selectedNibColor={selectedNibColor}
           />
         </div>
       </div>

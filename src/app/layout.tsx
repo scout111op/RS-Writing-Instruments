@@ -213,7 +213,15 @@ export default function RootLayout({
                 try {
                   var orig = Element.prototype.setAttribute;
                   Element.prototype.setAttribute = function(name, val) {
-                    if (name === 'bis_skin_checked' || name === 'bis_size') return;
+                    if (
+                      name === 'bis_skin_checked' ||
+                      name === 'bis_size' ||
+                      name === 'data-gr-ext-installed' ||
+                      name === 'data-new-gr-c-s-check-loaded' ||
+                      name.indexOf('data-darkreader') === 0 ||
+                      name.indexOf('data-gr-') === 0 ||
+                      name.indexOf('data-gramm') === 0
+                    ) return;
                     return orig.apply(this, arguments);
                   };
                 } catch(e) {}
