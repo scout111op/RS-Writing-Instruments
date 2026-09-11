@@ -34,15 +34,11 @@ export default function ProductCard({
   const [selectedColour, setSelectedColour] = useState<ProductColourOption>(
     displayColours[0]
   );
-  const [selectedFeed, setSelectedFeed] = useState<string>(
-    eboniteFeedOptions.find((p) => p.inStock !== false)?.name ||
-    eboniteFeedOptions[0]?.name ||
-    "No. 35 51MM Single Ink Channel"
-  );
-  const [selectedNib, setSelectedNib] = useState<string>("Friction Fit - F");
+  const [selectedFeed, setSelectedFeed] = useState<string>("Choose an option");
+  const [selectedNib, setSelectedNib] = useState<string>("Choose an option");
   const [selectedComplimentary, setSelectedComplimentary] =
-    useState<string>("Jowo Compatible");
-  const [selectedNibColor, setSelectedNibColor] = useState<string>("GOLD");
+    useState<string>("Choose an option");
+  const [selectedNibColor, setSelectedNibColor] = useState<string>("Choose an option");
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const imageFrameRef = useRef<HTMLDivElement>(null);
 
@@ -274,6 +270,7 @@ export default function ProductCard({
                     suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
+                    <option value="Choose an option">Choose an option</option>
                     <optgroup label="Ebonite Feeds 51mm">
                       {eboniteFeedOptions.map((feed) => (
                         <option key={feed.id} value={feed.name}>
@@ -305,6 +302,7 @@ export default function ProductCard({
                     suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
+                    <option value="Choose an option">Choose an option</option>
                     <optgroup label="Friction Fit Compatibility">
                       <option value="Friction Fit - EEF">Friction Fit - EEF</option>
                       <option value="Friction Fit - EF">Friction Fit - EF</option>
@@ -337,6 +335,7 @@ export default function ProductCard({
                     suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
+                    <option value="Choose an option">Choose an option</option>
                     <option value="Jowo Compatible">Jowo Compatible</option>
                     <option value="Bock Compatible">Bock Compatible</option>
                   </select>
@@ -363,6 +362,7 @@ export default function ProductCard({
                     suppressHydrationWarning
                     className="w-full appearance-none bg-[#FAF8F5] hover:bg-white text-[#102E29] border border-[#E5DFD5] hover:border-[#B8963E]/60 focus:border-[#B8963E] focus:bg-white rounded-lg px-2.5 py-1.5 pr-7 text-xs font-medium transition-all duration-200 outline-none cursor-pointer"
                   >
+                    <option value="Choose an option">Choose an option</option>
                     <option value="GOLD">GOLD</option>
                     <option value="ROSE GOLD">ROSE GOLD</option>
                     <option value="STEALTH BLACK">STEALTH BLACK</option>

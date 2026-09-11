@@ -16,10 +16,10 @@ interface WhatsAppButtonProps {
 export default function WhatsAppButton({
   productName,
   selectedColour,
-  selectedComplimentary = "Jowo Compatible",
-  selectedFeed = "No. 35 51MM Single Ink Channel",
-  selectedNib = "Friction Fit - F",
-  selectedNibColor = "GOLD",
+  selectedComplimentary = "Choose an option",
+  selectedFeed = "Choose an option",
+  selectedNib = "Choose an option",
+  selectedNibColor = "Choose an option",
   className = "",
 }: WhatsAppButtonProps) {
   const lines = [
