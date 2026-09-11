@@ -51,6 +51,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  trailingSlash: false,
   compress: true,
   poweredByHeader: false,
   experimental: {

@@ -25,7 +25,7 @@ export default function PolicySubNav() {
     },
     {
       label: "Atelier Guarantees",
-      href: "/#policies-section",
+      href: "/terms#shipping",
       icon: HiOutlineSparkles,
     },
   ];
