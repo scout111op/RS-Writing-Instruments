@@ -209,6 +209,53 @@ export default function NibsPage() {
 
       {/* ── MAIN PRODUCT CATALOG ──────────────────────────────────── */}
       <main>
+        {/* ── DEDICATED GEOMETRY SHOWCASE GATEWAY ───────────────────── */}
+        <section className="py-8 px-6 md:px-12 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link
+              href="/nibs/bock"
+              className="group p-6 rounded-2xl bg-white border border-[#E5DFD5] hover:border-[#B8963E]/60 transition-all shadow-xs hover:shadow-md flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#B8963E] font-bold">Dedicated Showcase</span>
+                  <span className="text-xs text-[#B8963E] font-semibold group-hover:translate-x-1 transition-transform">Explore Bock #6 →</span>
+                </div>
+                <h3 className="font-serif text-xl font-bold text-[#102E29] group-hover:text-[#B8963E] transition-colors">
+                  Bock #6 Type 250 series Nibs &amp; Guide
+                </h3>
+                <p className="text-xs text-[#6B6558] mt-2 leading-relaxed">
+                  Interactive dual-view inspection (front face &amp; reverse feed curvature), Type 250 housing fitment specs, and 6 tip widths in Black PVD, Gold, and Rose Gold.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-[#F0ECE4] text-[11px] font-medium text-[#102E29]">
+                View 3 Bock Finishes &amp; Specifications →
+              </div>
+            </Link>
+
+            <Link
+              href="/nibs/jowo"
+              className="group p-6 rounded-2xl bg-white border border-[#E5DFD5] hover:border-[#B8963E]/60 transition-all shadow-xs hover:shadow-md flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#B8963E] font-bold">Dedicated Showcase</span>
+                  <span className="text-xs text-[#B8963E] font-semibold group-hover:translate-x-1 transition-transform">Explore Jowo #6 →</span>
+                </div>
+                <h3 className="font-serif text-xl font-bold text-[#102E29] group-hover:text-[#B8963E] transition-colors">
+                  Jowo #6 Type 250 series Nibs &amp; Guide
+                </h3>
+                <p className="text-xs text-[#6B6558] mt-2 leading-relaxed">
+                  Universal standard German replacement nibs engineered for Jowo #6 collars and bespoke pen sections with smooth ink delivery from EEF to Double Broad.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-[#F0ECE4] text-[11px] font-medium text-[#102E29]">
+                View 3 Jowo Finishes &amp; Specifications →
+              </div>
+            </Link>
+          </div>
+        </section>
+
         <NibCatalogSection />
 
         {/* ── TECHNICAL COMPARISON TABLE SECTION ─────────────────────── */}
@@ -328,7 +375,9 @@ export default function NibsPage() {
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
-            <Link href="/nibs" className="hover:text-[#B8963E] text-[#102E29] font-bold">Nibs</Link>
+            <Link href="/nibs" className="hover:text-[#B8963E] text-[#102E29] font-bold">All Nibs</Link>
+            <Link href="/nibs/bock" className="hover:text-[#B8963E]">Bock #6</Link>
+            <Link href="/nibs/jowo" className="hover:text-[#B8963E]">Jowo #6</Link>
             <Link href="/blog" className="hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
             <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>

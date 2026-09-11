@@ -244,10 +244,12 @@ export default function WholesalePage() {
             <Link href="/" className="hover:text-[#B8963E]">Home</Link>
             <Link href="/pens" className="hover:text-[#B8963E]">Pens</Link>
             <Link href="/feeds" className="hover:text-[#B8963E]">Feeds</Link>
-            <Link href="/nibs" className="hover:text-[#B8963E]">Nibs</Link>
+            <Link href="/nibs" className="hover:text-[#B8963E]">All Nibs</Link>
+            <Link href="/nibs/bock" className="hover:text-[#B8963E]">Bock #6</Link>
+            <Link href="/nibs/jowo" className="hover:text-[#B8963E]">Jowo #6</Link>
             <Link href="/blog" className="hover:text-[#B8963E]">Guides &amp; FAQs</Link>
             <Link href="/about" className="hover:text-[#B8963E]">About</Link>
-            <Link href="/wholesale" className="hover:text-[#B8963E]">Wholesale</Link>
+            <Link href="/wholesale" className="hover:text-[#B8963E] text-[#102E29] font-bold">Wholesale</Link>
             <span className="text-[#D1C9BE] hidden sm:inline">|</span>
             <Link href="/privacy" className="hover:text-[#B8963E]">Privacy</Link>
             <Link href="/terms" className="hover:text-[#B8963E]">Terms</Link>

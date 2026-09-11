@@ -322,23 +322,23 @@ export default function Home() {
               <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
                 <Link href="/pens" className="hover:text-[#B8963E] transition-colors">Handcrafted Pens</Link>
                 <Link href="/feeds" className="hover:text-[#B8963E] transition-colors">Ebonite Feeds Catalogue</Link>
-                <Link href="/nibs" className="hover:text-[#B8963E] transition-colors">Precision Nibs Collection</Link>
+                <Link href="/nibs" className="hover:text-[#B8963E] transition-colors">Precision Nibs (All)</Link>
+                <Link href="/nibs/bock" className="hover:text-[#B8963E] transition-colors">Bock #6 Type 250 Nibs</Link>
+                <Link href="/nibs/jowo" className="hover:text-[#B8963E] transition-colors">Jowo #6 Type 250 Nibs</Link>
                 <Link href="/blog" className="hover:text-[#B8963E] transition-colors">Guides &amp; FAQs</Link>
                 <Link href="/about" className="hover:text-[#B8963E] transition-colors">About Atelier &amp; Founder</Link>
                 <Link href="/wholesale" className="hover:text-[#B8963E] transition-colors">B2B Wholesale &amp; OEM</Link>
-                <a href="#contact" className="hover:text-[#B8963E] transition-colors">Custom Inquiries</a>
               </div>
             </div>
 
             {/* Legal & Policies */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-6 text-[#B8963E]">Legal & Policies</h4>
+              <h4 className="text-[10px] uppercase tracking-[0.25em] font-bold mb-6 text-[#B8963E]">Legal &amp; Policies</h4>
               <div className="flex flex-col gap-3 text-xs text-[#6B6558]">
                 <Link href="/privacy" className="hover:text-[#B8963E] transition-colors">Privacy Policy</Link>
                 <Link href="/terms" className="hover:text-[#B8963E] transition-colors">Terms of Service</Link>
                 <Link href="/acceptable-use" className="hover:text-[#B8963E] transition-colors">Acceptable Use Policy</Link>
-                <Link href="/#policies-section" className="hover:text-[#B8963E] transition-colors">Atelier Guarantees</Link>
-                <Link href="/terms#shipping" className="hover:text-[#B8963E] transition-colors">Shipping & Warranty</Link>
+                <Link href="/terms#shipping" className="hover:text-[#B8963E] transition-colors">Shipping &amp; Warranty</Link>
               </div>
             </div>
 
