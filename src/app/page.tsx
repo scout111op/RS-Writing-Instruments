@@ -12,6 +12,7 @@ import Navbar from '@/components/Navbar';
 import ProductCatalogGrid from '@/components/ProductCatalogGrid';
 import ProductCard from '@/components/ProductCard';
 import NibCatalogSection from '@/components/NibCatalogSection';
+import LaserEngravingHeroCard from '@/components/LaserEngravingHeroCard';
 import { featuredHeroProduct } from '@/lib/catalogProducts';
 import { nibProducts } from '@/lib/nibs';
 import { createProductSchema } from '@/lib/schemaHelpers';
@@ -125,7 +126,30 @@ export default function Home() {
     });
   });
 
-  const allProductSchemas = [...productSchemas, ...nibSchemas];
+  const laserEngravingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://www.rswriting.in/#laser-engraving',
+    name: 'Custom Laser Engraving on Fountain Pen Nibs & Clips',
+    serviceType: 'Bespoke Laser Engraving & Personalization',
+    provider: {
+      '@type': 'Organization',
+      name: 'RS Writing Instruments',
+      url: 'https://www.rswriting.in',
+    },
+    description:
+      'Artisan fiber laser engraving service for #6 fountain pen nibs, gold/black clips, caps, and ebonite barrels. Personalized custom artwork, monograms, family crests, and calligraphy.',
+    image: 'https://www.rswriting.in/custom-laser-engraving.webp',
+    areaServed: 'IN',
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      url: 'https://www.rswriting.in',
+    },
+  };
+
+  const allProductSchemas = [...productSchemas, ...nibSchemas, laserEngravingSchema];
 
   return (
     <div id="main-wrapper" className="overflow-x-hidden min-h-screen relative" style={{ background: '#FDFBF7', color: '#1B2A2A' }} suppressHydrationWarning>
@@ -145,45 +169,50 @@ export default function Home() {
       {/* STICKY NAVIGATION BAR */}
       <Navbar activeTab="home" />
 
-      {/* HERO SECTION WITH FEATURED PEN COLLECTION CARD */}
+      {/* HERO SECTION WITH FEATURED PEN COLLECTION CARD & LASER ENGRAVING SPOTLIGHT */}
       <section id="hero-section" className="relative w-full py-8 md:py-14 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
           
           {/* Ambient Glow */}
           <div className="ambient-glow w-[500px] h-[500px] top-[10%] left-[5%]" style={{ background: 'radial-gradient(circle, rgba(184, 150, 62, 0.06) 0%, transparent 70%)' }} />
 
-          {/* Left Column: Hero Text */}
-          <div className="md:col-span-6 z-10 text-left">
-            <span className="fable-mono-caps text-[#B8963E] block mb-3 font-medium">
-              HAND-CUT EBONITE FEEDS / CUSTOM HARD RUBBER PENS
-            </span>
-            
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal mb-5 leading-[1.08] text-[#102E29] tracking-tight">
-              Handcrafted ebonite feeds and <span className="font-serif italic text-[#B8963E]">bespoke</span> fountain pens
-            </h1>
-            
-            <p className="font-sans text-xs md:text-sm leading-relaxed mb-7 max-w-lg text-[#6B6558] font-normal">
-              Precision-cut ebonite capillary feeds, Parker & Sheaffer fitment channels, and hand-turned hard rubber fountain pens. Designed for master nibsmiths, custom pen artisans, and discerning collectors.
-            </p>
+          {/* Left Column: Hero Text + Laser Engraving Showcase Card */}
+          <div className="md:col-span-6 z-10 text-left flex flex-col justify-between">
+            <div>
+              <span className="fable-mono-caps text-[#B8963E] block mb-3 font-medium">
+                HAND-CUT EBONITE FEEDS / CUSTOM HARD RUBBER PENS
+              </span>
+              
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal mb-4 leading-[1.08] text-[#102E29] tracking-tight">
+                Handcrafted ebonite feeds and <span className="font-serif italic text-[#B8963E]">bespoke</span> fountain pens
+              </h1>
+              
+              <p className="font-sans text-xs md:text-sm leading-relaxed mb-5 max-w-lg text-[#6B6558] font-normal">
+                Precision-cut ebonite capillary feeds, Parker &amp; Sheaffer fitment channels, and hand-turned hard rubber fountain pens. Designed for master nibsmiths, custom pen artisans, and discerning collectors.
+              </p>
 
-            {/* Dual Pill CTAs */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 mb-4">
-              <Link
-                href="/pens"
-                className="fable-pill-btn min-h-[44px] py-3.5 px-7 fable-mono-caps font-semibold flex items-center justify-center gap-2 bg-[#102E29] text-[#FDFBF7] shadow-sm hover:bg-[#1A4A42] w-full sm:w-auto"
-              >
-                Browse Pen Collection
-              </Link>
+              {/* Dual Pill CTAs */}
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 mb-5">
+                <Link
+                  href="/pens"
+                  className="fable-pill-btn min-h-[44px] py-3 px-6 fable-mono-caps font-semibold flex items-center justify-center gap-2 bg-[#102E29] text-[#FDFBF7] shadow-sm hover:bg-[#1A4A42] w-full sm:w-auto"
+                >
+                  Browse Pen Collection
+                </Link>
 
-              <a
-                href={generalWhatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fable-pill-btn min-h-[44px] py-3.5 px-7 fable-mono-caps font-semibold border border-[#E5DFD5] flex items-center justify-center gap-2 bg-white text-[#102E29] hover:bg-[#FAF8F5] w-full sm:w-auto"
-              >
-                <FaWhatsapp size={16} style={{ color: '#25D366' }} /> WhatsApp Enquiry
-              </a>
+                <a
+                  href={generalWhatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fable-pill-btn min-h-[44px] py-3 px-6 fable-mono-caps font-semibold border border-[#E5DFD5] flex items-center justify-center gap-2 bg-white text-[#102E29] hover:bg-[#FAF8F5] w-full sm:w-auto"
+                >
+                  <FaWhatsapp size={16} style={{ color: '#25D366' }} /> WhatsApp Enquiry
+                </a>
+              </div>
             </div>
+
+            {/* Custom Laser Engraving Spotlight Card */}
+            <LaserEngravingHeroCard className="mt-1" />
           </div>
 
           {/* Right Column: Featured Interactive Hero Product Card */}
